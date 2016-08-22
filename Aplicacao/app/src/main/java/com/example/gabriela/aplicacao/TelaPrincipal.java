@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 public class TelaPrincipal extends ActionBarActivity {
 
     private Toolbar toolbar;
+    private Toolbar toolbarButtom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +20,18 @@ public class TelaPrincipal extends ActionBarActivity {
 
     }
 
-    private void toolbarsets(){
+    private void toolbarsetters(){
         toolbar.setTitle("Teste");
+        toolbar.setSubtitle("teste2");
+
+        toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
     }
 
 
     private void inicializaComponentes(){
         toolbar = (Toolbar) findViewById(R.id.tb_principal);
-
+        toolbarButtom = (Toolbar) findViewById(R.id.tb_buttom);
     }
 
 
