@@ -20,6 +20,8 @@ public class TelaPrincipal extends ActionBarActivity {
 
     }
 
+    // Teste
+
     private void toolbarsetters(){
         toolbar.setTitle("Teste");
         toolbar.setSubtitle("teste2");
