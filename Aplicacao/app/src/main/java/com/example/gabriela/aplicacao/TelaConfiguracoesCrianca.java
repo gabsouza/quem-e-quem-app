@@ -21,22 +21,21 @@ public class TelaConfiguracoesCrianca extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actitivity_configuracoes_crianca);
         inicializaComponentes();
+        customSwip = new CustomSwip(this);
+        viewPager.setAdapter(customSwip);
     }
 
-    private void toolbarsetters(){
+    /*private void toolbarsetters(){
         toolbar.setTitle("Teste");
         toolbar.setSubtitle("teste2");
 
         toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);
-    }
-
+    }*/
 
     private void inicializaComponentes(){
 
-        toolbar = (Toolbar) findViewById(R.id.tb_principal);
-        viewPager = (ViewPager) findViewById (R.id.viewPager);
-        customSwip = new customSwip(this);
-
+       // toolbar = (Toolbar) findViewById(R.id.tb_principal);
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
     }
 }
