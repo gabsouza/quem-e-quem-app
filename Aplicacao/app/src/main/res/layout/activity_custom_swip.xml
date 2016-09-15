@@ -6,8 +6,6 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:id = "@+id/foto" />
-        //android:src = "@drawable/foto_personagem_1" />
-
+        android:id = "@+id/swip_image_view" />
 
 </LinearLayout>

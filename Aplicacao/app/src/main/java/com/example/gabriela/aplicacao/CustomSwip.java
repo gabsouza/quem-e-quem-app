@@ -36,7 +36,7 @@ public class CustomSwip extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         itemView = layoutInflater.inflate(R.layout.activity_custom_swip, container, false);
-        imageView = (ImageView) itemView.findViewById(R.id.foto);
+        imageView = (ImageView) itemView.findViewById(R.id.viewPager);
         imageView.setImageResource(recursoImagem[position]);
         container.addView(itemView);
 
@@ -44,7 +44,13 @@ public class CustomSwip extends PagerAdapter {
     }
 
     @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+
+    }
+
+    @Override
     public boolean isViewFromObject(View view, Object object) {
-        return false;
+        return
+                (view == object);
     }
 }

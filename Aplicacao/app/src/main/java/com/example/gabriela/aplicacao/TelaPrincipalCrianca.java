@@ -20,9 +20,9 @@ public class TelaPrincipalCrianca extends ActionBarActivity {
     }
 
     public void inicializaComponentes() {
-        mToolbar = (Toolbar) findViewById(R.id.tb_main);
-        setSupportActionBar(mToolbar);
-        mToolbarSelo = (Toolbar) findViewById(R.id.);
+       // mToolbar = (Toolbar) findViewById(R.id.tb_main);
+       // setSupportActionBar(mToolbar);
+       // mToolbarSelo = (Toolbar) findViewById(R.id.);
 
     }
 }
