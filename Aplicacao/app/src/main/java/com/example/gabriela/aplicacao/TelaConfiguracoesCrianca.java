@@ -1,23 +1,20 @@
 package com.example.gabriela.aplicacao;
 
-import android.support.annotation.Nullable;
+import android.app.Activity;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 /**
  * Created by Gabriela on 24/08/2016.
  */
-// remor
-public class TelaConfiguracoesCrianca extends ActionBarActivity {
+public class TelaConfiguracoesCrianca extends Activity {
     private ViewPager viewPager;
     private CustomSwip customSwip;
     private Toolbar toolbar;
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actitivity_configuracoes_crianca);
         inicializaComponentes();
@@ -34,7 +31,6 @@ public class TelaConfiguracoesCrianca extends ActionBarActivity {
     }*/
 
     private void inicializaComponentes(){
-
        // toolbar = (Toolbar) findViewById(R.id.tb_principal);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
     }

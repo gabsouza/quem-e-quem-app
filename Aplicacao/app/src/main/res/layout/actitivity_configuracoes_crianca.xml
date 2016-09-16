@@ -7,7 +7,7 @@
 
     <android.support.v4.view.ViewPager
         android:layout_height="100dp"
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:id = "@+id/viewPager"
         android:layout_gravity="center_vertical"
         android:layout_alignParentTop="true"
@@ -26,9 +26,11 @@
         android:layout_marginBottom="97dp" />
 
     <ImageButton
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="50dp"
         android:id="@+id/imageButton"
+        android:src="@drawable/camera"
+        android:background="@drawable/borda"
         android:layout_below="@+id/viewPager"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp" />
