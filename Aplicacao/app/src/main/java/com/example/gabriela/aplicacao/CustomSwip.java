@@ -2,6 +2,7 @@ package com.example.gabriela.aplicacao;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class CustomSwip extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         itemView = layoutInflater.inflate(R.layout.activity_custom_swip, container, false);
-        imageView = (ImageView) itemView.findViewById(R.id.viewPager);
+        imageView = (ImageView) itemView.findViewById(R.id.swip_image_view);
         imageView.setImageResource(recursoImagem[position]);
         container.addView(itemView);
 

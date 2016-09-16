@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by Gabriela on 24/08/2016.
@@ -11,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 public class TelaConfiguracoesCrianca extends Activity {
     private ViewPager viewPager;
     private CustomSwip customSwip;
+    private EditText et_nome;
     private Toolbar toolbar;
 
     @Override
@@ -33,5 +36,6 @@ public class TelaConfiguracoesCrianca extends Activity {
     private void inicializaComponentes(){
        // toolbar = (Toolbar) findViewById(R.id.tb_principal);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
+        et_nome = (EditText)findViewById(R.id.et_nome);
     }
 }
