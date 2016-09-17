@@ -31,6 +31,7 @@ public class CustomSwip extends PagerAdapter {
     @Override
     public int getCount() {
         return recursoImagem.length;
+
     }
 
     @Override
@@ -40,6 +41,13 @@ public class CustomSwip extends PagerAdapter {
         imageView = (ImageView) itemView.findViewById(R.id.swip_image_view);
         imageView.setImageResource(recursoImagem[position]);
         container.addView(itemView);
+
+       /* if (position == recursoImagem[0]) {
+            recursoImagem[0]= recursoImagem [1];
+
+        } else {
+
+        }*/
 
         return itemView;
     }
