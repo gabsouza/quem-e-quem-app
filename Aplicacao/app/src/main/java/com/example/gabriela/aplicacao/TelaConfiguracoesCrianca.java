@@ -34,9 +34,10 @@ public class TelaConfiguracoesCrianca extends Activity {
         this.ib_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // editor.clear();
-               // editor.commit();
-               // startActivity(itTelaLogin);
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+               // startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
                 finish();
             }
         });
