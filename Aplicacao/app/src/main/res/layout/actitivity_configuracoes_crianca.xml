@@ -6,8 +6,8 @@
     android:padding="10dp">
 
     <android.support.v4.view.ViewPager
-        android:layout_height="100dp"
-        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_width="210dp"
         android:id = "@+id/viewPager"
         android:layout_gravity="center_vertical"
         android:layout_alignParentTop="true"
@@ -17,18 +17,20 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_apelido"
+        android:id="@+id/et_nome"
         android:layout_gravity="bottom"
         android:layout_weight="7.10"
-        android:hint="Apelido"
+        android:hint="Nome"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="97dp" />
 
     <ImageButton
-        android:layout_width="100dp"
+        android:layout_width="210dp"
         android:layout_height="50dp"
-        android:id="@+id/imageButton"
+        android:id="@+id/ib_camera"
+        android:src="@drawable/camera"
+        android:background="@drawable/borda"
         android:layout_below="@+id/viewPager"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp" />
