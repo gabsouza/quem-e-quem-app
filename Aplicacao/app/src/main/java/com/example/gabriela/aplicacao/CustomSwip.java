@@ -16,7 +16,7 @@ import org.w3c.dom.Text;
  */
 public class CustomSwip extends PagerAdapter {
 
-    private int [] recursoImagem = {R.drawable.foto_personagem_1, R.drawable.foto_personagem_2, R.drawable.foto_personagem_3, R.drawable.foto_personagem_4, R.drawable.foto_personagem_5, R.drawable.foto_personagem_6};
+    private int [] recursoImagem = {R.drawable.foto_personagem_1, R.drawable.foto_personagem_2, R.drawable.foto_personagem_3, R.drawable.foto_personagem_4, R.drawable.foto_personagem_5, R.drawable.foto_personagem_6, R.drawable.foto_camera};
     private Context ctx;
     private LayoutInflater layoutInflater;
     private View itemView;
@@ -41,13 +41,6 @@ public class CustomSwip extends PagerAdapter {
         imageView = (ImageView) itemView.findViewById(R.id.swip_image_view);
         imageView.setImageResource(recursoImagem[position]);
         container.addView(itemView);
-
-       /* if (position == recursoImagem[0]) {
-            recursoImagem[0]= recursoImagem [1];
-
-        } else {
-
-        }*/
 
         return itemView;
     }
