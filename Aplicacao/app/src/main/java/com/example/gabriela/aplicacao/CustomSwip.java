@@ -12,7 +12,7 @@ import android.widget.ImageView;
  */
 public class CustomSwip extends PagerAdapter {
 
-    private int [] recursoImagem = {R.drawable.foto_personagem_1, R.drawable.foto_personagem_2, R.drawable.foto_personagem_3, R.drawable.foto_personagem_4, R.drawable.foto_personagem_5, R.drawable.foto_personagem_6, R.drawable.foto_camera};
+    private int [] recursoImagem = {R.drawable.foto_personagem_1, R.drawable.foto_personagem_2, R.drawable.foto_personagem_3, R.drawable.foto_personagem_4, R.drawable.foto_personagem_5, R.drawable.foto_personagem_6};
     private Context ctx;
     private LayoutInflater layoutInflater;
     private View itemView;

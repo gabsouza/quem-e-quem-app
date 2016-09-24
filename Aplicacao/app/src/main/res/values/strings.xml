@@ -2,4 +2,7 @@
     <string name="app_name">Aplicacao</string>
     <string name="speech_prompt">Say something&#8230;</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
+    <string name="imageException">Desculpe, não foi possível pegar sua imagem.</string>
+    <string name="unknownPath">Caminho desconhecido.</string>
+    <string name="dataException">Problemas ao pegar sua imagem</string>
 </resources>
