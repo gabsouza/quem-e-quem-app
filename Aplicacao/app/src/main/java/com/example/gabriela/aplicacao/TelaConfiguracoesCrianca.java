@@ -27,6 +27,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import consumer.PerfilConsumer;
 import pojo.Perfil;
 
 /**
@@ -41,6 +42,7 @@ public class TelaConfiguracoesCrianca extends Activity {
     private String selectedImagePath;
     private ImageView imgEdit;
     private Bitmap bitmap;
+    private PerfilConsumer perfilConsumer;
     private static final int RECONHECE_VOZ = 30;
     private static final int PICK_IMAGE = 1;
 
@@ -71,17 +73,15 @@ public class TelaConfiguracoesCrianca extends Activity {
             }
         });
 
-       /* this.btSalvar.setOnClickListener(new View.OnClickListener() {
+      this.btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Perfil perfil = new Perfil();
                 perfil.setNome(etNome.getText().toString());
-                perfil.setMidia(imgEdit);
-
-                // PerfilDao.Cadastrar(perfil);
+               perfilConsumer.chamaCadastrar(perfil);
               //  Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
             }
-        });*/
+        });
     }
 
     private void entradaVoz() {
@@ -208,5 +208,6 @@ public class TelaConfiguracoesCrianca extends Activity {
         ibMicrofone = (ImageButton) findViewById(R.id.im_microfone);
         btSalvar = (Button) findViewById(R.id.bt_salvar);
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
+        perfilConsumer = new PerfilConsumer();
     }
 }

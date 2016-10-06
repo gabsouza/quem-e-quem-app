@@ -8,12 +8,14 @@
     android:label="Quem é Quem?"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".TelaConfiguracoesCrianca">
-    <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-    </intent-filter>
+     <activity android:name=".TelaPrincipalCrianca">
+           <intent-filter>
+               <action android:name="android.intent.action.MAIN" />
+               <category android:name="android.intent.category.LAUNCHER" />
+           </intent-filter>
      </activity>
+         <activity android:name=".TelaConfiguracoesCrianca"/>
+
 
 </application>
 
