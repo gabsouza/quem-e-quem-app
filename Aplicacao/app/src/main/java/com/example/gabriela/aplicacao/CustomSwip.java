@@ -2,6 +2,7 @@ package com.example.gabriela.aplicacao;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,17 +18,25 @@ public class CustomSwip extends PagerAdapter {
     private LayoutInflater layoutInflater;
     private View itemView;
     private ImageView imageView;
+    private int posicaoCorrente;
+
 
     //construtor da classe
     public CustomSwip(Context c){
         ctx = c;
     }
 
+    public int getImagemCorrente() {
+        return recursoImagem[posicaoCorrente];
+    }
     // Conta quantas imagens tem
     @Override
     public int getCount() {
         return recursoImagem.length;
+    }
 
+    public int getPosicaoCorrente() {
+        return this.posicaoCorrente;
     }
 
     @Override
@@ -37,7 +46,8 @@ public class CustomSwip extends PagerAdapter {
         imageView = (ImageView) itemView.findViewById(R.id.swip_image_view);
         imageView.setImageResource(recursoImagem[position]);
         container.addView(itemView);
-
+        this.posicaoCorrente = position;
+        Log.i("DEBUG",posicaoCorrente+" POSICAOOO");
         return itemView;
     }
 

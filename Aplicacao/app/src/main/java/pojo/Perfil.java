@@ -1,41 +1,47 @@
 package pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Gabriela on 16/09/2016.
- */
-public class Perfil {
 
-    private int id;
-    private String nome;
+public class Perfil implements Serializable {
+
+    private static final long serialVersionUID = -5858562772172889269L;
+
+    private int idPerfil;
+    private String nomePerfil;
+
     private Responsavel responsavel;
-    private List<Selo> selos = new ArrayList<>();
+
+    private List<Selo> selos = new ArrayList<Selo>();
+
+   // private List<UsuarioMiniJogo> usuariosMiniJogos = new ArrayList<UsuarioMiniJogo>();
+
     private Midia midia;
 
-    public Perfil(String nome){
-        this.nome = nome;
+    public Perfil(String nomePerfil){
+        this.nomePerfil = nomePerfil;
     }
 
     public Perfil(){
 
-        }
-
-    public int getId() {
-        return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdPerfil() {
+        return idPerfil;
     }
 
-    public String getNome() {
-        return nome;
+    public void setIdPerfil(int idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String getNomePerfil() {
+        return nomePerfil;
+    }
+
+    public void setNomePerfil(String nomePerfil) {
+        this.nomePerfil = nomePerfil;
     }
 
     public Responsavel getResponsavel() {
@@ -46,13 +52,21 @@ public class Perfil {
         this.responsavel = responsavel;
     }
 
-    public List<Selo> getSelos() {return selos;}
+    public List<Selo> getSelos() {
+        return selos;
+    }
 
-    public void setSelos(List<Selo> selos) {this.selos = selos;}
+    public void setSelos(List<Selo> selos) {
+        this.selos = selos;
+    }
+
 
     public Midia getMidia() {
         return midia;
     }
 
-    public void setMidia(Midia midia) {this.midia = midia;}
+    public void setMidia(Midia midia) {
+        this.midia = midia;
+    }
+
 }

@@ -1,5 +1,7 @@
 package consumer;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -12,11 +14,12 @@ import pojo.Perfil;
  */
 public class PerfilConsumer {
 
-    RestTemplate restTemplate = new RestTemplate();
-    public static final String URL_BASE = "http://10.0.2.2:8080/ServeQeQ/rest/perfil/";
+    RestTemplate restTemplate;
+    public static final String URL_BASE = "http://192.168.241.169:8080/ServidorQuem/rest/perfil/";
 
     public PerfilConsumer() {
-
+        restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
     // FAZ UM GET RETORNANDO UM JSON
@@ -28,7 +31,8 @@ public class PerfilConsumer {
 
     // FAZER UM POST ENVIANDO UM JSON
     public Perfil chamaCadastrar(Perfil perfil) {
-        perfil = restTemplate.postForObject(URL_BASE, perfil, Perfil.class);
+        ResponseEntity<Perfil> response = restTemplate.postForEntity(URL_BASE, perfil, Perfil.class);
+        perfil = response.getBody();
         return perfil;
     }
 
@@ -37,7 +41,5 @@ public class PerfilConsumer {
         Map map = new HashMap();
         map.put("id", id);
         restTemplate.delete(URL, map);
-
     }
-
 }

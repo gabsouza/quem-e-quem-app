@@ -9,10 +9,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -77,9 +78,11 @@ public class TelaConfiguracoesCrianca extends Activity {
             @Override
             public void onClick(View v) {
                 Perfil perfil = new Perfil();
-                perfil.setNome(etNome.getText().toString());
-               perfilConsumer.chamaCadastrar(perfil);
-              //  Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
+                perfil.setNomePerfil(etNome.getText().toString());
+                new HttpRequestTask().execute(perfil);
+                Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+
+                //  Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -209,5 +212,27 @@ public class TelaConfiguracoesCrianca extends Activity {
         btSalvar = (Button) findViewById(R.id.bt_salvar);
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
         perfilConsumer = new PerfilConsumer();
+    }
+
+
+    private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
+
+        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
+
+        @Override
+        protected Perfil doInBackground(Perfil... params) {
+            Log.i("DEBUG",params[0].getNomePerfil());
+            params[0] = perfilConsumer.chamaCadastrar(params[0]);
+            Log.i("DEBUG",params[0].getNomePerfil());
+            return params[0];
+        }
+
+        // é executado quando o webservice retorna
+        @Override
+        protected void onPostExecute(Perfil perfil) {
+            super.onPostExecute(perfil);
+            Log.i("DEBUG",perfil.getNomePerfil());
+
+        }
     }
 }
