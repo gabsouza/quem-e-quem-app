@@ -81,8 +81,7 @@ public class TelaConfiguracoesCrianca extends Activity {
                 perfil.setNomePerfil(etNome.getText().toString());
                 new HttpRequestTask().execute(perfil);
                 Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-
-                //  Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
+                Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
             }
         });
     }
