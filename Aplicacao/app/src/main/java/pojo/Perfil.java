@@ -1,58 +1,73 @@
 package pojo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Gabriela on 16/09/2016.
- */
-public class Perfil {
+public class Perfil implements Serializable {
 
-    private int id;
-    private String nome;
-    private Responsavel responsavel;
-    private List<Selo> selos = new ArrayList<>();
-    private Midia midia;
+	private static final long serialVersionUID = -5858562772172889269L;
+	private int idPerfil;
+	private String nomePerfil;
+	private Responsavel responsavel;
+	private List<Selo> selos = new ArrayList<Selo>();
+	private List<UsuarioMiniJogo> usuariosMiniJogos = new ArrayList<UsuarioMiniJogo>();
+	private Midia midia;
+	
+	public Perfil(String nomePerfil){
+		this.nomePerfil = nomePerfil;
+	}
+	
+	public Perfil(){
+		
+	}
 
-    public Perfil(String nome){
-        this.nome = nome;
-    }
+	public int getIdPerfil() {
+		return idPerfil;
+	}
 
-    public Perfil(){
+	public void setIdPerfil(int idPerfil) {
+		this.idPerfil = idPerfil;
+	}
 
-        }
+	public String getNomePerfil() {
+		return nomePerfil;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public void setNomePerfil(String nomePerfil) {
+		this.nomePerfil = nomePerfil;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public Responsavel getResponsavel() {
+		return responsavel;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public void setResponsavel(Responsavel responsavel) {
+		this.responsavel = responsavel;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public List<Selo> getSelos() {
+		return selos;
+	}
 
-    public Responsavel getResponsavel() {
-        return responsavel;
-    }
+	public void setSelos(List<Selo> selos) {
+		this.selos = selos;
+	}
 
-    public void setResponsavel(Responsavel responsavel) {
-        this.responsavel = responsavel;
-    }
+	public List<UsuarioMiniJogo> getUsuariosMiniJogos() {
+		return usuariosMiniJogos;
+	}
 
-    public List<Selo> getSelos() {return selos;}
+	public void setUsuariosMiniJogos(List<UsuarioMiniJogo> usuariosMiniJogos) {
+		this.usuariosMiniJogos = usuariosMiniJogos;
+	}
 
-    public void setSelos(List<Selo> selos) {this.selos = selos;}
+	public Midia getMidia() {
+		return midia;
+	}
 
-    public Midia getMidia() {
-        return midia;
-    }
+	public void setMidia(Midia midia) {
+		this.midia = midia;
+	}
 
-    public void setMidia(Midia midia) {this.midia = midia;}
 }
