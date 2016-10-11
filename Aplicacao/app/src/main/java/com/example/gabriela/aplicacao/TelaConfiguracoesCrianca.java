@@ -67,12 +67,11 @@ public class TelaConfiguracoesCrianca extends Activity {
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
-        etNome.setOnTouchListener(new View.OnTouchListener() {
+        etNome.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.i("debug", "pegouu");
+            public void onClick(View v) {
                 mp.stop();
-                return false;
+                Log.i("debug", "safas");
             }
         });
 
@@ -118,6 +117,7 @@ public class TelaConfiguracoesCrianca extends Activity {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     Log.i("debug", "clicou fora!!");
+
                     playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
                 }
             }
@@ -143,11 +143,11 @@ public class TelaConfiguracoesCrianca extends Activity {
     public void playAudio(Uri uri){
         try {
 
-            if(!mp.isPlaying()){
+
                 mp.setDataSource(this, uri);
                 mp.prepare();
                 mp.start();
-            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
