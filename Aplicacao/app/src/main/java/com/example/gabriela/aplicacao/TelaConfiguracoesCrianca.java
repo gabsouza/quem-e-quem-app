@@ -2,23 +2,28 @@ package com.example.gabriela.aplicacao;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.media.ExifInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -47,6 +52,7 @@ public class TelaConfiguracoesCrianca extends Activity {
     private ImageView imgEdit;
     private Bitmap bitmap;
     private PerfilConsumer perfilConsumer;
+    private MediaPlayer mp;
     private static final int RECONHECE_VOZ = 30;
     private static final int PICK_IMAGE = 1;
 
@@ -60,7 +66,17 @@ public class TelaConfiguracoesCrianca extends Activity {
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
-        etNome.addTextChangedListener(new FinishWritingListener());
+        etNome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    Log.d("focus", "focus loosed");
+                    // Do whatever you want here
+                } else {
+                    Log.d("focus", "focused");
+                }
+            }
+        });
 
         ibMicrofone.setOnClickListener(new View.OnClickListener() {
 
@@ -94,18 +110,46 @@ public class TelaConfiguracoesCrianca extends Activity {
     private class FinishWritingListener implements TextWatcher {
 
         public void afterTextChanged(Editable s) {
-            playAudio();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    playAudio();
+                }
+
+                 }, 500);
         }
-        public void beforeTextChanged(CharSequence s, int start, int count,
-                                      int after) {
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
         }
-        public void onTextChanged(CharSequence s, int start, int before,
-                                  int count) {
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
 
         }
     }
 
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if ( v instanceof EditText) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                    Log.d("focus", "touchevent");
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    Log.i("debug", "clicou fora!!");
+                    playAudio();
+
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
     private void entradaVoz() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
@@ -123,12 +167,15 @@ public class TelaConfiguracoesCrianca extends Activity {
     }
 
     public void playAudio(){
-        MediaPlayer mp = new MediaPlayer();
         Uri song = Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste");
         try {
-            mp.setDataSource(this, song);
-            mp.prepare();
-            mp.start();
+
+            if(!mp.isPlaying()){
+                mp.setDataSource(this, song);
+                mp.prepare();
+                mp.start();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -242,6 +289,7 @@ public class TelaConfiguracoesCrianca extends Activity {
         btSalvar = (Button) findViewById(R.id.bt_salvar);
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
         perfilConsumer = new PerfilConsumer();
+        mp = new MediaPlayer();
     }
 
 
