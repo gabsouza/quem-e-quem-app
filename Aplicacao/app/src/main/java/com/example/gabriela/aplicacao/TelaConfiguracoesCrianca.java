@@ -8,12 +8,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
 import android.support.v4.view.ViewPager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,10 +56,11 @@ public class TelaConfiguracoesCrianca extends Activity {
         setContentView(R.layout.actitivity_configuracoes_crianca);
 
         inicializaComponentes();
-
+        //playAudio();
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
+        etNome.addTextChangedListener(new FinishWritingListener());
 
         ibMicrofone.setOnClickListener(new View.OnClickListener() {
 
@@ -81,9 +85,25 @@ public class TelaConfiguracoesCrianca extends Activity {
                 perfil.setNomePerfil(etNome.getText().toString());
                 new HttpRequestTask().execute(perfil);
                 Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+               // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
                 Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private class FinishWritingListener implements TextWatcher {
+
+        public void afterTextChanged(Editable s) {
+            playAudio();
+        }
+        public void beforeTextChanged(CharSequence s, int start, int count,
+                                      int after) {
+
+        }
+        public void onTextChanged(CharSequence s, int start, int before,
+                                  int count) {
+
+        }
     }
 
     private void entradaVoz() {
@@ -102,6 +122,17 @@ public class TelaConfiguracoesCrianca extends Activity {
         }
     }
 
+    public void playAudio(){
+        MediaPlayer mp = new MediaPlayer();
+        Uri song = Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste");
+        try {
+            mp.setDataSource(this, song);
+            mp.prepare();
+            mp.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     //recebe a entrada tanto de voz quando de imagem e faz um switch case pra saber
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

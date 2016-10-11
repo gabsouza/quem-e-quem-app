@@ -11,16 +11,27 @@ public class MiniJogo implements Serializable {
 	private int idMiniJogo;
 	private String nomeMiniJogo;
 	private String introducao;
+	private int photo;
 	private List<Midia> midias = new ArrayList<Midia>();
 	private List<Pergunta> perguntas = new ArrayList<Pergunta>();
 	private List<UsuarioMiniJogo> usuariosMiniJogos = new ArrayList<UsuarioMiniJogo>();
 	
-	public MiniJogo(String nomeMiniJogo){
+	public MiniJogo(String nomeMiniJogo, String introducao, int photo){
 		this.nomeMiniJogo = nomeMiniJogo;
+		this.introducao = introducao;
+		this.photo = photo;
 	}
 	
 	public MiniJogo(){
 		
+	}
+
+	public int getPhoto(){
+		return photo;
+	}
+
+	public void setPhoto(int photo){
+		this.photo = photo;
 	}
 
 	public int getIdMiniJogo() {
