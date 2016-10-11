@@ -53,6 +53,7 @@ public class TelaConfiguracoesCrianca extends Activity {
     private Bitmap bitmap;
     private PerfilConsumer perfilConsumer;
     private MediaPlayer mp;
+    private Uri uri;
     private static final int RECONHECE_VOZ = 30;
     private static final int PICK_IMAGE = 1;
 
@@ -62,19 +63,16 @@ public class TelaConfiguracoesCrianca extends Activity {
         setContentView(R.layout.actitivity_configuracoes_crianca);
 
         inicializaComponentes();
-        //playAudio();
+        playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
-        etNome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        etNome.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    Log.d("focus", "focus loosed");
-                    // Do whatever you want here
-                } else {
-                    Log.d("focus", "focused");
-                }
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.i("debug", "pegouu");
+                mp.stop();
+                return false;
             }
         });
 
@@ -107,29 +105,6 @@ public class TelaConfiguracoesCrianca extends Activity {
         });
     }
 
-    private class FinishWritingListener implements TextWatcher {
-
-        public void afterTextChanged(Editable s) {
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    playAudio();
-                }
-
-                 }, 500);
-        }
-
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-        }
-    }
-
-
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -143,8 +118,7 @@ public class TelaConfiguracoesCrianca extends Activity {
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     Log.i("debug", "clicou fora!!");
-                    playAudio();
-
+                    playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
                 }
             }
         }
@@ -166,12 +140,11 @@ public class TelaConfiguracoesCrianca extends Activity {
         }
     }
 
-    public void playAudio(){
-        Uri song = Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste");
+    public void playAudio(Uri uri){
         try {
 
             if(!mp.isPlaying()){
-                mp.setDataSource(this, song);
+                mp.setDataSource(this, uri);
                 mp.prepare();
                 mp.start();
             }
@@ -180,6 +153,7 @@ public class TelaConfiguracoesCrianca extends Activity {
             e.printStackTrace();
         }
     }
+
     //recebe a entrada tanto de voz quando de imagem e faz um switch case pra saber
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -291,7 +265,6 @@ public class TelaConfiguracoesCrianca extends Activity {
         perfilConsumer = new PerfilConsumer();
         mp = new MediaPlayer();
     }
-
 
     private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
 
