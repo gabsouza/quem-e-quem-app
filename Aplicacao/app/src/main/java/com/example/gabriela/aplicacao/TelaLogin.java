@@ -2,6 +2,7 @@ package com.example.gabriela.aplicacao;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -108,19 +109,27 @@ public class TelaLogin extends AppCompatActivity implements
             Log.e(TAG, "display name: " + acct.getDisplayName());
 
             String personName = acct.getDisplayName();
-            String personPhotoUrl = acct.getPhotoUrl().toString();
+            Uri uri = acct.getPhotoUrl();
+
+
             String email = acct.getEmail();
 
-            Log.e(TAG, "Name: " + personName + ", email: " + email
-                    + ", Image: " + personPhotoUrl);
+            if(uri!=null) {
+                String personPhotoUrl = acct.getPhotoUrl().toString();
+                Log.e(TAG, "Name: " + personName + ", email: " + email  + ", Image: " + personPhotoUrl);
+                Glide.with(getApplicationContext()).load(personPhotoUrl)
+                        .thumbnail(0.5f)
+                        .crossFade()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(imgProfilePic);
+            }else {
+                imgProfilePic.setImageResource(android.R.color.transparent);
+            }
+
 
             txtName.setText(personName);
             txtEmail.setText(email);
-            Glide.with(getApplicationContext()).load(personPhotoUrl)
-                    .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(imgProfilePic);
+
 
             updateUI(true);
         } else {
