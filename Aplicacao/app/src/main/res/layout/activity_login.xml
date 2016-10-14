@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +13,8 @@
         android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         android:weightSum="3"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:id="@+id/imgProfilePic"
@@ -44,12 +45,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/btn_sign_in"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"/>
-
     <Button
         android:id="@+id/btn_sign_out"
         android:layout_width="fill_parent"
@@ -65,4 +60,12 @@
         android:text="@string/btn_revoke_access"
         android:visibility="gone" />
 
-</LinearLayout>
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_sign_in"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
+
+</RelativeLayout>
