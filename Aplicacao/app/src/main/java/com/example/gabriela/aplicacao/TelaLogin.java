@@ -40,7 +40,7 @@ public class TelaLogin extends AppCompatActivity implements
     private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
-    private TextView txtName, txtEmail;
+    private TextView txtName, txtEmail, txtId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class TelaLogin extends AppCompatActivity implements
         imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
+        txtId = (TextView) findViewById(R.id.txtId);
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
@@ -111,12 +112,12 @@ public class TelaLogin extends AppCompatActivity implements
             String personName = acct.getDisplayName();
             Uri uri = acct.getPhotoUrl();
 
-
+            String id = acct.getId();
             String email = acct.getEmail();
 
-            if(uri!=null) {
+            if(uri != null) {
                 String personPhotoUrl = acct.getPhotoUrl().toString();
-                Log.e(TAG, "Name: " + personName + ", email: " + email  + ", Image: " + personPhotoUrl);
+                Log.e(TAG, "Name: " + personName + ", email: " + email  + ", Image: " + personPhotoUrl + ", Id: " + id);
                 Glide.with(getApplicationContext()).load(personPhotoUrl)
                         .thumbnail(0.5f)
                         .crossFade()
@@ -129,6 +130,7 @@ public class TelaLogin extends AppCompatActivity implements
 
             txtName.setText(personName);
             txtEmail.setText(email);
+            txtId.setText(id);
 
 
             updateUI(true);
