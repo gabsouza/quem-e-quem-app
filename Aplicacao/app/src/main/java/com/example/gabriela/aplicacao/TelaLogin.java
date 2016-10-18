@@ -109,15 +109,15 @@ public class TelaLogin extends AppCompatActivity implements
 
             Log.e(TAG, "display name: " + acct.getDisplayName());
 
-            String personName = acct.getDisplayName();
-            Uri uri = acct.getPhotoUrl();
+            String NomeResponsavel = acct.getDisplayName();
+            Uri fotoResponsavel = acct.getPhotoUrl();
 
-            String id = acct.getId();
-            String email = acct.getEmail();
+            String idResponsavel = acct.getId();
+            String emailResponsavel = acct.getEmail();
 
-            if(uri != null) {
+            if(fotoResponsavel != null) {
                 String personPhotoUrl = acct.getPhotoUrl().toString();
-                Log.e(TAG, "Name: " + personName + ", email: " + email  + ", Image: " + personPhotoUrl + ", Id: " + id);
+                Log.e(TAG, "Name: " + NomeResponsavel + ", email: " + emailResponsavel  + ", Image: " + personPhotoUrl + ", Id: " + idResponsavel);
                 Glide.with(getApplicationContext()).load(personPhotoUrl)
                         .thumbnail(0.5f)
                         .crossFade()
@@ -128,9 +128,9 @@ public class TelaLogin extends AppCompatActivity implements
             }
 
 
-            txtName.setText(personName);
-            txtEmail.setText(email);
-            txtId.setText(id);
+            txtName.setText(NomeResponsavel);
+            txtEmail.setText(emailResponsavel);
+            txtId.setText(idResponsavel);
 
 
             updateUI(true);
