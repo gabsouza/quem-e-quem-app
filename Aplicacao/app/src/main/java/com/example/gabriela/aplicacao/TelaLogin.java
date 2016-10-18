@@ -40,7 +40,7 @@ public class TelaLogin extends AppCompatActivity implements
     private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
-    private TextView txtName, txtEmail;
+    private TextView txtName, txtEmail, txtId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class TelaLogin extends AppCompatActivity implements
         imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
+        txtId = (TextView) findViewById(R.id.txtId);
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
@@ -108,15 +109,15 @@ public class TelaLogin extends AppCompatActivity implements
 
             Log.e(TAG, "display name: " + acct.getDisplayName());
 
-            String personName = acct.getDisplayName();
-            Uri uri = acct.getPhotoUrl();
+            String NomeResponsavel = acct.getDisplayName();
+            Uri fotoResponsavel = acct.getPhotoUrl();
 
+            String idResponsavel = acct.getId();
+            String emailResponsavel = acct.getEmail();
 
-            String email = acct.getEmail();
-
-            if(uri!=null) {
+            if(fotoResponsavel != null) {
                 String personPhotoUrl = acct.getPhotoUrl().toString();
-                Log.e(TAG, "Name: " + personName + ", email: " + email  + ", Image: " + personPhotoUrl);
+                Log.e(TAG, "Name: " + NomeResponsavel + ", email: " + emailResponsavel  + ", Image: " + personPhotoUrl + ", Id: " + idResponsavel);
                 Glide.with(getApplicationContext()).load(personPhotoUrl)
                         .thumbnail(0.5f)
                         .crossFade()
@@ -127,8 +128,9 @@ public class TelaLogin extends AppCompatActivity implements
             }
 
 
-            txtName.setText(personName);
-            txtEmail.setText(email);
+            txtName.setText(NomeResponsavel);
+            txtEmail.setText(emailResponsavel);
+            txtId.setText(idResponsavel);
 
 
             updateUI(true);

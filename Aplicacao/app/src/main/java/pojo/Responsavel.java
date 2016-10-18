@@ -16,7 +16,6 @@ public class Responsavel implements Serializable{
 	public Responsavel(String nomeResponsavel, String emailResponsavel){
 		this.nomeResponsavel = nomeResponsavel;
 		this.emailResponsavel = emailResponsavel;
-		//this.senha = senha;
 	}
 	
 	public Responsavel(){
