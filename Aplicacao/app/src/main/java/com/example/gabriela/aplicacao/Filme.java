@@ -1,4 +1,4 @@
-package com.example.claquete;
+package com.example.gabriela.aplicacao;
 
 import org.json.JSONException;
 import org.json.JSONObject;

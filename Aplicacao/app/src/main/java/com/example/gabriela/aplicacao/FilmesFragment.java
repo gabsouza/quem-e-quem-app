@@ -1,4 +1,4 @@
-package com.example.claquete;
+package com.example.gabriela.aplicacao;
 
 import android.app.Fragment;
 import android.content.Intent;

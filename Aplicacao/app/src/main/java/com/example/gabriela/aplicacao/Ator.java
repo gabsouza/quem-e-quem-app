@@ -1,4 +1,4 @@
-package com.example.claquete;
+package com.example.gabriela.aplicacao;
 
 public class Ator {
     private int id;
