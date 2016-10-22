@@ -16,7 +16,7 @@ import pojo.Responsavel;
 public class ResponsavelConsumer {
 
     RestTemplate restTemplate;
-    public static final String URL_BASE = "http://192.168.241.63:8080/ServidorQuem/rest/responsavel/";
+    public static final String URL_BASE = "http://177.7.4.131:8080/ServidorQuem/rest/responsavel/";
 
     public ResponsavelConsumer() {
         restTemplate = new RestTemplate();
