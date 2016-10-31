@@ -1,4 +1,4 @@
-package com.example.claquete;
+package com.example.gabriela.aplicacao;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
