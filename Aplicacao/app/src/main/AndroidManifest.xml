@@ -11,7 +11,7 @@
     android:label="Quem é Quem?"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-     <activity android:name=".TelaMenuJogos">
+     <activity android:name=".MainActivity">
            <intent-filter>
                <action android:name="android.intent.action.MAIN" />
                <category android:name="android.intent.category.LAUNCHER" />
@@ -20,6 +20,8 @@
         <activity android:name=".TelaConfiguracoesCrianca"/>
          <activity android:name=".TelaPrincipalCrianca"/>
         <activity android:name=".TelaLogin"/>
+        <activity android:name=".VerFilmeActivity"
+            android:label="Ver Filme"/>
 </application>
 
 </manifest>

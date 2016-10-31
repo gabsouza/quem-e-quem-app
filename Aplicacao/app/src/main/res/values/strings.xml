@@ -14,6 +14,13 @@
     <string name="btn_logout_from_google">Logout from Google</string>
     <string name="btn_revoke_access">Revoke Access</string>
 
+    <!-- Código Mateus Material Design -->
+    <string name="drawer_open">Abrir navegação</string>
+    <string name="drawer_close">Fechar navegação</string>
+    <string name="title_activity_navigation_drawer">NavigationDrawerActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
 
 
