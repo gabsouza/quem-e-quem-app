@@ -1,5 +1,8 @@
 package pojo;
 
+import com.example.gabriela.aplicacao.Midia;
+import com.example.gabriela.aplicacao.Pergunta;
+
 import java.io.Serializable;
 
 public class Dica implements Serializable{

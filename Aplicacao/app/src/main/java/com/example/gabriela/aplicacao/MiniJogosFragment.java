@@ -23,27 +23,27 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AtoresFragment extends Fragment {
+public class MiniJogosFragment extends Fragment {
 
-    private List<Ator> mAtores;
-    private AtoresAdapter mAdapter;
+    private List<MiniJogo> mMiniJogos;
+    private MiniJogoAdapter mAdapter;
 
-    public AtoresFragment() {
+    public MiniJogosFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_atores, container, false);
+        View view = inflater.inflate(R.layout.fragment_minijogos, container, false);
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 4);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAtores = new ArrayList<>();
-        mAdapter = new AtoresAdapter(mAtores);
+        mMiniJogos = new ArrayList<>();
+        mAdapter = new MiniJogoAdapter(mMiniJogos);
         recyclerView.setAdapter(mAdapter);
 
         ObterAtoresTask task = new ObterAtoresTask();
@@ -83,14 +83,15 @@ public class AtoresFragment extends Fragment {
         protected void onPostExecute(JSONObject json) {
             if (json != null) {
                 try {
-                    mAtores.clear();
+                    mMiniJogos.clear();
                     JSONArray actorsArray = json.getJSONArray("results");
                     for (int i = 0; i < actorsArray.length(); i++) {
                         JSONObject actorObject = actorsArray.getJSONObject(i);
-                        int id = actorObject.getInt("id");
-                        String name = actorObject.getString("name");
-                        String profilePath = actorObject.getString("profile_path");
-                        mAtores.add(new Ator(id, name, profilePath));
+                        int idMiniJogo = actorObject.getInt("idMiniJogo");
+                        String nomeMiniJogo = actorObject.getString("nomeMiniJogo");
+                        String photo = actorObject.getString("photo");
+                        String introducao = actorObject.getString("introducao");
+                        mMiniJogos.add(new MiniJogo(idMiniJogo, nomeMiniJogo, photo, introducao));
                     }
                     mAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
