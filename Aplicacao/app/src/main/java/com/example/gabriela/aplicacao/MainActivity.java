@@ -50,11 +50,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (position) {
             case 0:
                 fragment = new FilmesFragment();
-                title = "Evolução";
+                title = "Filmes";
                 break;
             case 1:
                 fragment = new FavoritosFragment();
-                title = "Configurações";
+                title = "Favoritos";
                 break;
             case 3:
                 fragment = new MiniJogosFragment();
