@@ -1,6 +1,8 @@
-package pojo;
+package com.example.gabriela.aplicacao;
 
 import java.io.Serializable;
+
+import pojo.TipoMidia;
 
 public class Midia implements Serializable {
 

@@ -1,8 +1,10 @@
-package pojo;
+package com.example.gabriela.aplicacao;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import pojo.*;
 
 public class UsuarioMiniJogo implements Serializable{
 
@@ -10,7 +12,7 @@ public class UsuarioMiniJogo implements Serializable{
 	private int idUsuarioMiniJogo;
 	private List<Resposta> respostas = new ArrayList<Resposta>();
 	private List<Perfil> perfis = new ArrayList<Perfil>();
-	private List<MiniJogo> miniJogos = new ArrayList<MiniJogo>();
+	private List<pojo.MiniJogo> miniJogos = new ArrayList<pojo.MiniJogo>();
 	
 	public UsuarioMiniJogo(){
 		
@@ -40,11 +42,11 @@ public class UsuarioMiniJogo implements Serializable{
 		this.perfis = perfis;
 	}
 
-	public List<MiniJogo> getMiniJogos() {
+	public List<pojo.MiniJogo> getMiniJogos() {
 		return miniJogos;
 	}
 
-	public void setMiniJogos(List<MiniJogo> miniJogos) {
+	public void setMiniJogos(List<pojo.MiniJogo> miniJogos) {
 		this.miniJogos = miniJogos;
 	}
 	

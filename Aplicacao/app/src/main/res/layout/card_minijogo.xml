@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imgAtor"
+        android:id="@+id/imgMiniJogo"
         android:adjustViewBounds="true"/>
 
     <TextView
@@ -22,7 +22,7 @@
         android:background="@color/colorAccent"
         android:padding="2dp"
         android:text="Emma Watson"
-        android:id="@+id/txtNome"
+        android:id="@+id/txtNomeMiniJogo"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:alpha="0.8"/>

@@ -1,5 +1,7 @@
 package pojo;
 
+import com.example.gabriela.aplicacao.Midia;
+
 import java.io.Serializable;
 import java.util.Date;
 
