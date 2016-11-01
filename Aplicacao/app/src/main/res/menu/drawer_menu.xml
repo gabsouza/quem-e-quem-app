@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/action_movies"
-        android:icon="@drawable/ic_movie"
+        android:icon="@drawable/configuracoes"
         android:title="Configurações" />
     <item
         android:id="@+id/action_favorites"
-        android:icon="@drawable/ic_favorite"
+        android:icon="@drawable/evolucao2"
         android:title="Evolução" />
     <item
         android:id="@+id/action_actors"
-        android:icon="@drawable/ic_people"
+        android:icon="@drawable/sair2"
         android:title="Sair" />
 </menu>

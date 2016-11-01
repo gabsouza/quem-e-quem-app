@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case 3:
                 fragment = new MiniJogosFragment();
-                title = "Sair";
+                title = "MiniJogos";
                 break;
         }
 
