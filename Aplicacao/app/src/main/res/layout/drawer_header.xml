@@ -4,7 +4,6 @@
               android:layout_height="150dp"
               android:orientation="vertical"
               android:gravity="bottom"
-              android:background="@drawable/cadeiras"
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
@@ -13,8 +12,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgAvatar"
-        android:src="@drawable/avatar"/>
+        android:id="@+id/imgAvatar"/>
 
     <TextView
         android:layout_width="wrap_content"

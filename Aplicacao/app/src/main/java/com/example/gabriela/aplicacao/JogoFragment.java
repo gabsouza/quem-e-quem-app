@@ -8,15 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.List;
 
+import Interface.RecyclerViewOnClickListenerHack;
 import pojo.MiniJogo;
 
 /**
  * Created by Gabriela on 08/10/2016.
  */
-public class JogoFragment extends Fragment {
+public class JogoFragment extends Fragment implements RecyclerViewOnClickListenerHack {
     private RecyclerView mRecyclerView;
     private List<MiniJogo> mList;
 
@@ -39,7 +41,7 @@ public class JogoFragment extends Fragment {
                 super.onScrolled(recyclerView, dx, dy);
 
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-                CardAdapter adapter = (CardAdapter) mRecyclerView.getAdapter();
+                JogoAdapter adapter = (JogoAdapter) mRecyclerView.getAdapter();
 
                 if(mList.size() == linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1){
                     List<MiniJogo> listAux = ((TelaPrincipalCrianca)getActivity()).getSetMiniJogoList(4);
@@ -56,9 +58,18 @@ public class JogoFragment extends Fragment {
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
         mList = ((TelaPrincipalCrianca)getActivity()).getSetMiniJogoList(4);
-        CardAdapter adapter = new CardAdapter(getActivity(), mList);
+        JogoAdapter adapter = new JogoAdapter(getActivity(), mList);
+        adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    @Override
+    public void onClickListener(View view, int position) {
+        Toast.makeText(getActivity(), "Position: " + position, Toast.LENGTH_SHORT).show();
+
+        JogoAdapter adapter = (JogoAdapter) mRecyclerView.getAdapter();
+        adapter.removeListItem(position);
     }
 }

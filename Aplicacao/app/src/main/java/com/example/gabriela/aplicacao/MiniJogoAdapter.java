@@ -18,7 +18,7 @@ public class MiniJogoAdapter extends RecyclerView.Adapter<MeuViewHolder> {
     @Override
     public MeuViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.card_minijogo, parent, false);
+        View view = inflater.inflate(R.layout.item_jogo, parent, false);
         return new MeuViewHolder(view);
     }
 

@@ -1,6 +1,7 @@
 package com.example.gabriela.aplicacao;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,16 +12,18 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import Interface.RecyclerViewOnClickListenerHack;
 import pojo.MiniJogo;
 
 /**
  * Created by Gabriela on 08/10/2016.
  */
-public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> {
+public class JogoAdapter extends RecyclerView.Adapter<JogoAdapter.MyViewHolder> {
     private List<MiniJogo> mList;
     private LayoutInflater mLayoutInflater;
+    private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
 
-    public CardAdapter(Context ctx, List<MiniJogo> miniJogoList) {
+    public JogoAdapter(Context ctx, List<MiniJogo> miniJogoList) {
         mList = miniJogoList;
         mLayoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -45,13 +48,22 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         return mList.size();
     }
 
+    public void setRecyclerViewOnClickListenerHack(RecyclerViewOnClickListenerHack r){
+        mRecyclerViewOnClickListenerHack = r;
+
+    }
+
     public void addListItem(MiniJogo mj, int position){
         mList.add(mj);
         notifyItemInserted(position);
     }
 
+    public void removeListItem(int position){
+        mList.remove(position);
+        notifyItemRemoved(position);
+    }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView ivJogo;
         public TextView tvNomeMiniJogo;
         public TextView tvIntroducao;
@@ -62,6 +74,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
             ivJogo = (ImageView) itemView.findViewById(R.id.iv_jogo);
             tvNomeMiniJogo = (TextView) itemView.findViewById(R.id.tv_nome_mini_jogo);
             tvIntroducao = (TextView) itemView.findViewById(R.id.tv_introducao_mini_jogo);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+        if(mRecyclerViewOnClickListenerHack != null){
+            mRecyclerViewOnClickListenerHack.onClickListener(v, getPosition());
+
+        }
         }
     }
 }

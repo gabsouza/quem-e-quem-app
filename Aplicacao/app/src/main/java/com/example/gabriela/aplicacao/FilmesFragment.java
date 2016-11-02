@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FilmesFragment extends Fragment implements FilmesAdapter.OnItemClickListener {
+public class EvolucaoFragment extends Fragment implements FilmesAdapter.OnItemClickListener {
 
     private List<Filme> mMovies;
     private FilmesAdapter mAdapter;
@@ -52,9 +52,9 @@ public class FilmesFragment extends Fragment implements FilmesAdapter.OnItemClic
         task.execute("https://api.themoviedb.org/3/movie/now_playing?api_key=6f3c2d1f7598c1e6142f73b0dd3b58e8&language=pt-BR");
 
         return view;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void onItemClick(View itemView, int position) {
         Intent intent = new Intent(getActivity(), VerFilmeActivity.class);
         intent.putExtra(VerFilmeActivity.ARG_MOVIE, mMovies.get(position));
@@ -106,4 +106,4 @@ public class FilmesFragment extends Fragment implements FilmesAdapter.OnItemClic
             }
         }
     }
-}
+}*/
