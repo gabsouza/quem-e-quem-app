@@ -21,7 +21,7 @@ dependencies {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "24.0.3"
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "com.example.gabriela.aplicacao"
