@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-/*public class FavoritosFragment extends Fragment implements FilmesAdapter.OnItemClickListener {
+public class FavoritosFragment extends Fragment implements FilmesAdapter.OnItemClickListener {
 
     private List<Filme> mMovies;
     private FilmesAdapter mAdapter;
@@ -53,14 +53,14 @@ import java.util.List;
         return view;
     }
 
-    /*@Override
+    @Override
     public void onItemClick(View itemView, int position) {
         Intent intent = new Intent(getActivity(), VerFilmeActivity.class);
         intent.putExtra(VerFilmeActivity.ARG_MOVIE, mMovies.get(position));
         startActivity(intent);
-    }*/
+    }
 
-   /* public class GetFavoredMoviesTask extends AsyncTask<Integer, Void, List<JSONObject>> {
+    public class GetFavoredMoviesTask extends AsyncTask<Integer, Void, List<JSONObject>> {
 
         @Override
         protected List<JSONObject> doInBackground(Integer... movieIds) {
@@ -105,4 +105,4 @@ import java.util.List;
             }
         }
     }
-}*/
+}

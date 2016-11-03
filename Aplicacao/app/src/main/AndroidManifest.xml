@@ -21,6 +21,9 @@
         <activity android:name=".TelaConfiguracoesCrianca"/>
          <activity android:name=".TelaPrincipalCrianca"/>
         <activity android:name=".TelaLogin"/>
+        <activity android:name=".VerFilmeActivity"
+            android:label="Ver Filme"/>
+
 
         <activity
             android:name=".NavigationDrawerActivity"
