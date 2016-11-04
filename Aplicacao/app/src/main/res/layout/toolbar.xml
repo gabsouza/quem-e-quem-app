@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tb_main"
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/colorPrimary"
-    android:minHeight="?attr/actionBarSize">
-
-    <ImageView
-        android:id="@+id/iv_jogos"
-        android:src = "@drawable/icone_jogos"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
-
-    <ImageView
-        android:id="@+id/iv_foguete"
-        android:src = "@drawable/icone_foguete"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
-
-    <ImageView
-        android:id="@+id/iv_selo"
-        android:src = "@drawable/icone_selo"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
-
-    <ImageView
-        android:id = "@+id/iv_configuracoes"
-        android:src = "@drawable/icone_configuracoes"
-        android:layout_width="24dp"
-        android:layout_height="24dp" />
-</android.support.v7.widget.Toolbar>
+    android:layout_height="@dimen/abc_action_bar_default_height_material"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    android:background="@color/colorPrimary"/>
