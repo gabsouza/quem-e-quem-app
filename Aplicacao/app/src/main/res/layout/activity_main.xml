@@ -31,7 +31,7 @@
                     android:layout_height="60dp"
                     android:background="@drawable/icone_selo"
                     android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/imagechild"
+                    android:layout_toStartOf="@+id/iv_foto_perfil"
                     android:layout_marginEnd="23dp" />
 
                 <ImageButton
@@ -40,7 +40,7 @@
                     android:layout_height="60dp"
                     android:background="@drawable/icone_selo"
                     android:layout_alignTop="@+id/imageselo1"
-                    android:layout_toEndOf="@+id/imagechild"
+                    android:layout_toEndOf="@+id/iv_foto_perfil"
                     android:layout_marginStart="26dp" />
 
                 <ImageButton
@@ -53,7 +53,7 @@
                     android:layout_marginTop="11dp" />
 
                 <ImageButton
-                    android:id="@+id/imagechild"
+                    android:id="@+id/iv_foto_perfil"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="@drawable/foto_personagem_1"
