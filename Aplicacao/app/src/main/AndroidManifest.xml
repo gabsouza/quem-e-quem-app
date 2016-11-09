@@ -22,6 +22,7 @@
         <activity android:name=".TelaConfiguracoesCrianca" />
         <activity android:name=".TelaPrincipalCrianca" />
         <activity android:name=".TelaLogin" />
+        <activity android:name=".TelaSelo" />
     </application>
 
 </manifest>

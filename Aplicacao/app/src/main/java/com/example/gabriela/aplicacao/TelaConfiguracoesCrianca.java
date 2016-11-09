@@ -100,8 +100,16 @@ public class TelaConfiguracoesCrianca extends Activity {
                 Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
                 Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
+
+                chamaTelaMain();
             }
         });
+    }
+
+    private void chamaTelaMain(){
+        Intent itTelaMain = new Intent(this, MainActivity.class);
+        startActivity(itTelaMain);
+        finish();
     }
 
     @Override

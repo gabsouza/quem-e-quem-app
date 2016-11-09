@@ -1,6 +1,7 @@
 package com.example.gabriela.aplicacao;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,11 +26,13 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private ImageButton fotoPerfil;
+    private ImageButton imagemselo1, imagemselo2, imagemselo3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        inicializaComponentes();
 
         setSupportActionBar(toolbar);
 
@@ -109,11 +112,39 @@ public class MainActivity extends AppCompatActivity {
                 chamaTelaConfiguracoesCrianca();
             }
         });
+
+        imagemselo1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chamaTelaSelos();
+            }
+        });
+
+        imagemselo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chamaTelaSelos();
+            }
+        });
+
+        imagemselo3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chamaTelaSelos();
+            }
+        });
     }
 
-    public void chamaTelaConfiguracoesCrianca(){
-        Intent intentTC = new Intent(this, TelaConfiguracoesCrianca.class);
-        startActivity(intentTC);
+    private void chamaTelaConfiguracoesCrianca(){
+        Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
+        startActivity(itTelaConfiguracoesCrianca);
+        finish();
+    }
+
+    private void chamaTelaSelos(){
+        Intent itTelaSelo = new Intent(this, TelaSelo.class);
+        startActivity(itTelaSelo);
+        finish();
     }
 
     @Override
@@ -141,5 +172,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
         fotoPerfil = (ImageButton) findViewById(R.id.iv_foto_perfil);
+        imagemselo1 = (ImageButton)findViewById(R.id.imagemselo1);
+        imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
+        imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
     }
 }
