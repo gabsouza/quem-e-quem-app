@@ -2,6 +2,7 @@ package com.example.gabriela.aplicacao;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,7 +19,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.Serializable;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -133,6 +139,39 @@ public class MainActivity extends AppCompatActivity {
                 chamaTelaSelos();
             }
         });
+
+//        Bundle extras = getIntent().getExtras();
+//        Serializable telaLogin = null;
+//            telaLogin = extras.getSerializable("email");
+//            telaLogin = extras.getSerializable("nome");
+//            telaLogin = extras.getSerializable("foto");
+
+        View hView =  navigationView.inflateHeaderView(R.layout.header);
+//        ImageView imgvw = (ImageView)hView.findViewById(R.id.profile_image);
+//        TextView tvNome = (TextView)hView.findViewById(R.id.username);
+//        TextView tvEmail = (TextView)hView.findViewById(R.id.email);
+//        imgvw .setImageResource();
+//        tvNome.settext(nome);
+//        tvEmail.setText(foto);
+
+        // PEGANDO OS DADOS DO LOGIN
+        Intent intent = getIntent();
+
+        Bundle bundle = intent.getExtras();
+
+        String nome = bundle.getString("passaNome");
+        String email = bundle.getString("passaEmail");
+        String foto = bundle.getString("passaFoto");
+
+        TextView txtNome = (TextView) findViewById(R.id.username);
+        txtNome.setText(nome);
+
+        TextView txtEmail = (TextView)findViewById(R.id.email);
+        txtEmail.setText(email);
+
+        CircleImageView civFoto = (CircleImageView)findViewById(R.id.profile_image);
+        civFoto.setImageURI(Uri.parse(foto));
+
     }
 
     private void chamaTelaConfiguracoesCrianca(){

@@ -26,6 +26,8 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import java.io.Serializable;
+
 public class TelaLogin extends AppCompatActivity implements
         View.OnClickListener,
         GoogleApiClient.OnConnectionFailedListener {
@@ -72,6 +74,21 @@ public class TelaLogin extends AppCompatActivity implements
         // Customizing G+ button
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
         btnSignIn.setScopes(gso.getScopeArray());
+
+        //EXTRAINDO OS DADOS DO LOGIN
+
+        Intent intent = new Intent(this, MainActivity.class);
+        String passaNome = txtName.getText().toString();
+        String passaEmail = txtEmail.getText().toString();
+        String passaFoto = imgProfilePic.toString();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("passaNome", passaNome);
+        bundle.putString("passaEmail", passaEmail);
+        bundle.putString("passaFoto", passaFoto);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
 
@@ -138,6 +155,15 @@ public class TelaLogin extends AppCompatActivity implements
             // Signed out, show unauthenticated UI.
             updateUI(false);
         }
+
+//        Intent intent = new Intent(this, MainActivity.class);
+//        intent.putExtra("email", (Serializable) txtEmail);
+//        intent.putExtra("nome", (Serializable) txtName);
+//        intent.putExtra("foto", (Serializable) imgProfilePic);
+//        startActivity(intent);
+
+
+
     }
 
     @Override
