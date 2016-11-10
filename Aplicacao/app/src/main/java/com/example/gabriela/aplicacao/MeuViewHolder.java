@@ -15,4 +15,5 @@ public class MeuViewHolder extends RecyclerView.ViewHolder {
         txtNomeMiniJogo = (TextView) itemView.findViewById(R.id.txtNomeMiniJogo);
         imgMiniJogo = (ImageView) itemView.findViewById(R.id.imgMiniJogo);
     }
+
 }

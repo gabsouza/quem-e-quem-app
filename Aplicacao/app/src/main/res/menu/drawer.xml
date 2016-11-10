@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/action_movies"
-        android:icon="@drawable/configuracoes"
-        android:title="Configurações" />
-    <item
-        android:id="@+id/action_favorites"
-        android:icon="@drawable/evolucao2"
-        android:title="Evolução" />
-    <item
-        android:id="@+id/action_actors"
-        android:icon="@drawable/sair2"
-        android:title="Sair" />
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/configuracoes"
+            android:checked="false"
+            android:icon="@drawable/configuracoes"
+            android:title="@string/configuracoes_string" />
+
+        <item
+            android:id="@+id/dinamica"
+            android:checked="false"
+            android:icon="@drawable/ic_error_black"
+            android:title="@string/dinamica_string" />
+
+        <item
+            android:id="@+id/evolucao"
+            android:checked="false"
+            android:icon="@drawable/evolucao2"
+            android:title="@string/evolucao_string" />
+
+        <item
+            android:id="@+id/sair"
+            android:checked="false"
+            android:icon="@drawable/sair1"
+            android:title="@string/sair1_string" />
+
+    </group>
 </menu>

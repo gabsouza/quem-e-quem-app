@@ -21,6 +21,47 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="320dp">
+
+                <ImageButton
+                    android:id="@+id/imagemselo1"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/icone_selo"
+                    android:layout_marginEnd="25dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@+id/iv_foto_perfil" />
+
+                <ImageButton
+                    android:id="@+id/imagemselo2"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/icone_selo"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="11dp" />
+
+                <ImageButton
+                    android:id="@+id/imagemselo3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/icone_selo"
+                    android:layout_alignTop="@+id/imagemselo1"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="26dp" />
+
+                <ImageButton
+                    android:id="@+id/iv_foto_perfil"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:background="@drawable/foto_personagem_1"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
         </FrameLayout>
 
     </LinearLayout>
@@ -33,5 +74,6 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/drawer"
         />
+
 </android.support.v4.widget.DrawerLayout>
 

@@ -54,9 +54,6 @@ public class TelaPrincipalCrianca extends Activity {
     }
 
     public void inicializaComponentes() {
-       // mToolbar = (Toolbar) findViewById(R.id.tb_main);
-       // setSupportActionBar(mToolbar);
-       // mToolbarSelo = (Toolbar) findViewById(R.id.);
         btConf = (Button) findViewById(R.id.bt_conf);
     }
 }

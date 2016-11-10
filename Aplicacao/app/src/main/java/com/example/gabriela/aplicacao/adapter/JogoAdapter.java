@@ -1,7 +1,6 @@
-package com.example.gabriela.aplicacao;
+package com.example.gabriela.aplicacao.adapter;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gabriela.aplicacao.R;
+
 import java.util.List;
 
-import Interface.RecyclerViewOnClickListenerHack;
+import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
 import pojo.MiniJogo;
 
 /**
