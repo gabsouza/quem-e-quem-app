@@ -20,6 +20,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import pojo.*;
+import pojo.MiniJogo;
+
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -146,6 +152,19 @@ public class MainActivity extends AppCompatActivity {
         startActivity(itTelaSelo);
         finish();
     }
+
+     public List<MiniJogo> getSetMiniJogoList(int qtd){
+         String [] nomeMiniJogo = new String[]{"Teste1", "Teste2"};
+         String [] introducao = new String[]{"algo legal 1", "algo legal 2"};
+         int [] fotos = new int[]{R.drawable.profissao, R.drawable.profissao};
+         List<MiniJogo> listAux = new ArrayList<>();
+
+         for (int i = 0; i < qtd; i++){
+             MiniJogo miniJogo = new MiniJogo(nomeMiniJogo[i % nomeMiniJogo.length], introducao[i % introducao.length], fotos[i % fotos.length]);
+             listAux.add(miniJogo);
+         }
+          return (listAux);
+     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
