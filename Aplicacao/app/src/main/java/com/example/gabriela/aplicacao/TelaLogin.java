@@ -39,7 +39,7 @@ public class TelaLogin extends AppCompatActivity implements
     private ProgressDialog mProgressDialog;
 
     private SignInButton btnSignIn;
-    private Button btnSignOut, btnRevokeAccess;
+    private Button btnSignOut, btnRevokeAccess, btnTelaCrianca;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail, txtId;
@@ -57,10 +57,12 @@ public class TelaLogin extends AppCompatActivity implements
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         txtId = (TextView) findViewById(R.id.txtId);
+        btnTelaCrianca = (Button)findViewById(R.id.btn_telacrianca);
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
         btnRevokeAccess.setOnClickListener(this);
+        btnTelaCrianca.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -76,21 +78,15 @@ public class TelaLogin extends AppCompatActivity implements
         btnSignIn.setScopes(gso.getScopeArray());
 
         //EXTRAINDO OS DADOS DO LOGIN
-
-        Intent intent = new Intent(this, MainActivity.class);
-        String passaNome = txtName.getText().toString();
-        String passaEmail = txtEmail.getText().toString();
-        String passaFoto = imgProfilePic.toString();
-        Bundle bundle = new Bundle();
-
-        bundle.putString("passaNome", passaNome);
-        bundle.putString("passaEmail", passaEmail);
-        bundle.putString("passaFoto", passaFoto);
-        intent.putExtras(bundle);
-
-        startActivity(intent);
+        intent();
     }
 
+
+    private void chamaTelaCadastro(){
+        Intent itTelaCadastro = new Intent(this, TelaConfiguracoesCrianca.class);
+        startActivity(itTelaCadastro);
+        finish();
+    }
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -132,15 +128,15 @@ public class TelaLogin extends AppCompatActivity implements
             String idResponsavel = acct.getId();
             String emailResponsavel = acct.getEmail();
 
-            if(fotoResponsavel != null) {
+            if (fotoResponsavel != null) {
                 String personPhotoUrl = acct.getPhotoUrl().toString();
-                Log.e(TAG, "Name: " + NomeResponsavel + ", email: " + emailResponsavel  + ", Image: " + personPhotoUrl + ", Id: " + idResponsavel);
+                Log.e(TAG, "Name: " + NomeResponsavel + ", email: " + emailResponsavel + ", Image: " + personPhotoUrl + ", Id: " + idResponsavel);
                 Glide.with(getApplicationContext()).load(personPhotoUrl)
                         .thumbnail(0.5f)
                         .crossFade()
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .into(imgProfilePic);
-            }else {
+            } else {
                 imgProfilePic.setImageResource(android.R.color.transparent);
             }
 
@@ -155,7 +151,21 @@ public class TelaLogin extends AppCompatActivity implements
             // Signed out, show unauthenticated UI.
             updateUI(false);
         }
+    }
 
+        private void intent() {
+        Intent intent = new Intent(this, MainActivity.class);
+        String passaNome = txtName.getText().toString();
+        String passaEmail = txtEmail.getText().toString();
+        String passaFoto = imgProfilePic.toString();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("nome", passaNome);
+        bundle.putString("email", passaEmail);
+        bundle.putString("photo", passaFoto);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
 //        Intent intent = new Intent(this, MainActivity.class);
 //        intent.putExtra("email", (Serializable) txtEmail);
 //        intent.putExtra("nome", (Serializable) txtName);
@@ -181,6 +191,10 @@ public class TelaLogin extends AppCompatActivity implements
 
             case R.id.btn_revoke_access:
                 revokeAccess();
+                break;
+
+            case R.id.btn_telacrianca:
+                chamaTelaCadastro();
                 break;
         }
     }
@@ -250,11 +264,13 @@ public class TelaLogin extends AppCompatActivity implements
             btnSignIn.setVisibility(View.GONE);
             btnSignOut.setVisibility(View.VISIBLE);
             btnRevokeAccess.setVisibility(View.VISIBLE);
+            btnTelaCrianca.setVisibility(View.VISIBLE);
             llProfileLayout.setVisibility(View.VISIBLE);
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
             btnSignOut.setVisibility(View.GONE);
             btnRevokeAccess.setVisibility(View.GONE);
+            btnTelaCrianca.setVisibility(View.GONE);
             llProfileLayout.setVisibility(View.GONE);
         }
     }
