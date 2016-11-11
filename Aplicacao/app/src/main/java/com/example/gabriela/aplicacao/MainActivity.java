@@ -2,6 +2,7 @@ package com.example.gabriela.aplicacao;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,14 +19,14 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import pojo.*;
 import pojo.MiniJogo;
-
+import java.io.Serializable;
+import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -49,38 +50,38 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem menuItem) {
 
                 //Checking if the item is in checked state or not, if not make it in checked state
-                if(menuItem.isChecked()) menuItem.setChecked(false);
+                if (menuItem.isChecked()) menuItem.setChecked(false);
                 else menuItem.setChecked(true);
 
                 //Closing drawer on item click
                 drawerLayout.closeDrawers();
 
                 //Check to see which item was being clicked and perform appropriate action
-                switch (menuItem.getItemId()){
+                switch (menuItem.getItemId()) {
 
 
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.evolucao:
-                        Toast.makeText(getApplicationContext(),"Evolução Selected",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Evolução Selected", Toast.LENGTH_SHORT).show();
                         ContentFragment fragment = new ContentFragment();
                         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.frame,fragment);
+                        fragmentTransaction.replace(R.id.frame, fragment);
                         fragmentTransaction.commit();
                         return true;
 
                     // For rest of the options we just show a toast on click
 
                     case R.id.configuracoes:
-                        Toast.makeText(getApplicationContext(),"Configurações Selected",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Configurações Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.sair:
-                        Toast.makeText(getApplicationContext(),"Sair Selected",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Sair Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     case R.id.dinamica:
-                        Toast.makeText(getApplicationContext(),"Dinamica Selected",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Dinamica Selected", Toast.LENGTH_SHORT).show();
                         return true;
                     default:
-                        Toast.makeText(getApplicationContext(),"Somethings Wrong",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
                         return true;
 
                 }
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initializing Drawer Layout and ActionBarToggle
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.openDrawer, R.string.closeDrawer){
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer) {
 
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -139,8 +140,45 @@ public class MainActivity extends AppCompatActivity {
                 chamaTelaSelos();
             }
         });
-    }
 
+//        Bundle extras = getIntent().getExtras();
+//        Serializable telaLogin = null;
+//            telaLogin = extras.getSerializable("email");
+//            telaLogin = extras.getSerializable("nome");
+//            telaLogin = extras.getSerializable("foto");
+
+//        View hView = navigationView.inflateHeaderView(R.layout.header);
+//        ImageView imgvw = (ImageView)hView.findViewById(R.id.profile_image);
+//        TextView tvNome = (TextView)hView.findViewById(R.id.username);
+//        TextView tvEmail = (TextView)hView.findViewById(R.id.email);
+//        imgvw .setImageResource();
+//        tvNome.settext(nome);
+//        tvEmail.setText(foto);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View header = navigationView.getHeaderView(0);
+        // PEGANDO OS DADOS DO LOGIN
+        Intent intent = getIntent();
+
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null) {
+
+
+            String nome = bundle.getString("nome");
+            String email = bundle.getString("email");
+            String foto = bundle.getString("photo");
+
+            TextView txtNome = (TextView) header.findViewById(R.id.username);
+            txtNome.setText(nome);
+
+            TextView txtEmail = (TextView) header.findViewById(R.id.email);
+            txtEmail.setText(email);
+
+            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
+            civFoto.setImageURI(Uri.parse(foto));
+
+        }
+    }
     private void chamaTelaConfiguracoesCrianca(){
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
         startActivity(itTelaConfiguracoesCrianca);
