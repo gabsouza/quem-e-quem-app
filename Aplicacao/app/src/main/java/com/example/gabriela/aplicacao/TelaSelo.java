@@ -7,3 +7,5 @@ import android.app.Activity;
  */
 public class TelaSelo extends Activity{
 }
+
+

@@ -20,13 +20,20 @@ import pojo.MiniJogo;
  * Created by Gabriela on 08/10/2016.
  */
 public class JogoAdapter extends RecyclerView.Adapter<JogoAdapter.MyViewHolder> {
+    private Context mContext;
     private List<MiniJogo> mList;
     private LayoutInflater mLayoutInflater;
     private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
+    private float scale;
+    private int width, height;
 
     public JogoAdapter(Context ctx, List<MiniJogo> miniJogoList) {
+        mContext = ctx;
         mList = miniJogoList;
         mLayoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        scale = mContext.getResources().getDisplayMetrics().density;
+        width = mContext.getResources().getDisplayMetrics().widthPixels - (int)(14 * scale + 0.5f);
+        height = (width / 16) * 9;
     }
 
     @Override

@@ -26,7 +26,6 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
-import java.io.Serializable;
 
 public class TelaLogin extends AppCompatActivity implements
         View.OnClickListener,
