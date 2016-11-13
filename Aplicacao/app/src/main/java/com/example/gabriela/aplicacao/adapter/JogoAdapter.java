@@ -1,6 +1,8 @@
 package com.example.gabriela.aplicacao.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,8 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gabriela.aplicacao.LoadURLIntoImageView;
 import com.example.gabriela.aplicacao.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
@@ -27,18 +31,15 @@ public class JogoAdapter extends RecyclerView.Adapter<JogoAdapter.MyViewHolder> 
     private float scale;
     private int width, height;
 
-    public JogoAdapter(Context ctx, List<MiniJogo> miniJogoList) {
-        mContext = ctx;
-        mList = miniJogoList;
-        mLayoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        scale = mContext.getResources().getDisplayMetrics().density;
-        width = mContext.getResources().getDisplayMetrics().widthPixels - (int)(14 * scale + 0.5f);
-        height = (width / 16) * 9;
+    public JogoAdapter(Context ctx, List<MiniJogo> mList) {
+
+    }
+
+    public JogoAdapter(List<MiniJogo> mList) {
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        Log.i("DEBUG", "oncreateViewHolder");
         View v = mLayoutInflater.inflate(R.layout.activity_principal_crianca, viewGroup, false);
         MyViewHolder mvh = new MyViewHolder(v);
         return mvh;

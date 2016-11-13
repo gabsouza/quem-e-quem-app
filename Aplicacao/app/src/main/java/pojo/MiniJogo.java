@@ -26,7 +26,7 @@ public class MiniJogo implements Serializable {
 		this.photo = photo;
 	}
 	
-	public MiniJogo(){
+	public MiniJogo(int idMiniJogo, String nomeMiniJogo, int photo, String introducao){
 		
 	}
 

@@ -1,8 +1,10 @@
 package com.example.gabriela.aplicacao;
 
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +14,22 @@ import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.adapter.JogoAdapter;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import pojo.MiniJogo;
 
 /**
@@ -23,6 +38,10 @@ import pojo.MiniJogo;
 public class JogoFragment extends Fragment implements RecyclerViewOnClickListenerHack {
     private RecyclerView mRecyclerView;
     private List<MiniJogo> mList;
+    private JogoAdapter mAdapter;
+
+    public JogoFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,6 +50,7 @@ public class JogoFragment extends Fragment implements RecyclerViewOnClickListene
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView.setHasFixedSize(true);
+
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -63,7 +83,66 @@ public class JogoFragment extends Fragment implements RecyclerViewOnClickListene
         adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
 
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
+        mRecyclerView.setLayoutManager(layoutManager);
+
+        mList = new ArrayList<>();
+        mAdapter = new JogoAdapter(mList);
+        mRecyclerView.setAdapter(mAdapter);
+
+        ObterAtoresTask task = new ObterAtoresTask();
+        task.execute("http://api.themoviedb.org/3/person/popular?api_key=6f3c2d1f7598c1e6142f73b0dd3b58e8");
+
         return view;
+    }
+
+    public class ObterAtoresTask extends AsyncTask<String, Void, JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(String... params) {
+            JSONObject result = null;
+
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                InputStream stream = new BufferedInputStream(conn.getInputStream());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+                StringBuilder builder = new StringBuilder();
+
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    builder.append(line);
+                }
+
+                result = new JSONObject(builder.toString());
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject json) {
+            if (json != null) {
+                try {
+                    mList.clear();
+                    JSONArray actorsArray = json.getJSONArray("results");
+                    for (int i = 0; i < actorsArray.length(); i++) {
+                        JSONObject actorObject = actorsArray.getJSONObject(i);
+                        int idMiniJogo = actorObject.getInt("idMiniJogo");
+                        String nomeMiniJogo = actorObject.getString("nomeMiniJogo");
+                        int photo = actorObject.getInt("photo");
+                        String introducao = actorObject.getString("introducao");
+                        mList.add(new MiniJogo(idMiniJogo, nomeMiniJogo, photo, introducao));
+                    }
+                    mAdapter.notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @Override
