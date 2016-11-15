@@ -71,7 +71,6 @@ public class TelaConfiguracoesCrianca extends Activity {
             @Override
             public void onClick(View v) {
                 mp.stop();
-                Log.i("debug", "safas");
             }
         });
 

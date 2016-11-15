@@ -3,7 +3,6 @@ package com.example.gabriela.aplicacao;
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.gabriela.aplicacao.adapter.JogoAdapter;
+import com.example.gabriela.aplicacao.adapter.MiniJogoAdapter;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -35,12 +34,12 @@ import pojo.MiniJogo;
 /**
  * Created by Gabriela on 08/10/2016.
  */
-public class JogoFragment extends Fragment implements RecyclerViewOnClickListenerHack {
+public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickListenerHack {
     private RecyclerView mRecyclerView;
     private List<MiniJogo> mList;
-    private JogoAdapter mAdapter;
+    private MiniJogoAdapter mAdapter;
 
-    public JogoFragment() {
+    public MiniJogoFragment() {
     }
 
     @Override
@@ -62,7 +61,7 @@ public class JogoFragment extends Fragment implements RecyclerViewOnClickListene
                 super.onScrolled(recyclerView, dx, dy);
 
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
-                JogoAdapter adapter = (JogoAdapter) mRecyclerView.getAdapter();
+                MiniJogoAdapter adapter = (MiniJogoAdapter) mRecyclerView.getAdapter();
 
                 if(mList.size() == linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1){
                     List<MiniJogo> listAux = ((MainActivity)getActivity()).getSetMiniJogoList(4);
@@ -79,7 +78,7 @@ public class JogoFragment extends Fragment implements RecyclerViewOnClickListene
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
         mList = ((MainActivity)getActivity()).getSetMiniJogoList(4);
-        JogoAdapter adapter = new JogoAdapter(getActivity(), mList);
+        MiniJogoAdapter adapter = new MiniJogoAdapter(getActivity(), mList);
         adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
 
@@ -87,7 +86,7 @@ public class JogoFragment extends Fragment implements RecyclerViewOnClickListene
         mRecyclerView.setLayoutManager(layoutManager);
 
         mList = new ArrayList<>();
-        mAdapter = new JogoAdapter(mList);
+        mAdapter = new MiniJogoAdapter(mList);
         mRecyclerView.setAdapter(mAdapter);
 
         ObterAtoresTask task = new ObterAtoresTask();
@@ -149,7 +148,7 @@ public class JogoFragment extends Fragment implements RecyclerViewOnClickListene
     public void onClickListener(View view, int position) {
         Toast.makeText(getActivity(), "Position: " + position, Toast.LENGTH_SHORT).show();
 
-        JogoAdapter adapter = (JogoAdapter) mRecyclerView.getAdapter();
+        MiniJogoAdapter adapter = (MiniJogoAdapter) mRecyclerView.getAdapter();
         adapter.removeListItem(position);
     }
 }

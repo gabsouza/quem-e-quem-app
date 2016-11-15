@@ -1,9 +1,5 @@
 package pojo;
 
-import com.example.gabriela.aplicacao.Midia;
-import com.example.gabriela.aplicacao.Pergunta;
-import com.example.gabriela.aplicacao.UsuarioMiniJogo;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

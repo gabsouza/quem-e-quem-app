@@ -1,8 +1,5 @@
 package pojo;
 
-import com.example.gabriela.aplicacao.Pergunta;
-import com.example.gabriela.aplicacao.UsuarioMiniJogo;
-
 import java.io.Serializable;
 
 public class Resposta implements Serializable{

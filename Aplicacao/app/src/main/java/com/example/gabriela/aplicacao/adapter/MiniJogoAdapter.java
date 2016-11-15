@@ -1,20 +1,15 @@
 package com.example.gabriela.aplicacao.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gabriela.aplicacao.LoadURLIntoImageView;
 import com.example.gabriela.aplicacao.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
@@ -23,24 +18,24 @@ import pojo.MiniJogo;
 /**
  * Created by Gabriela on 08/10/2016.
  */
-public class JogoAdapter extends RecyclerView.Adapter<JogoAdapter.MyViewHolder> {
-    private Context mContext;
+public class MiniJogoAdapter extends RecyclerView.Adapter<MiniJogoAdapter.MyViewHolder> {
     private List<MiniJogo> mList;
     private LayoutInflater mLayoutInflater;
     private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
     private float scale;
     private int width, height;
 
-    public JogoAdapter(Context ctx, List<MiniJogo> mList) {
-
+    public MiniJogoAdapter(Context c, List<MiniJogo> l) {
+        mList = l;
+        mLayoutInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public JogoAdapter(List<MiniJogo> mList) {
+    public MiniJogoAdapter(List<MiniJogo> mList) {
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View v = mLayoutInflater.inflate(R.layout.activity_principal_crianca, viewGroup, false);
+        View v = mLayoutInflater.inflate(R.layout.item_jogo_card, viewGroup, false);
         MyViewHolder mvh = new MyViewHolder(v);
         return mvh;
     }
