@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ImageButton fotoPerfil;
     private ImageButton imagemselo1, imagemselo2, imagemselo3;
+    private List<MiniJogo> miniJogos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,8 +179,17 @@ public class MainActivity extends AppCompatActivity {
             CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
             civFoto.setImageURI(Uri.parse(foto));
 
+            /*MiniJogoFragment frag = (MiniJogoFragment) getSupportFragmentManager().findFragmentById(R.id.rl_fragment_container);
+            if(frag == null) {
+                frag = new MiniJogoFragment();
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
+                ft.commit();
+            }*/
+
         }
     }
+
     private void chamaTelaConfiguracoesCrianca(){
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
         startActivity(itTelaConfiguracoesCrianca);
@@ -234,3 +245,14 @@ public class MainActivity extends AppCompatActivity {
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
     }
 }
+
+/*=================
+            @Override
+            public void onFailure(Call<List<Receita>> call, Throwable t) {
+                Toast.makeText(ActivityReceita.this,
+                        "Ocorreu um erro ao buscar as receitas. Tente novamente mais tarde.",
+                        Toast.LENGTH_LONG).show();
+                Log.i("Erro", t.getMessage());
+            }
+        });
+        }*/

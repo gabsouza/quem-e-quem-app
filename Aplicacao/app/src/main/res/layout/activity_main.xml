@@ -72,8 +72,21 @@
         android:layout_width="wrap_content"
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:menu="@menu/drawer"
-        />
+        app:menu="@menu/drawer" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_fragment_container"
+        android:layout_below="@+id/tb_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/inc_tb_bottom">
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>
 
