@@ -1,32 +1,25 @@
 package com.example.gabriela.aplicacao;
 
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.CardView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
-import pojo.*;
 import pojo.MiniJogo;
-import java.io.Serializable;
 import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton fotoPerfil;
     private ImageButton imagemselo1, imagemselo2, imagemselo3;
     private List<MiniJogo> miniJogos;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,8 +158,6 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         if (bundle != null) {
-
-
             String nome = bundle.getString("nome");
             String email = bundle.getString("email");
             String foto = bundle.getString("photo");
@@ -178,16 +170,14 @@ public class MainActivity extends AppCompatActivity {
 
             CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
             civFoto.setImageURI(Uri.parse(foto));
-
-            /*MiniJogoFragment frag = (MiniJogoFragment) getSupportFragmentManager().findFragmentById(R.id.rl_fragment_container);
-            if(frag == null) {
-                frag = new MiniJogoFragment();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
-                ft.commit();
-            }*/
-
         }
+
+        /*PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        pagerAdapter.addFragment(MiniJogoFragment.createInstance(miniJogos), "Geral");
+        pagerAdapter.addFragment(MiniJogo.createInstance(usuarioAtual.getReceitasFavoritas()), "Favoritas");
+        viewPager.setAdapter(pagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);*/
     }
 
     private void chamaTelaConfiguracoesCrianca(){
@@ -243,16 +233,6 @@ public class MainActivity extends AppCompatActivity {
         imagemselo1 = (ImageButton)findViewById(R.id.imagemselo1);
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
     }
 }
-
-/*=================
-            @Override
-            public void onFailure(Call<List<Receita>> call, Throwable t) {
-                Toast.makeText(ActivityReceita.this,
-                        "Ocorreu um erro ao buscar as receitas. Tente novamente mais tarde.",
-                        Toast.LENGTH_LONG).show();
-                Log.i("Erro", t.getMessage());
-            }
-        });
-        }*/
