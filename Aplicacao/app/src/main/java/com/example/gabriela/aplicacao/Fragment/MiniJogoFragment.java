@@ -1,4 +1,4 @@
-package com.example.gabriela.aplicacao;
+package com.example.gabriela.aplicacao.Fragment;
 
 import android.app.Fragment;
 import android.os.AsyncTask;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.gabriela.aplicacao.MainActivity;
+import com.example.gabriela.aplicacao.R;
 import com.example.gabriela.aplicacao.adapter.MiniJogoAdapter;
 
 import java.io.BufferedInputStream;

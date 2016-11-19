@@ -12,16 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.R;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
-import com.example.gabriela.aplicacao.TelaJogo;
+import com.example.gabriela.aplicacao.TelaJogoProfissao;
 
 import pojo.MiniJogo;
 
@@ -97,7 +95,7 @@ public class MiniJogoAdapter extends RecyclerView.Adapter<MiniJogoAdapter.MyView
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(view.getContext(), TelaJogo.class);
+                    Intent intent = new Intent(view.getContext(), TelaJogoProfissao.class);
                     Bundle bundle = new Bundle();
                     bundle.putInt("id_mini_jogo", id);
                     intent.putExtras(bundle);

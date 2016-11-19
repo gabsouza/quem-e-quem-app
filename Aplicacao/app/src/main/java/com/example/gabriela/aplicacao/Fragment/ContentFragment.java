@@ -1,4 +1,4 @@
-package com.example.gabriela.aplicacao;
+package com.example.gabriela.aplicacao.Fragment;
 
 /**
  * Created by PC-CASA on 03/11/2016.
@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.gabriela.aplicacao.R;
 
 /**
  * Created by Admin on 04-06-2015.
