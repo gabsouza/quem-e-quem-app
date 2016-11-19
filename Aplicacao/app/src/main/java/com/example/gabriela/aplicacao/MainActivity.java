@@ -1,9 +1,12 @@
 package com.example.gabriela.aplicacao;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -14,7 +17,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.Fragment.ContentFragment;
@@ -23,7 +25,6 @@ import com.example.gabriela.aplicacao.Fragment.MiniJogoFragment;
 import java.util.ArrayList;
 import java.util.List;
 import pojo.MiniJogo;
-import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
@@ -39,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         inicializaComponentes();
+        iniciaViewPager();
 
         setSupportActionBar(toolbar);
+
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
@@ -153,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
 //        imgvw .setImageResource();
 //        tvNome.settext(nome);
 //        tvEmail.setText(foto);
-        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 //        View header = navigationView.getHeaderView(0);
 //        // PEGANDO OS DADOS DO LOGIN
 //        Intent intent = getIntent();
@@ -175,12 +177,12 @@ public class MainActivity extends AppCompatActivity {
 //            civFoto.setImageURI(Uri.parse(foto));
 //        }
 
+    }
+
+    private void iniciaViewPager() {
         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(MiniJogoFragment.createInstance(miniJogos), "Geral");
-        pagerAdapter.addFragment(MiniJogo.createInstance(usuarioAtual.getReceitasFavoritas()), "Favoritas");
         viewPager.setAdapter(pagerAdapter);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void chamaTelaConfiguracoesCrianca(){
@@ -237,5 +239,34 @@ public class MainActivity extends AppCompatActivity {
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+    }
+
+    static class PagerAdapter extends FragmentPagerAdapter {
+
+        private final List<Fragment> fragmentList = new ArrayList<>();
+        private final List<String> fragmentTitleList = new ArrayList<>();
+
+        public PagerAdapter(FragmentManager fragmentManager) {
+            super(fragmentManager);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            fragmentList.add(fragment);
+            fragmentTitleList.add(title);
+        }
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragmentTitleList.get(position);
+        }
     }
 }
