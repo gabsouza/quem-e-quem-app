@@ -38,7 +38,7 @@ public class TelaLogin extends AppCompatActivity implements
     private ProgressDialog mProgressDialog;
 
     private SignInButton btnSignIn;
-    private Button btnSignOut, btnRevokeAccess, btnTelaCrianca;
+    private Button btnSignOut, btnRevokeAccess;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail, txtId;
@@ -56,12 +56,12 @@ public class TelaLogin extends AppCompatActivity implements
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         txtId = (TextView) findViewById(R.id.txtId);
-        btnTelaCrianca = (Button)findViewById(R.id.btn_telacrianca);
+//        btnTelaCrianca = (Button)findViewById(R.id.btn_telacrianca);
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
         btnRevokeAccess.setOnClickListener(this);
-        btnTelaCrianca.setOnClickListener(this);
+//        btnTelaCrianca.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -77,15 +77,15 @@ public class TelaLogin extends AppCompatActivity implements
         btnSignIn.setScopes(gso.getScopeArray());
 
         //EXTRAINDO OS DADOS DO LOGIN
-        intent();
+//        intent();
     }
 
 
-    private void chamaTelaCadastro(){
-        Intent itTelaCadastro = new Intent(this, TelaConfiguracoesCrianca.class);
-        startActivity(itTelaCadastro);
-        finish();
-    }
+//    private void chamaTelaCadastro(){
+//        Intent itTelaCadastro = new Intent(this, TelaConfiguracoesCrianca.class);
+//        startActivity(itTelaCadastro);
+//        finish();
+//    }
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -152,19 +152,19 @@ public class TelaLogin extends AppCompatActivity implements
         }
     }
 
-        private void intent() {
-        Intent intent = new Intent(this, MainActivity.class);
-        String passaNome = txtName.getText().toString();
-        String passaEmail = txtEmail.getText().toString();
-        String passaFoto = imgProfilePic.toString();
-        Bundle bundle = new Bundle();
-
-        bundle.putString("nome", passaNome);
-        bundle.putString("email", passaEmail);
-        bundle.putString("photo", passaFoto);
-        intent.putExtras(bundle);
-
-        startActivity(intent);
+//        private void intent() {
+//        Intent intent = new Intent(this, MainActivity.class);
+//        String passaNome = txtName.getText().toString();
+//        String passaEmail = txtEmail.getText().toString();
+//        String passaFoto = imgProfilePic.toString();
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putString("nome", passaNome);
+//        bundle.putString("email", passaEmail);
+//        bundle.putString("photo", passaFoto);
+//        intent.putExtras(bundle);
+//
+//        startActivity(intent);
 //        Intent intent = new Intent(this, MainActivity.class);
 //        intent.putExtra("email", (Serializable) txtEmail);
 //        intent.putExtra("nome", (Serializable) txtName);
@@ -173,7 +173,7 @@ public class TelaLogin extends AppCompatActivity implements
 
 
 
-    }
+//    }
 
     @Override
     public void onClick(View v) {
@@ -192,9 +192,9 @@ public class TelaLogin extends AppCompatActivity implements
                 revokeAccess();
                 break;
 
-            case R.id.btn_telacrianca:
-                chamaTelaCadastro();
-                break;
+//            case R.id.btn_telacrianca:
+//                chamaTelaCadastro();
+//                break;
         }
     }
 
@@ -263,13 +263,13 @@ public class TelaLogin extends AppCompatActivity implements
             btnSignIn.setVisibility(View.GONE);
             btnSignOut.setVisibility(View.VISIBLE);
             btnRevokeAccess.setVisibility(View.VISIBLE);
-            btnTelaCrianca.setVisibility(View.VISIBLE);
+//            btnTelaCrianca.setVisibility(View.VISIBLE);
             llProfileLayout.setVisibility(View.VISIBLE);
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
             btnSignOut.setVisibility(View.GONE);
             btnRevokeAccess.setVisibility(View.GONE);
-            btnTelaCrianca.setVisibility(View.GONE);
+//            btnTelaCrianca.setVisibility(View.GONE);
             llProfileLayout.setVisibility(View.GONE);
         }
     }
