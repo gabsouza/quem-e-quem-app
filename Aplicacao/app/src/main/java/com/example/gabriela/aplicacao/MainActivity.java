@@ -156,29 +156,8 @@ public class MainActivity extends AppCompatActivity {
 //        imgvw .setImageResource();
 //        tvNome.settext(nome);
 //        tvEmail.setText(foto);
-<<<<<<< HEAD
-        navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        View header = navigationView.getHeaderView(0);
-        // PEGANDO OS DADOS DO LOGIN
-        Intent intent = getIntent();
-
-        Bundle bundle = intent.getExtras();
-
-        if (bundle != null) {
-            String nome = bundle.getString("nome");
-            String email = bundle.getString("email");
-            String foto = bundle.getString("photo");
-
-            TextView txtNome = (TextView) header.findViewById(R.id.username);
-            txtNome.setText(nome);
-
-            TextView txtEmail = (TextView) header.findViewById(R.id.email);
-            txtEmail.setText(email);
-
-            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
-            civFoto.setImageURI(Uri.parse(foto));
-        }
-=======
+//<<<<<<< HEAD
+//        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 //        View header = navigationView.getHeaderView(0);
 //        // PEGANDO OS DADOS DO LOGIN
 //        Intent intent = getIntent();
@@ -199,7 +178,27 @@ public class MainActivity extends AppCompatActivity {
 //            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
 //            civFoto.setImageURI(Uri.parse(foto));
 //        }
->>>>>>> 960cf3c6304fb0b95dc37aa2111e450d184bb0f3
+//=======
+//        View header = navigationView.getHeaderView(0);
+//        // PEGANDO OS DADOS DO LOGIN
+//        Intent intent = getIntent();
+//
+//        Bundle bundle = intent.getExtras();
+//
+//        if (bundle != null) {
+//            String nome = bundle.getString("nome");
+//            String email = bundle.getString("email");
+//            String foto = bundle.getString("photo");
+//
+//            TextView txtNome = (TextView) header.findViewById(R.id.username);
+//            txtNome.setText(nome);
+//
+//            TextView txtEmail = (TextView) header.findViewById(R.id.email);
+//            txtEmail.setText(email);
+//
+//            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
+//            civFoto.setImageURI(Uri.parse(foto));
+//        }
 
     }
 
