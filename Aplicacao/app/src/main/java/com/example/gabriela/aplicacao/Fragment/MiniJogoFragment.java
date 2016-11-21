@@ -1,6 +1,6 @@
 package com.example.gabriela.aplicacao.Fragment;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -38,10 +38,16 @@ import pojo.MiniJogo;
  */
 public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickListenerHack {
     private RecyclerView mRecyclerView;
-    private List<MiniJogo> mList;
+    private List<MiniJogo> miniJogos;
     private MiniJogoAdapter mAdapter;
 
     public MiniJogoFragment() {
+    }
+
+    public static MiniJogoFragment createInstance(List<MiniJogo> miniJogos) {
+        MiniJogoFragment miniJogoFragment = new MiniJogoFragment();
+        miniJogoFragment.miniJogos = miniJogos;
+        return miniJogoFragment;
     }
 
     @Override
@@ -65,11 +71,11 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
                 LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
                 MiniJogoAdapter adapter = (MiniJogoAdapter) mRecyclerView.getAdapter();
 
-                if(mList.size() == linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1){
+                if(miniJogos.size() == linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1){
                     List<MiniJogo> listAux = ((MainActivity)getActivity()).getSetMiniJogoList(4);
 
                     for(int i = 0; i <listAux.size(); i++){
-                        adapter.addListItem(listAux.get(i), mList.size());
+                        adapter.addListItem(listAux.get(i), miniJogos.size());
                     }
                 }
             }
@@ -79,16 +85,16 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
-        mList = ((MainActivity)getActivity()).getSetMiniJogoList(4);
-        MiniJogoAdapter adapter = new MiniJogoAdapter(getActivity(), mList);
+        miniJogos = ((MainActivity)getActivity()).getSetMiniJogoList(4);
+        MiniJogoAdapter adapter = new MiniJogoAdapter(getActivity(), miniJogos);
         adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mList = new ArrayList<>();
-        mAdapter = new MiniJogoAdapter(mList);
+        miniJogos = new ArrayList<>();
+        mAdapter = new MiniJogoAdapter(miniJogos);
         mRecyclerView.setAdapter(mAdapter);
 
         ObterAtoresTask task = new ObterAtoresTask();
@@ -128,7 +134,7 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
         protected void onPostExecute(JSONObject json) {
             if (json != null) {
                 try {
-                    mList.clear();
+                    miniJogos.clear();
                     JSONArray actorsArray = json.getJSONArray("results");
                     for (int i = 0; i < actorsArray.length(); i++) {
                         JSONObject actorObject = actorsArray.getJSONObject(i);
@@ -136,7 +142,7 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
                         String nomeMiniJogo = actorObject.getString("nomeMiniJogo");
                         int photo = actorObject.getInt("photo");
                         String introducao = actorObject.getString("introducao");
-                        mList.add(new MiniJogo(idMiniJogo, nomeMiniJogo, photo, introducao));
+                        miniJogos.add(new MiniJogo(idMiniJogo, nomeMiniJogo, photo, introducao));
                     }
                     mAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
