@@ -13,7 +13,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "218524099303-d2gu8sardjck1csvnqfuuuto786nausk.apps.googleusercontent.com",
+          "client_id": "218524099303-410jl9dc72fnft3kmcr66vlkjce23ur8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -44,15 +44,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "218524099303-e6jb5hllusnph3qq2naobt1b0lspujvh.apps.googleusercontent.com",
+          "client_id": "218524099303-1c6pj5e5nrg5vpd23e4a050if3r1a19l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.gabriela.aplicacao",
-            "certificate_hash": "969BF8E9FBCFB60FBBC5F1D35A6058E87041030D"
+            "certificate_hash": "BCBCB941A3DFAD0EE2981BFF246F9D52A4B4F1D9"
           }
         },
         {
-          "client_id": "218524099303-d2gu8sardjck1csvnqfuuuto786nausk.apps.googleusercontent.com",
+          "client_id": "218524099303-410jl9dc72fnft3kmcr66vlkjce23ur8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
