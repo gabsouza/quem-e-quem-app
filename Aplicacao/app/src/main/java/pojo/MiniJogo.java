@@ -15,6 +15,8 @@ public class MiniJogo implements Serializable {
 	private List<Midia> midias = new ArrayList<Midia>();
 	private List<Pergunta> perguntas = new ArrayList<Pergunta>();
 	private List<UsuarioMiniJogo> usuariosMiniJogos = new ArrayList<UsuarioMiniJogo>();
+
+	public MiniJogo(){}
 	
 	public MiniJogo(String nomeMiniJogo, String introducao, int foto){
 		this.nomeMiniJogo = nomeMiniJogo;

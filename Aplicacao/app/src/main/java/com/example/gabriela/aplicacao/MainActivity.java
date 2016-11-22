@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.Fragment.ContentFragment;
 import com.example.gabriela.aplicacao.Fragment.MiniJogoFragment;
+import com.example.gabriela.aplicacao.adapter.MiniJogoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +36,15 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton fotoPerfil;
     private ImageButton imagemselo1, imagemselo2, imagemselo3;
     private List<MiniJogo> miniJogos;
-    private ViewPager viewPager;
+    private RecyclerView recyclerView;
+    private MiniJogo miniJogo;
+    private MiniJogoAdapter miniJogoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         inicializaComponentes();
-        iniciaViewPager();
 
         setSupportActionBar(toolbar);
 
@@ -202,11 +206,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void iniciaViewPager() {
-        PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(MiniJogoFragment.createInstance(miniJogos), "Geral");
-        viewPager.setAdapter(pagerAdapter);
-    }
 
     private void chamaTelaConfiguracoesCrianca(){
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
@@ -261,35 +260,11 @@ public class MainActivity extends AppCompatActivity {
         imagemselo1 = (ImageButton)findViewById(R.id.imagemselo1);
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-    }
+        recyclerView = (RecyclerView)findViewById(R.id.rv_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        miniJogoAdapter = new MiniJogoAdapter(this, getSetMiniJogoList(4));
+        recyclerView.setAdapter(miniJogoAdapter);
+        miniJogo = new MiniJogo();
 
-    static class PagerAdapter extends FragmentPagerAdapter {
-
-        private final List<Fragment> fragmentList = new ArrayList<>();
-        private final List<String> fragmentTitleList = new ArrayList<>();
-
-        public PagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            fragmentList.add(fragment);
-            fragmentTitleList.add(title);
-        }
-        @Override
-        public Fragment getItem(int position) {
-            return fragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return fragmentList.size();
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return fragmentTitleList.get(position);
-        }
     }
 }
