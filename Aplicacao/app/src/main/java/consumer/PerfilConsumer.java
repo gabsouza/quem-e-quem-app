@@ -36,10 +36,10 @@ public class PerfilConsumer {
         return perfil;
     }
 
-    public void chamaDeletar(int id){
-        String URL = URL_BASE + "{id}";
-        Map map = new HashMap();
-        map.put("id", id);
-        restTemplate.delete(URL, map);
-    }
+//    public void chamaDeletar(int id){
+//        String URL = URL_BASE + "{id}";
+//        Map map = new HashMap();
+//        map.put("id", id);
+//        restTemplate.delete(URL, map);
+//    }
 }

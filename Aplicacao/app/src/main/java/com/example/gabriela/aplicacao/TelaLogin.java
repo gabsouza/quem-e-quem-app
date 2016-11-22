@@ -301,11 +301,11 @@ public class TelaLogin extends AppCompatActivity implements
         @Override
         protected Responsavel doInBackground(Responsavel... params) {
             Log.i("DEBUG",params[0].getNomeResponsavel());
-            Log.i("DEBUG",params[0].getEmailResponsavel());
+//            Log.i("DEBUG",params[0].getEmailResponsavel());
 
             params[0] = responsavelConsumer.chamaCadastrar(params[0]);
             Log.i("DEBUG",params[0].getNomeResponsavel());
-            Log.i("DEBUG",params[0].getEmailResponsavel());
+          //  Log.i("DEBUG",params[0].getEmailResponsavel());
 
             return params[0];
         }
@@ -315,7 +315,7 @@ public class TelaLogin extends AppCompatActivity implements
         protected void onPostExecute(Responsavel responsavel) {
             super.onPostExecute(responsavel);
             Log.i("DEBUG",responsavel.getNomeResponsavel());
-            Log.i("DEBUG", responsavel.getEmailResponsavel());
+      //      Log.i("DEBUG", responsavel.getEmailResponsavel());
 
         }
     }
