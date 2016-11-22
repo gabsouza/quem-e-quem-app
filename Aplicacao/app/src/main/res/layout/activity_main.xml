@@ -59,6 +59,24 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true" />
 
+                <RelativeLayout
+                    android:id="@+id/rl_fragment_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_foto_perfil"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="39dp">
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:scrollbars="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left|bottom"
+                    android:layout_below="@+id/iv_foto_perfil"
+                    android:layout_alignParentStart="true" />
+
             </RelativeLayout>
 
         </FrameLayout>
@@ -72,20 +90,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/header"
         app:menu="@menu/drawer" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <RelativeLayout
-        android:id="@+id/rl_fragment_container"
-        android:layout_below="@+id/tb_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/inc_tb_bottom">
-    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>
 
