@@ -38,7 +38,7 @@ public class TelaLogin extends AppCompatActivity implements
     private ProgressDialog mProgressDialog;
 
     private SignInButton btnSignIn;
-    private Button btnSignOut, btnRevokeAccess;
+    private Button btnSignOut, btnRevokeAccess, btnTelaCrianca;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail, txtId;
@@ -55,13 +55,13 @@ public class TelaLogin extends AppCompatActivity implements
         imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
-        txtId = (TextView) findViewById(R.id.txtId);
-//        btnTelaCrianca = (Button)findViewById(R.id.btn_telacrianca);
+      //  txtId = (TextView) findViewById(R.id.txtId);
+        btnTelaCrianca = (Button)findViewById(R.id.btn_telacrianca);
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
         btnRevokeAccess.setOnClickListener(this);
-//        btnTelaCrianca.setOnClickListener(this);
+        btnTelaCrianca.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -81,11 +81,11 @@ public class TelaLogin extends AppCompatActivity implements
     }
 
 
-//    private void chamaTelaCadastro(){
-//        Intent itTelaCadastro = new Intent(this, TelaConfiguracoesCrianca.class);
-//        startActivity(itTelaCadastro);
-//        finish();
-//    }
+    private void chamaTelaCadastro(){
+        Intent itTelaCadastro = new Intent(this, TelaConfiguracoesCrianca.class);
+        startActivity(itTelaCadastro);
+        finish();
+    }
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
@@ -124,12 +124,12 @@ public class TelaLogin extends AppCompatActivity implements
             String NomeResponsavel = acct.getDisplayName();
             Uri fotoResponsavel = acct.getPhotoUrl();
 
-            String idResponsavel = acct.getId();
+         //   String idResponsavel = acct.getId();
             String emailResponsavel = acct.getEmail();
 
             if (fotoResponsavel != null) {
                 String personPhotoUrl = acct.getPhotoUrl().toString();
-                Log.e(TAG, "Name: " + NomeResponsavel + ", email: " + emailResponsavel + ", Image: " + personPhotoUrl + ", Id: " + idResponsavel);
+                Log.e(TAG, "Name: " + NomeResponsavel + ", email: " + emailResponsavel + ", Image: " + personPhotoUrl);
                 Glide.with(getApplicationContext()).load(personPhotoUrl)
                         .thumbnail(0.5f)
                         .crossFade()
@@ -142,7 +142,7 @@ public class TelaLogin extends AppCompatActivity implements
 
             txtName.setText(NomeResponsavel);
             txtEmail.setText(emailResponsavel);
-            txtId.setText(idResponsavel);
+//            txtId.setText(idResponsavel);
 
 
             updateUI(true);
@@ -192,9 +192,9 @@ public class TelaLogin extends AppCompatActivity implements
                 revokeAccess();
                 break;
 
-//            case R.id.btn_telacrianca:
-//                chamaTelaCadastro();
-//                break;
+            case R.id.btn_telacrianca:
+                chamaTelaCadastro();
+                break;
         }
     }
 
@@ -263,13 +263,13 @@ public class TelaLogin extends AppCompatActivity implements
             btnSignIn.setVisibility(View.GONE);
             btnSignOut.setVisibility(View.VISIBLE);
             btnRevokeAccess.setVisibility(View.VISIBLE);
-//            btnTelaCrianca.setVisibility(View.VISIBLE);
+            btnTelaCrianca.setVisibility(View.VISIBLE);
             llProfileLayout.setVisibility(View.VISIBLE);
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
             btnSignOut.setVisibility(View.GONE);
             btnRevokeAccess.setVisibility(View.GONE);
-//            btnTelaCrianca.setVisibility(View.GONE);
+            btnTelaCrianca.setVisibility(View.GONE);
             llProfileLayout.setVisibility(View.GONE);
         }
     }
