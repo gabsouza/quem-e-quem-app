@@ -12,13 +12,13 @@
         android:label="Quem é Quem?"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TelaConfiguracoesCrianca">
+        <activity android:name=".TelaLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TelaLogin" />
+        <activity android:name=".TelaConfiguracoesCrianca" />
         <activity android:name=".TelaJogoProfissao" />
         <activity android:name=".TelaSelo" />
         <activity android:name=".MainActivity"/>
