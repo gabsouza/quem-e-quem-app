@@ -13,7 +13,7 @@
     <!-- Button text -->
     <string name="btn_logout_from_google">Logout from Google</string>
     <string name="btn_revoke_access">Revoke Access</string>
-    <string name="btn_telacrianca">Tela Cadastro</string>
+    <string name="btn_salvar">Salvar</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="navigation_item_1">Home</string>

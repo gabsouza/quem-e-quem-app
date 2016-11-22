@@ -3,6 +3,7 @@ package com.example.gabriela.aplicacao;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -26,6 +28,11 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import consumer.ResponsavelConsumer;
+import pojo.Responsavel;
+
+import static com.example.gabriela.aplicacao.R.id.viewPager;
+
 
 public class TelaLogin extends AppCompatActivity implements
         View.OnClickListener,
@@ -38,10 +45,13 @@ public class TelaLogin extends AppCompatActivity implements
     private ProgressDialog mProgressDialog;
 
     private SignInButton btnSignIn;
-    private Button btnSignOut, btnRevokeAccess, btnTelaCrianca;
+    private Button btnSignOut, btnRevokeAccess, btnSalvar;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail, txtId;
+
+    private ResponsavelConsumer responsavelConsumer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +66,14 @@ public class TelaLogin extends AppCompatActivity implements
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
       //  txtId = (TextView) findViewById(R.id.txtId);
-        btnTelaCrianca = (Button)findViewById(R.id.btn_telacrianca);
+        btnSalvar = (Button)findViewById(R.id.btn_salvar);
+        responsavelConsumer = new ResponsavelConsumer();
+
 
         btnSignIn.setOnClickListener(this);
         btnSignOut.setOnClickListener(this);
         btnRevokeAccess.setOnClickListener(this);
-        btnTelaCrianca.setOnClickListener(this);
+        btnSalvar.setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -192,9 +204,17 @@ public class TelaLogin extends AppCompatActivity implements
                 revokeAccess();
                 break;
 
-            case R.id.btn_telacrianca:
+            case R.id.btn_salvar:
+                        Responsavel responsavel = new Responsavel();
+                        responsavel.setNomeResponsavel(txtName.getText().toString());
+                        new HttpRequestTask().execute(responsavel);
+                      //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+                        // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+                        Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+
                 chamaTelaCadastro();
-                break;
+
+                    break;
         }
     }
 
@@ -263,14 +283,40 @@ public class TelaLogin extends AppCompatActivity implements
             btnSignIn.setVisibility(View.GONE);
             btnSignOut.setVisibility(View.VISIBLE);
             btnRevokeAccess.setVisibility(View.VISIBLE);
-            btnTelaCrianca.setVisibility(View.VISIBLE);
+            btnSalvar.setVisibility(View.VISIBLE);
             llProfileLayout.setVisibility(View.VISIBLE);
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
             btnSignOut.setVisibility(View.GONE);
             btnRevokeAccess.setVisibility(View.GONE);
-            btnTelaCrianca.setVisibility(View.GONE);
+            btnSalvar.setVisibility(View.GONE);
             llProfileLayout.setVisibility(View.GONE);
+        }
+    }
+
+    private class HttpRequestTask extends AsyncTask<Responsavel, Void, Responsavel> {
+
+        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
+
+        @Override
+        protected Responsavel doInBackground(Responsavel... params) {
+            Log.i("DEBUG",params[0].getNomeResponsavel());
+            Log.i("DEBUG",params[0].getEmailResponsavel());
+
+            params[0] = responsavelConsumer.chamaCadastrar(params[0]);
+            Log.i("DEBUG",params[0].getNomeResponsavel());
+            Log.i("DEBUG",params[0].getEmailResponsavel());
+
+            return params[0];
+        }
+
+        // é executado quando o webservice retorna
+        @Override
+        protected void onPostExecute(Responsavel responsavel) {
+            super.onPostExecute(responsavel);
+            Log.i("DEBUG",responsavel.getNomeResponsavel());
+            Log.i("DEBUG", responsavel.getEmailResponsavel());
+
         }
     }
 }

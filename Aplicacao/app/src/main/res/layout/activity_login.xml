@@ -66,10 +66,10 @@
         android:visibility="gone" />
 
     <Button
-        android:id="@+id/btn_telacrianca"
+        android:id="@+id/btn_salvar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_telacrianca"
+        android:text="@string/btn_salvar"
         android:visibility="gone"
         android:layout_marginBottom="5dp"/>
 

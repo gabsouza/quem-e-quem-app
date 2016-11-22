@@ -16,29 +16,31 @@ import pojo.Responsavel;
 public class ResponsavelConsumer {
 
     RestTemplate restTemplate;
-    public static final String URL_BASE = "http://177.7.4.131:8080/ServidorQuem/rest/responsavel/";
+    public static final String URL_BASE = "http:// 192.168.1.6:8080/ServidorQuem/rest/responsavel/";
 
     public ResponsavelConsumer() {
         restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
+    // FAZ UM GET RETORNANDO UM JSON
     public Responsavel chamaConsultarPorId(int id) {
         String URL = URL_BASE+"/"+id;
         Responsavel responsavel = restTemplate.getForObject(URL, Responsavel.class);
         return responsavel;
     }
 
+    // FAZER UM POST ENVIANDO UM JSON
     public Responsavel chamaCadastrar(Responsavel responsavel) {
         ResponseEntity<Responsavel> response = restTemplate.postForEntity(URL_BASE, responsavel, Responsavel.class);
         responsavel = response.getBody();
         return responsavel;
     }
 
-    /*public void chamaDeletar(int id){
-        String URL = URL_BASE + "{id}";
-        Map map = new HashMap();
-        map.put("id", id);
-        restTemplate.delete(URL, map);
-    }*/
+//    public void chamaDeletar(int id){
+//        String URL = URL_BASE + "{id}";
+//        Map map = new HashMap();
+//        map.put("id", id);
+//        restTemplate.delete(URL, map);
+//    }
 }
