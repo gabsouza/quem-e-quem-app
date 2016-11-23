@@ -88,6 +88,20 @@ public class TelaLogin extends AppCompatActivity implements
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
         btnSignIn.setScopes(gso.getScopeArray());
 
+        this.btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Responsavel responsavel = new Responsavel();
+                responsavel.setNomeResponsavel(txtName.getText().toString());
+                responsavel.setEmailResponsavel(txtEmail.getText().toString());
+                new HttpRequestTask().execute(responsavel);
+              //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+                Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+
+                chamaTelaCadastro();
+            }
+        });
         //EXTRAINDO OS DADOS DO LOGIN
 //        intent();
     }
@@ -204,17 +218,17 @@ public class TelaLogin extends AppCompatActivity implements
                 revokeAccess();
                 break;
 
-            case R.id.btn_salvar:
-                        Responsavel responsavel = new Responsavel();
-                        responsavel.setNomeResponsavel(txtName.getText().toString());
-                        new HttpRequestTask().execute(responsavel);
-                      //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-                        // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
-                        Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
-
-                chamaTelaCadastro();
-
-                    break;
+//            case R.id.btn_salvar:
+//                        Responsavel responsavel = new Responsavel();
+//                        responsavel.setNomeResponsavel(txtName.getText().toString());
+//                        new HttpRequestTask().execute(responsavel);
+//                      //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+//                        // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+//                        Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+//
+//                chamaTelaCadastro();
+//
+//                    break;
         }
     }
 
@@ -301,13 +315,15 @@ public class TelaLogin extends AppCompatActivity implements
         @Override
         protected Responsavel doInBackground(Responsavel... params) {
             Log.i("DEBUG",params[0].getNomeResponsavel());
-//            Log.i("DEBUG",params[0].getEmailResponsavel());
+            Log.i("DEBUG", params[0].getEmailResponsavel());
 
             params[0] = responsavelConsumer.chamaCadastrar(params[0]);
+
             Log.i("DEBUG",params[0].getNomeResponsavel());
-          //  Log.i("DEBUG",params[0].getEmailResponsavel());
+            Log.i("DEBUG",params[0].getEmailResponsavel());
 
             return params[0];
+
         }
 
         // é executado quando o webservice retorna
@@ -315,7 +331,7 @@ public class TelaLogin extends AppCompatActivity implements
         protected void onPostExecute(Responsavel responsavel) {
             super.onPostExecute(responsavel);
             Log.i("DEBUG",responsavel.getNomeResponsavel());
-      //      Log.i("DEBUG", responsavel.getEmailResponsavel());
+            Log.i("DEBUG", responsavel.getEmailResponsavel());
 
         }
     }
