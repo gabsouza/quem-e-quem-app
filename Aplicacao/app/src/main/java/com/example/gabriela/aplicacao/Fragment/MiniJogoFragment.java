@@ -1,11 +1,13 @@
 package com.example.gabriela.aplicacao.Fragment;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +42,7 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
     private RecyclerView mRecyclerView;
     private List<MiniJogo> miniJogos;
     private MiniJogoAdapter mAdapter;
+    private Context ctx;
 
     public MiniJogoFragment() {
     }
@@ -58,6 +61,10 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView.setHasFixedSize(true);
 
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
+        mRecyclerView.setLayoutManager(layoutManager);
+
         mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -68,10 +75,20 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
 
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+                //LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+               // GridLayoutManager layoutManager = (GridLayoutManager) mRecyclerView.getLayoutManager();
+                StaggeredGridLayoutManager layoutManager = (StaggeredGridLayoutManager) mRecyclerView.getLayoutManager();
+                int[] aux = layoutManager.findLastCompletelyVisibleItemPositions(null);
+                int max = -1;
+
+                for (int i = 0; i < aux.length; i ++){
+                    max = aux[i] > max ? aux[i] : max;
+                }
+
                 MiniJogoAdapter adapter = (MiniJogoAdapter) mRecyclerView.getAdapter();
 
-                if(miniJogos.size() == linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1){
+                //if(miniJogos.size() == layoutManager.findLastCompletelyVisibleItemPosition() + 1){
+                if(miniJogos.size() == max + 1){
                     List<MiniJogo> listAux = ((MainActivity)getActivity()).getSetMiniJogoList(4);
 
                     for(int i = 0; i <listAux.size(); i++){
@@ -80,18 +97,25 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
                 }
             }
         });
+        
+// aquiiiiiiiiiiiiiii asfadsf
+        int numberOfColumns = 2;
+        if(this.ctx.getResources().getConfiguration().orientation == this.ctx.getResources().getConfiguration().ORIENTATION_LANDSCAPE)
+            numberOfColumns = 3;
+        this.mRecyclerView.setLayoutManager(new GridLayoutManager
+                (this.ctx, numberOfColumns, GridLayoutManager.VERTICAL, false));
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        /*LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mRecyclerView.setLayoutManager(linearLayoutManager);*/
 
         miniJogos = ((MainActivity)getActivity()).getSetMiniJogoList(4);
         MiniJogoAdapter adapter = new MiniJogoAdapter(getActivity(), miniJogos);
         adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
-        mRecyclerView.setLayoutManager(layoutManager);
+        //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, true);
+        //mRecyclerView.setLayoutManager(layoutManager);
 
         miniJogos = new ArrayList<>();
         mAdapter = new MiniJogoAdapter(miniJogos);

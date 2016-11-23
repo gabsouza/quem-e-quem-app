@@ -7,14 +7,13 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical">
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            />
+            layout="@layout/toolbar"/>
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="match_parent"
@@ -59,29 +58,19 @@
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true" />
 
-                <RelativeLayout
-                    android:id="@+id/rl_fragment_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/iv_foto_perfil"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="39dp">
-                </RelativeLayout>
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_list"
-                    android:scrollbars="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="left|bottom"
-                    android:layout_below="@+id/iv_foto_perfil"
-                    android:layout_alignParentStart="true" />
-
             </RelativeLayout>
 
         </FrameLayout>
 
-    </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|bottom"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
