@@ -97,7 +97,7 @@ public class MiniJogoFragment extends Fragment implements RecyclerViewOnClickLis
                 }
             }
         });
-        
+
 // aquiiiiiiiiiiiiiii asfadsf
         int numberOfColumns = 2;
         if(this.ctx.getResources().getConfiguration().orientation == this.ctx.getResources().getConfiguration().ORIENTATION_LANDSCAPE)
