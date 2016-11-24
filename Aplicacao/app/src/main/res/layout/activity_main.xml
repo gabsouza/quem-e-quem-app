@@ -19,56 +19,87 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="320dp">
+                android:layout_height="681dp"
+                android:background="@android:color/transparent"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                >
 
-                <ImageButton
-                    android:id="@+id/imagemselo1"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/icone_selo"
-                    android:layout_marginEnd="25dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@+id/iv_foto_perfil" />
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="626dp"
+                >
 
-                <ImageButton
-                    android:id="@+id/imagemselo2"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/icone_selo"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="11dp" />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-                <ImageButton
-                    android:id="@+id/imagemselo3"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@drawable/icone_selo"
-                    android:layout_alignTop="@+id/imagemselo1"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="26dp" />
 
-                <ImageButton
-                    android:id="@+id/iv_foto_perfil"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:background="@drawable/foto_personagem_1"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="410dp"
+                    android:layout_below="@+id/imagemselo1"
+                    android:layout_centerHorizontal="true">
 
-            </RelativeLayout>
+                    <include layout="@layout/content_main"/>
 
-        </FrameLayout>
+                </RelativeLayout>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_list"
-            android:scrollbars="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="left|bottom"
-            android:layout_alignParentStart="true" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="363dp">
+
+                    <ImageButton
+                        android:id="@+id/iv_foto_perfil"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/foto_personagem_1"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="28dp" />
+
+                    <ImageButton
+                        android:id="@+id/imagemselo1"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/icone_selo"
+                        android:layout_marginEnd="25dp"
+                        android:layout_alignBottom="@+id/iv_foto_perfil"
+                        android:layout_toStartOf="@+id/iv_foto_perfil"
+                        android:layout_marginBottom="41dp" />
+
+                    <ImageButton
+                        android:id="@+id/imagemselo3"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/icone_selo"
+                        android:layout_marginStart="28dp"
+                        android:layout_alignTop="@+id/imagemselo1"
+                        android:layout_toEndOf="@+id/iv_foto_perfil" />
+
+                    <ImageButton
+                        android:id="@+id/imagemselo2"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/icone_selo"
+                        android:layout_marginBottom="30dp"
+                        android:layout_above="@+id/iv_foto_perfil"
+                        android:layout_centerHorizontal="true" />
+
+                </RelativeLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+
+    </FrameLayout>
 
     </RelativeLayout>
 
@@ -80,6 +111,10 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/drawer" />
 
+
+
 </android.support.v4.widget.DrawerLayout>
+
+
 
 
