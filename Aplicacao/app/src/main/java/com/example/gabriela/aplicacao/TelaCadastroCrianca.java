@@ -37,14 +37,15 @@ import consumer.PerfilConsumer;
 import pojo.Perfil;
 
 /**
- * Created by Gabriela on 24/08/2016.
+ * Created by Gabriela on 01/09/2016.
  */
-public class TelaConfiguracoesCrianca extends Activity {
+public class TelaCadastroCrianca extends Activity{
+
     private ViewPager viewPager;
     private CustomSwip customSwip;
     private EditText etNome;
     private ImageButton ibMicrofone, ibCamera;
-    private Button btAtualizar;
+    private Button btSalvar;
     private String selectedImagePath;
     private ImageView imgEdit;
     private Bitmap bitmap;
@@ -57,10 +58,9 @@ public class TelaConfiguracoesCrianca extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_configuracoes_crianca);
+        setContentView(R.layout.actitivity_cadastro_crianca);
 
         inicializaComponentes();
-        // Mudar audio para um falando sobre atualizar e tals
         playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
@@ -88,20 +88,21 @@ public class TelaConfiguracoesCrianca extends Activity {
             }
         });
 
-//      this.btSalvar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Perfil perfil = new Perfil();
-//                perfil.setNomePerfil(etNome.getText().toString());
-//                new HttpRequestTask().execute(perfil);
-//                Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-//               // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
-//                Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
-//
-//                chamaTelaMain();
-//            }
-//        });
-        }
+        this.btSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Perfil perfil = new Perfil();
+                perfil.setNomePerfil(etNome.getText().toString());
+                new TelaCadastroCrianca.HttpRequestTask().execute(perfil);
+                Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+                Toast.makeText(TelaCadastroCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
+
+                chamaTelaMain();
+            }
+        });
+    }
+
     private void chamaTelaMain(){
         Intent itTelaMain = new Intent(this, MainActivity.class);
         startActivity(itTelaMain);
@@ -148,9 +149,9 @@ public class TelaConfiguracoesCrianca extends Activity {
         try {
 
 
-                mp.setDataSource(this, uri);
-                mp.prepare();
-                mp.start();
+            mp.setDataSource(this, uri);
+            mp.prepare();
+            mp.start();
 
 
         } catch (Exception e) {
@@ -264,7 +265,7 @@ public class TelaConfiguracoesCrianca extends Activity {
         viewPager = (ViewPager)findViewById(R.id.viewPager);
         etNome = (EditText)findViewById(R.id.et_nome);
         ibMicrofone = (ImageButton) findViewById(R.id.im_microfone);
-        btAtualizar = (Button) findViewById(R.id.bt_atualizar);
+        btSalvar = (Button) findViewById(R.id.bt_salvar);
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
         perfilConsumer = new PerfilConsumer();
         mp = new MediaPlayer();

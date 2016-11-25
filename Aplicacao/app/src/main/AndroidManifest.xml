@@ -23,6 +23,7 @@
 
 
         <activity android:name=".TelaConfiguracoesCrianca" />
+        <activity android:name=".TelaCadastroCrianca" />
         <activity android:name=".TelaJogoProfissao" />
         <activity android:name=".TelaSelo" />
         <activity android:name=".TelaLogin"/><!-- ATTENTION: This was auto-generated to add Google Play services to your project for

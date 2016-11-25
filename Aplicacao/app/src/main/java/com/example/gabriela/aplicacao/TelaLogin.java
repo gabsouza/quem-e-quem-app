@@ -108,7 +108,7 @@ public class TelaLogin extends AppCompatActivity implements
 
 
     private void chamaTelaCadastro(){
-        Intent itTelaCadastro = new Intent(this, TelaConfiguracoesCrianca.class);
+        Intent itTelaCadastro = new Intent(this, TelaCadastroCrianca.class);
         startActivity(itTelaCadastro);
         finish();
     }
