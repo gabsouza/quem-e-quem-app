@@ -42,7 +42,7 @@ import pojo.Perfil;
 public class TelaConfiguracoesCrianca extends Activity {
     private ViewPager viewPager;
     private CustomSwip customSwip;
-    private EditText etNome;
+    private EditText etNomeAtualiza;
     private ImageButton ibMicrofone, ibCamera;
     private Button btAtualizar;
     private String selectedImagePath;
@@ -65,7 +65,7 @@ public class TelaConfiguracoesCrianca extends Activity {
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
-        etNome.setOnClickListener(new View.OnClickListener() {
+        etNomeAtualiza.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mp.stop();
@@ -88,20 +88,37 @@ public class TelaConfiguracoesCrianca extends Activity {
             }
         });
 
-//      this.btSalvar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+      this.btAtualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                Perfil perfil = new Perfil();
 //                perfil.setNomePerfil(etNome.getText().toString());
 //                new HttpRequestTask().execute(perfil);
 //                Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-//               // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
-//                Toast.makeText(TelaConfiguracoesCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
+               // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+                Toast.makeText(TelaConfiguracoesCrianca.this, "Atualizado", Toast.LENGTH_LONG).show();
+
+                chamaTelaMain();
+            }
+        });
+
+
+        // PEGANDO OS DADOS DO LOGIN
+//        Intent intent = getIntent();
 //
-//                chamaTelaMain();
-//            }
-//        });
+//        Bundle bundle = intent.getExtras();
+//
+//        if (bundle != null) {
+//            String nome = bundle.getString("nome");
+//
+//            EditText etNomeAtualiza = (EditText)findViewById(R.id.et_nome);
+//            etNomeAtualiza.setText(nome);
+
+            //Modelo pegar foto
+//            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
+//            civFoto.setImageURI(Uri.parse(foto));
         }
+//    }
     private void chamaTelaMain(){
         Intent itTelaMain = new Intent(this, MainActivity.class);
         startActivity(itTelaMain);
@@ -169,7 +186,7 @@ public class TelaConfiguracoesCrianca extends Activity {
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    etNome.setText(result.get(0));
+                    etNomeAtualiza.setText(result.get(0));
                 }
                 break;
             }
@@ -262,7 +279,7 @@ public class TelaConfiguracoesCrianca extends Activity {
 
     private void inicializaComponentes(){
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-        etNome = (EditText)findViewById(R.id.et_nome);
+        etNomeAtualiza = (EditText)findViewById(R.id.et_nome);
         ibMicrofone = (ImageButton) findViewById(R.id.im_microfone);
         btAtualizar = (Button) findViewById(R.id.bt_atualizar);
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
@@ -270,24 +287,24 @@ public class TelaConfiguracoesCrianca extends Activity {
         mp = new MediaPlayer();
     }
 
-    private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
-
-        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
-
-        @Override
-        protected Perfil doInBackground(Perfil... params) {
-            Log.i("DEBUG",params[0].getNomePerfil());
-            params[0] = perfilConsumer.chamaCadastrar(params[0]);
-            Log.i("DEBUG",params[0].getNomePerfil());
-            return params[0];
-        }
-
-        // é executado quando o webservice retorna
-        @Override
-        protected void onPostExecute(Perfil perfil) {
-            super.onPostExecute(perfil);
-            Log.i("DEBUG",perfil.getNomePerfil());
-
-        }
-    }
+//    private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
+//
+//        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
+//
+//        @Override
+//        protected Perfil doInBackground(Perfil... params) {
+//            Log.i("DEBUG",params[0].getNomePerfil());
+//            params[0] = perfilConsumer.chamaCadastrar(params[0]);
+//            Log.i("DEBUG",params[0].getNomePerfil());
+//            return params[0];
+//        }
+//
+//        // é executado quando o webservice retorna
+//        @Override
+//        protected void onPostExecute(Perfil perfil) {
+//            super.onPostExecute(perfil);
+//            Log.i("DEBUG",perfil.getNomePerfil());
+//
+//        }
+//    }
 }

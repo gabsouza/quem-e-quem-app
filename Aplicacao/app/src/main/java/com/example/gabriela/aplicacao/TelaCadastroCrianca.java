@@ -101,12 +101,26 @@ public class TelaCadastroCrianca extends Activity{
                 chamaTelaMain();
             }
         });
+
+        intent();
     }
 
     private void chamaTelaMain(){
         Intent itTelaMain = new Intent(this, MainActivity.class);
         startActivity(itTelaMain);
         finish();
+    }
+
+    private void intent() {
+        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
+        String passaNome = etNome.getText().toString();
+       // String passaFoto = imgEdit.toString();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("nome", passaNome);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
     @Override
