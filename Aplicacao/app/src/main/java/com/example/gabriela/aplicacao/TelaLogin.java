@@ -114,12 +114,10 @@ public class TelaLogin extends AppCompatActivity implements
     }
     }
 
-    private void chamaTelaInicial(){
+    private void chamaTelaInicial() {
         Intent itTelaLogado = new Intent(this, TelaInicial.class);
         startActivity(itTelaLogado);
-        finish();
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

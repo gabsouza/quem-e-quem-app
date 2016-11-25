@@ -36,6 +36,16 @@ public class PerfilConsumer {
         return perfil;
     }
 
+    public void chamaAtualizar(Perfil perfil){
+        restTemplate.put(URL_BASE, perfil);
+    }
+//    public void chamaAtualizar(int id, Cliente cliente) {
+//        String URL = URL_BASE+"/{id}";
+//        Map map = new HashMap();
+//        map.put("id", id);
+//        restTemplate.put(URL, cliente, map);
+//    }
+
 //    public void chamaDeletar(int id){
 //        String URL = URL_BASE + "{id}";
 //        Map map = new HashMap();

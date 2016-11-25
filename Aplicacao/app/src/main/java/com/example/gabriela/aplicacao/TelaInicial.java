@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by Gabriela on 01/09/2016.
+ * Created by Gabriela on 25/11/2016.
  */
 public class TelaInicial extends Activity{
 
