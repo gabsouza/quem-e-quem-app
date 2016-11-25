@@ -18,6 +18,12 @@ public class ResponsavelConsumer {
     RestTemplate restTemplate;
     public static final String URL_BASE = "http://192.168.1.6:8080/ServidorQuem/rest/responsavel/";
 
+    public Responsavel validaLogin (Responsavel responsavel){
+        //IMPLEMENTAR O CONSUMO DO WEBSERVICE
+
+        return responsavel;
+    }
+
     public ResponsavelConsumer() {
         restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -37,10 +43,10 @@ public class ResponsavelConsumer {
         return responsavel;
     }
 
-//    public void chamaDeletar(int id){
-//        String URL = URL_BASE + "{id}";
-//        Map map = new HashMap();
-//        map.put("id", id);
-//        restTemplate.delete(URL, map);
-//    }
+    public void chamaDeletar(int id){
+      String URL = URL_BASE + "{id}";
+      Map map = new HashMap();
+      map.put("id", id);
+        restTemplate.delete(URL, map);
+    }
 }

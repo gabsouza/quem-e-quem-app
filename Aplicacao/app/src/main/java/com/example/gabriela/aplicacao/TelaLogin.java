@@ -2,6 +2,7 @@ package com.example.gabriela.aplicacao;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -50,30 +51,19 @@ public class TelaLogin extends AppCompatActivity implements
     private ImageView imgProfilePic;
     private TextView txtName, txtEmail, txtId;
 
+    private SharedPreferences spAutenticacao;
+    private SharedPreferences.Editor editor;
+    public static final String AUTENTICACAO = "autenticar";
+
     private ResponsavelConsumer responsavelConsumer;
+    private Responsavel responsavel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
-        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
-        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
-        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
-        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
-        txtName = (TextView) findViewById(R.id.txtName);
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
-      //  txtId = (TextView) findViewById(R.id.txtId);
-        btnSalvar = (Button)findViewById(R.id.btn_salvar);
-        responsavelConsumer = new ResponsavelConsumer();
-
-
-        btnSignIn.setOnClickListener(this);
-        btnSignOut.setOnClickListener(this);
-        btnRevokeAccess.setOnClickListener(this);
-        btnSalvar.setOnClickListener(this);
+        inicializaComponetes();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
@@ -88,29 +78,63 @@ public class TelaLogin extends AppCompatActivity implements
         btnSignIn.setSize(SignInButton.SIZE_STANDARD);
         btnSignIn.setScopes(gso.getScopeArray());
 
-        this.btnSalvar.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickListener(this);
+        btnSignOut.setOnClickListener(this);
+        btnRevokeAccess.setOnClickListener(this);
+        btnSalvar.setOnClickListener(this);
+
+        if (this.verificaSeJaLogou()){
+            chamaTelaInicial();
+
+        } else {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_login);
+
+
+            btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Responsavel responsavel = new Responsavel();
                 responsavel.setNomeResponsavel(txtName.getText().toString());
                 responsavel.setEmailResponsavel(txtEmail.getText().toString());
                 new HttpRequestTask().execute(responsavel);
               //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
                 // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+
+                responsavel = responsavelConsumer.validaLogin(responsavel);
+                if(responsavel!= null){
+                    chamaTelaInicial();
+
+                    editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
+                }
+
                 Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
 
-                chamaTelaCadastro();
             }
         });
-        //EXTRAINDO OS DADOS DO LOGIN
-//        intent();
+    }
     }
 
-
-    private void chamaTelaCadastro(){
-        Intent itTelaCadastro = new Intent(this, TelaConfiguracoesCrianca.class);
-        startActivity(itTelaCadastro);
+    private void chamaTelaInicial(){
+        Intent itTelaLogado = new Intent(this, TelaInicial.class);
+        startActivity(itTelaLogado);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("DEBUG", "FECHANDO ACTIVITY TELA LOGIN");
+    }
+
+    private boolean verificaSeJaLogou(){
+        boolean logou = false;
+
+        String login = this.spAutenticacao.getString("login", null);
+        if (login!=null){
+            logou  = true;
+        }
+
+        return logou;
     }
 
     private void signIn() {
@@ -168,7 +192,6 @@ public class TelaLogin extends AppCompatActivity implements
 
             txtName.setText(NomeResponsavel);
             txtEmail.setText(emailResponsavel);
-//            txtId.setText(idResponsavel);
 
 
             updateUI(true);
@@ -334,5 +357,21 @@ public class TelaLogin extends AppCompatActivity implements
             Log.i("DEBUG", responsavel.getEmailResponsavel());
 
         }
+    }
+
+    private void inicializaComponetes(){
+        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
+        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
+        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
+        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
+        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
+        txtName = (TextView) findViewById(R.id.txtName);
+
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
+        btnSalvar = (Button)findViewById(R.id.btn_salvar);;
+        responsavel = new Responsavel();
+        spAutenticacao = getApplicationContext().getSharedPreferences(AUTENTICACAO, MODE_APPEND);
+        editor = spAutenticacao.edit();
+        responsavelConsumer = new ResponsavelConsumer();
     }
 }
