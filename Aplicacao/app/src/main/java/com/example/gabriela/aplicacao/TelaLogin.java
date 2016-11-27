@@ -122,7 +122,7 @@ public class TelaLogin extends AppCompatActivity implements
                     if (responsavel != null) {
                         chamaTelaInicial();
 
-                        editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
+                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
                     }
 
                     Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();

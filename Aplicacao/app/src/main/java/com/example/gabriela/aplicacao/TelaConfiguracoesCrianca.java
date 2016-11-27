@@ -42,7 +42,7 @@ import pojo.Perfil;
 public class TelaConfiguracoesCrianca extends Activity {
     private ViewPager viewPager;
     private CustomSwip customSwip;
-    private EditText etNomeAtualiza;
+    private EditText etNome;
     private ImageButton ibMicrofone, ibCamera;
     private Button btAtualizar;
     private String selectedImagePath;
@@ -60,12 +60,11 @@ public class TelaConfiguracoesCrianca extends Activity {
         setContentView(R.layout.activity_configuracoes_crianca);
 
         inicializaComponentes();
-        // Mudar audio para um falando sobre atualizar e tals
         playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
-        etNomeAtualiza.setOnClickListener(new View.OnClickListener() {
+        etNome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mp.stop();
@@ -88,42 +87,40 @@ public class TelaConfiguracoesCrianca extends Activity {
             }
         });
 
-      this.btAtualizar.setOnClickListener(new View.OnClickListener() {
+        this.btAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Perfil perfil = new Perfil();
 //                perfil.setNomePerfil(etNome.getText().toString());
-//                new HttpRequestTask().execute(perfil);
+//                new TelaConfiguracoesCrianca.HttpRequestTask().execute(perfil);
 //                Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-               // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+//                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
                 Toast.makeText(TelaConfiguracoesCrianca.this, "Atualizado", Toast.LENGTH_LONG).show();
 
                 chamaTelaMain();
             }
         });
 
+//        intent();
+    }
 
-        // PEGANDO OS DADOS DO LOGIN
-//        Intent intent = getIntent();
-//
-//        Bundle bundle = intent.getExtras();
-//
-//        if (bundle != null) {
-//            String nome = bundle.getString("nome");
-//
-//            EditText etNomeAtualiza = (EditText)findViewById(R.id.et_nome);
-//            etNomeAtualiza.setText(nome);
-
-            //Modelo pegar foto
-//            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
-//            civFoto.setImageURI(Uri.parse(foto));
-        }
-//    }
     private void chamaTelaMain(){
         Intent itTelaMain = new Intent(this, MainActivity.class);
         startActivity(itTelaMain);
         finish();
     }
+
+//    private void intent() {
+//        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
+//        String passaNome = etNome.getText().toString();
+//       // String passaFoto = imgEdit.toString();
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putString("nome", passaNome);
+//        intent.putExtras(bundle);
+//
+//        startActivity(intent);
+//    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -165,9 +162,9 @@ public class TelaConfiguracoesCrianca extends Activity {
         try {
 
 
-                mp.setDataSource(this, uri);
-                mp.prepare();
-                mp.start();
+            mp.setDataSource(this, uri);
+            mp.prepare();
+            mp.start();
 
 
         } catch (Exception e) {
@@ -186,7 +183,7 @@ public class TelaConfiguracoesCrianca extends Activity {
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    etNomeAtualiza.setText(result.get(0));
+                    etNome.setText(result.get(0));
                 }
                 break;
             }
@@ -279,7 +276,7 @@ public class TelaConfiguracoesCrianca extends Activity {
 
     private void inicializaComponentes(){
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-        etNomeAtualiza = (EditText)findViewById(R.id.et_nome);
+        etNome = (EditText)findViewById(R.id.et_nome);
         ibMicrofone = (ImageButton) findViewById(R.id.im_microfone);
         btAtualizar = (Button) findViewById(R.id.bt_atualizar);
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
@@ -287,24 +284,24 @@ public class TelaConfiguracoesCrianca extends Activity {
         mp = new MediaPlayer();
     }
 
-//    private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
-//
-//        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
-//
-//        @Override
-//        protected Perfil doInBackground(Perfil... params) {
-//            Log.i("DEBUG",params[0].getNomePerfil());
-//            params[0] = perfilConsumer.chamaCadastrar(params[0]);
-//            Log.i("DEBUG",params[0].getNomePerfil());
-//            return params[0];
-//        }
-//
-//        // é executado quando o webservice retorna
-//        @Override
-//        protected void onPostExecute(Perfil perfil) {
-//            super.onPostExecute(perfil);
-//            Log.i("DEBUG",perfil.getNomePerfil());
-//
-//        }
-//    }
+    private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
+
+        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
+
+        @Override
+        protected Perfil doInBackground(Perfil... params) {
+            Log.i("DEBUG",params[0].getNomePerfil());
+            params[0] = perfilConsumer.chamaCadastrar(params[0]);
+            Log.i("DEBUG",params[0].getNomePerfil());
+            return params[0];
+        }
+
+        // é executado quando o webservice retorna
+        @Override
+        protected void onPostExecute(Perfil perfil) {
+            super.onPostExecute(perfil);
+            Log.i("DEBUG",perfil.getNomePerfil());
+
+        }
+    }
 }
