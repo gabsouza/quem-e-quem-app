@@ -5,6 +5,7 @@ package com.example.gabriela.aplicacao;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -51,19 +52,36 @@ public class MiniJogosAdapter extends RecyclerView.Adapter<MiniJogosAdapter.MyVi
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_jogo_card, parent, false);
-//        itemView.setOnClickListener(mOnClickListener);
         return new MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
-        MiniJogo miniJogo = miniJogoList.get(position);
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
+        final MiniJogo miniJogo = miniJogoList.get(position);
         holder.nomeMiniJogo.setText(miniJogo.getNomeMiniJogo());
         holder.descricao.setText(miniJogo.getDescricao());
 
+        holder.itemView.setTag(miniJogo);
         // loading album cover using Glide library
         Glide.with(mContext).load(miniJogo.getImagem()).into(holder.imagem);
+
+
+        holder.imagem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "posicao: " + position, Toast.LENGTH_LONG).show();
+                if(position == 0){
+                Intent profissao = new Intent(mContext, TelaJogoProfissao.class);
+                mContext.startActivity(profissao);
+            }else{
+                    Intent fantasia = new Intent(mContext, TelaJogoFantasia.class);
+                    mContext.startActivity(fantasia);
+                }
+                }
+        });
     }
+
+
 
     @Override
     public int getItemCount() {
