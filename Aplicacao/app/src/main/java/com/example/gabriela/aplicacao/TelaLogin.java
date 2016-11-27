@@ -32,6 +32,7 @@ import com.google.android.gms.common.api.Status;
 import consumer.ResponsavelConsumer;
 import pojo.Responsavel;
 
+import static android.R.attr.id;
 import static com.example.gabriela.aplicacao.R.id.viewPager;
 
 
@@ -61,59 +62,76 @@ public class TelaLogin extends AppCompatActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        //GAB
+        responsavel = new Responsavel();
+        spAutenticacao = getApplicationContext().getSharedPreferences(AUTENTICACAO, MODE_APPEND);
+        editor = spAutenticacao.edit();
+        responsavelConsumer = new ResponsavelConsumer();
 
-        inicializaComponetes();
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        // Customizing G+ button
-        btnSignIn.setSize(SignInButton.SIZE_STANDARD);
-        btnSignIn.setScopes(gso.getScopeArray());
-
-        btnSignIn.setOnClickListener(this);
-        btnSignOut.setOnClickListener(this);
-        btnRevokeAccess.setOnClickListener(this);
-        btnSalvar.setOnClickListener(this);
-
-        if (this.verificaSeJaLogou()){
+        if (this.verificaSeJaLogou()) {
             chamaTelaInicial();
 
         } else {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
 
+//            super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_login);
+//        inicializaComponetes();
+
+            btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
+            btnSignOut = (Button) findViewById(R.id.btn_sign_out);
+            btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
+            llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
+            imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
+            txtName = (TextView) findViewById(R.id.txtName);
+            txtEmail = (TextView) findViewById(R.id.txtEmail);
+            btnSalvar = (Button) findViewById(R.id.btn_salvar);
+            ;
+
+
+            btnSignIn.setOnClickListener(this);
+            btnSignOut.setOnClickListener(this);
+            btnRevokeAccess.setOnClickListener(this);
+            btnSalvar.setOnClickListener(this);
+
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
+
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .enableAutoManage(this, this)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
+
+
+            // Customizing G+ button
+            btnSignIn.setSize(SignInButton.SIZE_STANDARD);
+            btnSignIn.setScopes(gso.getScopeArray());
 
             btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                responsavel.setNomeResponsavel(txtName.getText().toString());
-                responsavel.setEmailResponsavel(txtEmail.getText().toString());
-                new HttpRequestTask().execute(responsavel);
-              //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+                @Override
+                public void onClick(View v) {
+                    responsavel.setNomeResponsavel(txtName.getText().toString());
+                    responsavel.setEmailResponsavel(txtEmail.getText().toString());
+                    new HttpRequestTask().execute(responsavel);
+                    //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+                    // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
 
-                responsavel = responsavelConsumer.validaLogin(responsavel);
-                if(responsavel!= null){
-                    chamaTelaInicial();
+                    responsavel = responsavelConsumer.validaLogin(responsavel);
+                    if (responsavel != null) {
+                        chamaTelaInicial();
 
-                    editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
+                        editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
+                    }
+
+                    Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+
                 }
+            });
+        }
 
-                Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
-
-            }
-        });
     }
-    }
-
     private void chamaTelaInicial() {
         Intent itTelaLogado = new Intent(this, TelaInicial.class);
         startActivity(itTelaLogado);
@@ -172,7 +190,7 @@ public class TelaLogin extends AppCompatActivity implements
             String NomeResponsavel = acct.getDisplayName();
             Uri fotoResponsavel = acct.getPhotoUrl();
 
-         //   String idResponsavel = acct.getId();
+            //   String idResponsavel = acct.getId();
             String emailResponsavel = acct.getEmail();
 
             if (fotoResponsavel != null) {
@@ -358,18 +376,8 @@ public class TelaLogin extends AppCompatActivity implements
     }
 
     private void inicializaComponetes(){
-        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
-        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
-        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
-        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
-        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
-        txtName = (TextView) findViewById(R.id.txtName);
 
-        txtEmail = (TextView) findViewById(R.id.txtEmail);
-        btnSalvar = (Button)findViewById(R.id.btn_salvar);;
-        responsavel = new Responsavel();
-        spAutenticacao = getApplicationContext().getSharedPreferences(AUTENTICACAO, MODE_APPEND);
-        editor = spAutenticacao.edit();
-        responsavelConsumer = new ResponsavelConsumer();
+
     }
 }
+
