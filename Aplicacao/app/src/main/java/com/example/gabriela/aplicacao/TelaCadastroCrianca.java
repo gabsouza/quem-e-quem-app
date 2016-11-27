@@ -88,7 +88,7 @@ public class TelaCadastroCrianca extends Activity{
             }
         });
 
-        this.btSalvar.setOnClickListener(new View.OnClickListener() {
+        btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Perfil perfil = new Perfil();

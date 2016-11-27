@@ -87,14 +87,15 @@ public class TelaConfiguracoesCrianca extends Activity {
             }
         });
 
-        this.btAtualizar.setOnClickListener(new View.OnClickListener() {
+
+        btAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Perfil perfil = new Perfil();
-//                perfil.setNomePerfil(etNome.getText().toString());
-//                new TelaConfiguracoesCrianca.HttpRequestTask().execute(perfil);
-//                Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-//                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+                Perfil perfil = new Perfil();
+                perfil.setNomePerfil(etNomeAtualiza.getText().toString());
+               // new HttpRequestTask().execute(perfil);
+            // Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).setImagemCorrente()+"");
+               // perfil.setMidia((CustomSwip) viewPager.getAdapter()).setImagemCorrente());
                 Toast.makeText(TelaConfiguracoesCrianca.this, "Atualizado", Toast.LENGTH_LONG).show();
 
                 chamaTelaMain();
@@ -161,11 +162,9 @@ public class TelaConfiguracoesCrianca extends Activity {
     public void playAudio(Uri uri){
         try {
 
-
-            mp.setDataSource(this, uri);
-            mp.prepare();
-            mp.start();
-
+                mp.setDataSource(this, uri);
+                mp.prepare();
+                mp.start();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -214,7 +213,6 @@ public class TelaConfiguracoesCrianca extends Activity {
                     }
                 }
                 break;
-
         }
     }
 

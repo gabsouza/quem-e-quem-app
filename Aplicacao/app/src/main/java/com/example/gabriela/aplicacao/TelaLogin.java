@@ -377,7 +377,6 @@ public class TelaLogin extends AppCompatActivity implements
 
     private void inicializaComponetes(){
 
-
     }
 }
 
