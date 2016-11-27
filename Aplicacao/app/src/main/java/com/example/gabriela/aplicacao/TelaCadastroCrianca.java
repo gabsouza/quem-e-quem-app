@@ -88,7 +88,7 @@ public class TelaCadastroCrianca extends Activity{
             }
         });
 
-        this.btSalvar.setOnClickListener(new View.OnClickListener() {
+        btSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Perfil perfil = new Perfil();
@@ -102,7 +102,7 @@ public class TelaCadastroCrianca extends Activity{
             }
         });
 
-        intent();
+//        intent();
     }
 
     private void chamaTelaMain(){
@@ -111,17 +111,17 @@ public class TelaCadastroCrianca extends Activity{
         finish();
     }
 
-    private void intent() {
-        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
-        String passaNome = etNome.getText().toString();
-       // String passaFoto = imgEdit.toString();
-        Bundle bundle = new Bundle();
-
-        bundle.putString("nome", passaNome);
-        intent.putExtras(bundle);
-
-        startActivity(intent);
-    }
+//    private void intent() {
+//        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
+//        String passaNome = etNome.getText().toString();
+//       // String passaFoto = imgEdit.toString();
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putString("nome", passaNome);
+//        intent.putExtras(bundle);
+//
+//        startActivity(intent);
+//    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {

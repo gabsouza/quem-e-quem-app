@@ -27,6 +27,7 @@ public class MiniJogosAdapter extends RecyclerView.Adapter<MiniJogosAdapter.MyVi
 
     private Context mContext;
     private List<MiniJogo> miniJogoList;
+//    private final View.OnClickListener mOnClickListener = new MyOnClickListener();
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView nomeMiniJogo, descricao;
@@ -50,7 +51,7 @@ public class MiniJogosAdapter extends RecyclerView.Adapter<MiniJogosAdapter.MyVi
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_jogo_card, parent, false);
-
+//        itemView.setOnClickListener(mOnClickListener);
         return new MyViewHolder(itemView);
     }
 

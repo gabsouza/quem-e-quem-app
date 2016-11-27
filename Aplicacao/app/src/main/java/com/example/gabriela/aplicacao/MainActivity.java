@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,19 +26,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.gabriela.aplicacao.Fragment.ContentFragment;
+import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
 //import com.example.gabriela.aplicacao.Fragment.MiniJogoFragment;
 //import com.example.gabriela.aplicacao.adapter.MiniJogoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 import pojo.MiniJogo;
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
     private NavigationView navigationView;
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         prepareMiniJogos();
+
 
 //        try {
 //            Glide.with(this).load(R.color.).into((ImageView) findViewById(R.id.backdrop));
@@ -144,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+
 
 
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
@@ -250,8 +255,7 @@ public class MainActivity extends AppCompatActivity {
     private void prepareMiniJogos() {
         int[] covers = new int[]{
                 R.drawable.profissao,
-                R.drawable.fantasma,
-                R.drawable.profissao};
+                R.drawable.fantasma};
 
         com.example.gabriela.aplicacao.MiniJogo m = new com.example.gabriela.aplicacao.MiniJogo("Profissão", "Relacione as alternativas com as dicas", covers[0]);
         miniJogoList.add(m);
@@ -261,7 +265,6 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
     }
-
 
     private void chamaTelaConfiguracoesCrianca(){
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
