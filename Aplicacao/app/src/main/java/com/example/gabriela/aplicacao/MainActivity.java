@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
+        recyclerView.setOnClickListener();
         prepareMiniJogos();
 
 //        try {
@@ -144,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
         //calling sync state is necessay or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+
 
 
         fotoPerfil.setOnClickListener(new View.OnClickListener() {
@@ -250,8 +252,7 @@ public class MainActivity extends AppCompatActivity {
     private void prepareMiniJogos() {
         int[] covers = new int[]{
                 R.drawable.profissao,
-                R.drawable.fantasma,
-                R.drawable.profissao};
+                R.drawable.fantasma};
 
         com.example.gabriela.aplicacao.MiniJogo m = new com.example.gabriela.aplicacao.MiniJogo("Profissão", "Relacione as alternativas com as dicas", covers[0]);
         miniJogoList.add(m);

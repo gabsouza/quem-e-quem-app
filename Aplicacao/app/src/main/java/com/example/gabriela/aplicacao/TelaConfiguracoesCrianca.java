@@ -92,7 +92,7 @@ public class TelaConfiguracoesCrianca extends Activity {
             @Override
             public void onClick(View v) {
                 Perfil perfil = new Perfil();
-                perfil.setNomePerfil(etNomeAtualiza.getText().toString());
+//                perfil.setNomePerfil(etNomeAtualiza.getText().toString());
                // new HttpRequestTask().execute(perfil);
             // Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).setImagemCorrente()+"");
                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).setImagemCorrente());
