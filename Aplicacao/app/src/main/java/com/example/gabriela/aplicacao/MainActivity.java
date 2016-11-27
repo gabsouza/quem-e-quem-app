@@ -25,19 +25,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.gabriela.aplicacao.Fragment.ContentFragment;
+import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
 //import com.example.gabriela.aplicacao.Fragment.MiniJogoFragment;
 //import com.example.gabriela.aplicacao.adapter.MiniJogoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 import pojo.MiniJogo;
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
     private NavigationView navigationView;
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton imagemselo1, imagemselo2, imagemselo3;
     private RecyclerView recyclerView;
     private MiniJogosAdapter adapter;
-    private List<com.example.gabriela.aplicacao.MiniJogo> miniJogoList;
+    private List<MiniJogo> miniJogoList;
 
 
     @Override
@@ -68,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        recyclerView.setOnClickListener();
         prepareMiniJogos();
 
 //        try {
@@ -262,7 +263,6 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
     }
-
 
     private void chamaTelaConfiguracoesCrianca(){
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
