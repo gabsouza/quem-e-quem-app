@@ -20,7 +20,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="41dp" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_opcao1"
@@ -29,7 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="31dp" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_opcao2"
@@ -37,7 +37,7 @@
         android:layout_below="@+id/tv_opcao1"
         android:layout_alignParentEnd="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_opcao3"
@@ -45,7 +45,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="38dp" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_opcao4"
@@ -53,7 +53,7 @@
         android:layout_below="@+id/tv_opcao3"
         android:layout_alignParentEnd="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tv_opcao5"
