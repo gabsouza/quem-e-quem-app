@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity{
     private ImageButton imagemselo1, imagemselo2, imagemselo3;
     private RecyclerView recyclerView;
     private MiniJogosAdapter adapter;
-    private List<MiniJogo> miniJogoList;
+    private List<com.example.gabriela.aplicacao.MiniJogo> miniJogoList;
 
 
     @Override
@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setAdapter(adapter);
 
         prepareMiniJogos();
-
-    }
 
 
 //        try {
