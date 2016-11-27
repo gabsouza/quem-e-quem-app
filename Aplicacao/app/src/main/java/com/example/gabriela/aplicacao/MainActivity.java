@@ -69,15 +69,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        recyclerView.setOnClickListener(CardView c, View v){
-
-        }
-        @Override
-        public void onClick(Card c ,View v) {
-            Intent intent = new Intent(MyActivity.this, NextActivity.class);
-            startActivity(intent);
-        }
         prepareMiniJogos();
+
+    }
+
 
 //        try {
 //            Glide.with(this).load(R.color.).into((ImageView) findViewById(R.id.backdrop));
