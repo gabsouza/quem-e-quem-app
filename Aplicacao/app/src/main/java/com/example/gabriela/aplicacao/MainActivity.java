@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -68,7 +69,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
-        recyclerView.setOnClickListener();
+        recyclerView.setOnClickListener(CardView c, View v){
+
+        }
+        @Override
+        public void onClick(Card c ,View v) {
+            Intent intent = new Intent(MyActivity.this, NextActivity.class);
+            startActivity(intent);
+        }
         prepareMiniJogos();
 
 //        try {
