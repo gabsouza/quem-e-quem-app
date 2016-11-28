@@ -29,6 +29,8 @@ import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
+import java.io.Serializable;
+
 import consumer.ResponsavelConsumer;
 import pojo.Responsavel;
 
@@ -57,7 +59,7 @@ public class TelaLogin extends AppCompatActivity implements
     public static final String AUTENTICACAO = "autenticar";
 
     private ResponsavelConsumer responsavelConsumer;
-    private Responsavel responsavel;
+    private Responsavel responsavel, resp;
 
 
     @Override
@@ -74,66 +76,78 @@ public class TelaLogin extends AppCompatActivity implements
         } else {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
+        }
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                responsavel.setNomeResponsavel(txtName.getText().toString());
+                responsavel.setEmailResponsavel(txtEmail.getText().toString());
+                new HttpRequestTask().execute(responsavel);
+                //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+
+                responsavel = responsavelConsumer.validaLogin(responsavel);
+                if (responsavel != null) {
+                    chamaTelaInicial();
+
+                    editor.putInt("idResponsavel", responsavel.getIdResponsavel());
+                }
+
+                Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+
+            }
+        });
 
 //            super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_login);
-//        inicializaComponetes();
 
-            btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
-            btnSignOut = (Button) findViewById(R.id.btn_sign_out);
-            btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
-            llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
-            imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
-            txtName = (TextView) findViewById(R.id.txtName);
-            txtEmail = (TextView) findViewById(R.id.txtEmail);
-            btnSalvar = (Button) findViewById(R.id.btn_salvar);
-            ;
+        btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
+        btnSignOut = (Button) findViewById(R.id.btn_sign_out);
+        btnRevokeAccess = (Button) findViewById(R.id.btn_revoke_access);
+        llProfileLayout = (LinearLayout) findViewById(R.id.llProfile);
+        imgProfilePic = (ImageView) findViewById(R.id.imgProfilePic);
+        txtName = (TextView) findViewById(R.id.txtName);
+        txtEmail = (TextView) findViewById(R.id.txtEmail);
+        btnSalvar = (Button) findViewById(R.id.btn_salvar);
 
 
-            btnSignIn.setOnClickListener(this);
-            btnSignOut.setOnClickListener(this);
-            btnRevokeAccess.setOnClickListener(this);
-            btnSalvar.setOnClickListener(this);
+        btnSignIn.setOnClickListener(this);
+        btnSignOut.setOnClickListener(this);
+        btnRevokeAccess.setOnClickListener(this);
+        btnSalvar.setOnClickListener(this);
 
-            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestEmail()
-                    .build();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
 
-            mGoogleApiClient = new GoogleApiClient.Builder(this)
-                    .enableAutoManage(this, this)
-                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                    .build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
 
-            // Customizing G+ button
-            btnSignIn.setSize(SignInButton.SIZE_STANDARD);
-            btnSignIn.setScopes(gso.getScopeArray());
-
-            btnSalvar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    responsavel.setNomeResponsavel(txtName.getText().toString());
-                    responsavel.setEmailResponsavel(txtEmail.getText().toString());
-                    new HttpRequestTask().execute(responsavel);
-                    //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-                    // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
-
-                    responsavel = responsavelConsumer.validaLogin(responsavel);
-                    if (responsavel != null) {
-                        chamaTelaInicial();
-
-                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
-                    }
-
-                    Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
-
-                }
-            });
-        }
-
+        // Customizing G+ button
+        btnSignIn.setSize(SignInButton.SIZE_STANDARD);
+        btnSignIn.setScopes(gso.getScopeArray());
     }
+
+
     private void chamaTelaInicial() {
         Intent itTelaLogado = new Intent(this, TelaInicial.class);
+
+        String passaNome = txtName.getText().toString();
+        String passaEmail = txtEmail.getText().toString();
+        String passaFoto = imgProfilePic.toString();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("nome", passaNome);
+        bundle.putString("email", passaEmail);
+        bundle.putString("photo", passaFoto);
+
+        bundle.putSerializable("responsavel", resp);
+        itTelaLogado.putExtras(bundle);
+
         startActivity(itTelaLogado);
     }
     @Override
@@ -157,7 +171,6 @@ public class TelaLogin extends AppCompatActivity implements
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-
 
     private void signOut() {
         Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
@@ -216,29 +229,6 @@ public class TelaLogin extends AppCompatActivity implements
             updateUI(false);
         }
     }
-
-//        private void intent() {
-//        Intent intent = new Intent(this, MainActivity.class);
-//        String passaNome = txtName.getText().toString();
-//        String passaEmail = txtEmail.getText().toString();
-//        String passaFoto = imgProfilePic.toString();
-//        Bundle bundle = new Bundle();
-//
-//        bundle.putString("nome", passaNome);
-//        bundle.putString("email", passaEmail);
-//        bundle.putString("photo", passaFoto);
-//        intent.putExtras(bundle);
-//
-//        startActivity(intent);
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.putExtra("email", (Serializable) txtEmail);
-//        intent.putExtra("nome", (Serializable) txtName);
-//        intent.putExtra("foto", (Serializable) imgProfilePic);
-//        startActivity(intent);
-
-
-
-//    }
 
     @Override
     public void onClick(View v) {
@@ -371,12 +361,9 @@ public class TelaLogin extends AppCompatActivity implements
             super.onPostExecute(responsavel);
             Log.i("DEBUG",responsavel.getNomeResponsavel());
             Log.i("DEBUG", responsavel.getEmailResponsavel());
-
+            resp = responsavel;
         }
     }
 
-    private void inicializaComponetes(){
-
-    }
 }
 

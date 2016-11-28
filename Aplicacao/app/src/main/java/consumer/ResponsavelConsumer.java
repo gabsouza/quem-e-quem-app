@@ -20,8 +20,7 @@ public class ResponsavelConsumer {
 
     public Responsavel validaLogin (Responsavel responsavel){
         //IMPLEMENTAR O CONSUMO DO WEBSERVICE
-//        String URL = URL_BASE+"/"+responsavel;
-//        responsavel = restTemplate.getForObject(URL, Responsavel.class);
+
         return responsavel;
     }
 

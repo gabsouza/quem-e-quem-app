@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".TelaLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,7 +26,7 @@
         <activity android:name=".TelaJogoProfissao" />
         <activity android:name=".TelaJogoFantasia" />
         <activity android:name=".TelaSelo" />
-        <activity android:name=".TelaLogin" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".TelaCadastroCrianca"/>
 
         <meta-data
