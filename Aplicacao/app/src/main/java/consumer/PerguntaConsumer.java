@@ -3,6 +3,10 @@ package consumer;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import pojo.Pergunta;
 
 /**
@@ -12,7 +16,7 @@ import pojo.Pergunta;
 public class PerguntaConsumer {
 
         RestTemplate restTemplate;
-        public static final String URL_BASE = "http://192.168.1.6:8080/ServidorQuem/rest/pergunta/";
+        public static final String URL_BASE = "http://192.168.241.171:8080/ServidorQuem/rest/pergunta/";
 
         public PerguntaConsumer() {
             restTemplate = new RestTemplate();
@@ -25,4 +29,13 @@ public class PerguntaConsumer {
             Pergunta pergunta = restTemplate.getForObject(URL, Pergunta.class);
             return pergunta;
         }
+
+    public List<Pergunta> chamaListar() {
+        Pergunta[] vetorPergunta = restTemplate.getForObject(URL_BASE, Pergunta[].class);
+
+        ArrayList<Pergunta> listaPergunta = new ArrayList<Pergunta>(Arrays.asList(vetorPergunta));
+
+        return listaPergunta;
+    }
+
 }
