@@ -16,7 +16,7 @@ import pojo.Pergunta;
 public class PerguntaConsumer {
 
         RestTemplate restTemplate;
-        public static final String URL_BASE = "http://192.168.241.171:8080/ServidorQuem/rest/pergunta/";
+        public static final String URL_BASE = "http://192.168.241.31:8080/ServidorQuem/rest/pergunta/";
 
         public PerguntaConsumer() {
             restTemplate = new RestTemplate();
@@ -25,7 +25,7 @@ public class PerguntaConsumer {
 
         // FAZ UM GET RETORNANDO UM JSON
         public Pergunta chamaConsultarPorId(int id) {
-            String URL = URL_BASE+"/"+id;
+            String URL = URL_BASE+id;
             Pergunta pergunta = restTemplate.getForObject(URL, Pergunta.class);
             return pergunta;
         }
