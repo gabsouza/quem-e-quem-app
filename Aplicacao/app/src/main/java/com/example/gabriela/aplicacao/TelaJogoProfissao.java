@@ -33,6 +33,7 @@ public class TelaJogoProfissao extends Activity {
         setContentView(R.layout.activity_jogo_profissao);
         inicializaComponentes();
 
+        new HttpRequestTask().execute();
 
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +46,6 @@ public class TelaJogoProfissao extends Activity {
             }
         });
 
-        //ONDE CHAMAR O HTTPREQUEST?
-//        tvPergunta.setText(perguntaConsumer.chamaConsultarPorId(1).getDescricao());
-        tvPergunta.setText(perg.getDescricao());
-//        tvPergunta.setText((pergunta.getDescricao()));
     }
 
     public void inicializaComponentes(){
@@ -70,16 +67,17 @@ public class TelaJogoProfissao extends Activity {
         @Override
 
         protected Pergunta doInBackground(Void... params) {
-            Pergunta perg = perguntaConsumer.chamaConsultarPorId(1);
-            return perg;
+            pergunta = perguntaConsumer.chamaConsultarPorId(1);
+            return pergunta;
         }
 
         // é executado quando o webservice retorna
         @Override
-        protected void onPostExecute(Pergunta pergunta) {
+        protected void onPostExecute(Pergunta perg) {
             super.onPostExecute(pergunta);
             Log.i("DEBUG",pergunta.getDescricao());
-            perg = pergunta;
+            pergunta = perg;
+            tvPergunta.setText(perguntaConsumer.chamaConsultarPorId(1).getDescricao());
         }
     }
 
