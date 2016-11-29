@@ -54,7 +54,7 @@ public class TelaJogoProfissao extends Activity{
         @Override
         protected Pergunta doInBackground(Pergunta... params) {
             Log.i("DEBUG", (params[0].getDescricao()));
-          //  params[0] = perguntaConsumer.chamaConsultarPorId(params[0]);
+            params[0] = perguntaConsumer.chamaConsultarPorId(1);
             Log.i("DEBUG",params[0].getDescricao());
             return params[0];
         }
@@ -67,6 +67,7 @@ public class TelaJogoProfissao extends Activity{
 
         }
     }
+
     public void inicializaComponentes(){
         ivPersonagem = (ImageView) findViewById(R.id.iv_personagem);
         btPassar = (Button) findViewById(R.id.bt_randon);
