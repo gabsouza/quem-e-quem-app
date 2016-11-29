@@ -46,7 +46,8 @@ public class TelaJogoProfissao extends Activity {
         });
 
         //ONDE CHAMAR O HTTPREQUEST?
-        tvPergunta.setText(perguntaConsumer.chamaConsultarPorId(1).getDescricao());
+//        tvPergunta.setText(perguntaConsumer.chamaConsultarPorId(1).getDescricao());
+        tvPergunta.setText(perg.getDescricao());
 //        tvPergunta.setText((pergunta.getDescricao()));
     }
 
