@@ -18,20 +18,21 @@ import pojo.Pergunta;
 /**
  * Created by Gabriela on 18/11/2016.
  */
-public class TelaJogoProfissao extends Activity{
+public class TelaJogoProfissao extends Activity {
 
     private ImageView ivPersonagem;
     private Button btPassar;
     private TextView tvPergunta;
     private Button opcao1, opcao2, opcao3, opcao4, opcao5;
     private PerguntaConsumer perguntaConsumer;
-    private Pergunta pergunta;
+    private Pergunta pergunta, perg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogo_profissao);
         inicializaComponentes();
+
 
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,33 +41,15 @@ public class TelaJogoProfissao extends Activity{
                 Random r = new Random();
                 int n = r.nextInt(7);
                 ivPersonagem.setImageResource(cards[n]);
+
             }
         });
 
+        //ONDE CHAMAR O HTTPREQUEST?
         tvPergunta.setText(perguntaConsumer.chamaConsultarPorId(1).getDescricao());
+//        tvPergunta.setText((pergunta.getDescricao()));
     }
 
-
-    private class HttpRequestTask extends AsyncTask<Pergunta, Void, Pergunta> {
-
-        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
-
-        @Override
-        protected Pergunta doInBackground(Pergunta... params) {
-            Log.i("DEBUG", (params[0].getDescricao()));
-          //  params[0] = perguntaConsumer.chamaConsultarPorId(params[0]);
-            Log.i("DEBUG",params[0].getDescricao());
-            return params[0];
-        }
-
-        // é executado quando o webservice retorna
-        @Override
-        protected void onPostExecute(Pergunta pergunta) {
-            super.onPostExecute(pergunta);
-            Log.i("DEBUG",pergunta.getDescricao());
-
-        }
-    }
     public void inicializaComponentes(){
         ivPersonagem = (ImageView) findViewById(R.id.iv_personagem);
         btPassar = (Button) findViewById(R.id.bt_randon);
@@ -78,5 +61,23 @@ public class TelaJogoProfissao extends Activity{
         opcao5 = (Button) findViewById(R.id.tv_opcao5);
         perguntaConsumer = new PerguntaConsumer();
         pergunta = new Pergunta();
+    }
+
+    private class HttpRequestTask extends AsyncTask<Void, Void, Pergunta> {
+
+        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
+        @Override
+        protected Pergunta doInBackground(Void... params) {
+            Pergunta perg = perguntaConsumer.chamaConsultarPorId(1);
+            return perg;
+        }
+
+        // é executado quando o webservice retorna
+        @Override
+        protected void onPostExecute(Pergunta pergunta) {
+            super.onPostExecute(pergunta);
+            Log.i("DEBUG",pergunta.getDescricao());
+            perg = pergunta;
+        }
     }
 }

@@ -70,37 +70,12 @@ public class TelaLogin extends AppCompatActivity implements
         editor = spAutenticacao.edit();
         responsavelConsumer = new ResponsavelConsumer();
 
-        if (this.verificaSeJaLogou()) {
-            chamaTelaInicial();
-
-        } else {
+//        if (this.verificaSeJaLogou()) {
+//            chamaTelaInicial();
+//
+//        } else {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
-        }
-
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                responsavel.setNomeResponsavel(txtName.getText().toString());
-                responsavel.setEmailResponsavel(txtEmail.getText().toString());
-                new HttpRequestTask().execute(responsavel);
-                //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
-
-                responsavel = responsavelConsumer.validaLogin(responsavel);
-                if (responsavel != null) {
-                    chamaTelaInicial();
-
-                    editor.putInt("idResponsavel", responsavel.getIdResponsavel());
-                }
-
-                Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-//            super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_login);
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
         btnSignOut = (Button) findViewById(R.id.btn_sign_out);
@@ -111,45 +86,69 @@ public class TelaLogin extends AppCompatActivity implements
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         btnSalvar = (Button) findViewById(R.id.btn_salvar);
 
+//            btnSalvar.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    responsavel.setNomeResponsavel(txtName.getText().toString());
+//                    responsavel.setEmailResponsavel(txtEmail.getText().toString());
+//                    new HttpRequestTask().execute(responsavel);
+//                    //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+//                    // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+//
+//                    responsavel = responsavelConsumer.validaLogin(responsavel);
+//                    if (responsavel != null) {
+//                        chamaTelaInicial();
+//
+//                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
+//                    }
+//
+//                    Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+//
+//                }
+//            });
 
-        btnSignIn.setOnClickListener(this);
-        btnSignOut.setOnClickListener(this);
-        btnRevokeAccess.setOnClickListener(this);
-        btnSalvar.setOnClickListener(this);
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+//            super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_login);
 
 
-        // Customizing G+ button
-        btnSignIn.setSize(SignInButton.SIZE_STANDARD);
-        btnSignIn.setScopes(gso.getScopeArray());
-    }
+            btnSignIn.setOnClickListener(this);
+            btnSignOut.setOnClickListener(this);
+            btnRevokeAccess.setOnClickListener(this);
+            btnSalvar.setOnClickListener(this);
+
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .build();
+
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .enableAutoManage(this, this)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build();
 
 
-    private void chamaTelaInicial() {
-        Intent itTelaLogado = new Intent(this, TelaInicial.class);
+            // Customizing G+ button
+            btnSignIn.setSize(SignInButton.SIZE_STANDARD);
+            btnSignIn.setScopes(gso.getScopeArray());
+        }
+//    }
 
-        String passaNome = txtName.getText().toString();
-        String passaEmail = txtEmail.getText().toString();
-        String passaFoto = imgProfilePic.toString();
-        Bundle bundle = new Bundle();
-
-        bundle.putString("nome", passaNome);
-        bundle.putString("email", passaEmail);
-        bundle.putString("photo", passaFoto);
-
-        bundle.putSerializable("responsavel", resp);
-        itTelaLogado.putExtras(bundle);
-
-        startActivity(itTelaLogado);
-    }
+//    private void chamaTelaInicial() {
+//        Intent itTelaLogado = new Intent(this, TelaInicial.class);
+//
+//        String passaNome = txtName.getText().toString();
+//        String passaEmail = txtEmail.getText().toString();
+//        String passaFoto = imgProfilePic.toString();
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putString("nome", passaNome);
+//        bundle.putString("email", passaEmail);
+//        bundle.putString("photo", passaFoto);
+//
+//        bundle.putSerializable("responsavel", resp);
+//        itTelaLogado.putExtras(bundle);
+//
+//        startActivity(itTelaLogado);
+//    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -190,6 +189,12 @@ public class TelaLogin extends AppCompatActivity implements
                         updateUI(false);
                     }
                 });
+    }
+
+    private void chamaTelaCadastro(){
+        Intent itTelaCadastro = new Intent(this, TelaCadastroCrianca.class);
+        startActivity(itTelaCadastro);
+        finish();
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
@@ -247,17 +252,18 @@ public class TelaLogin extends AppCompatActivity implements
                 revokeAccess();
                 break;
 
-//            case R.id.btn_salvar:
-//                        Responsavel responsavel = new Responsavel();
-//                        responsavel.setNomeResponsavel(txtName.getText().toString());
-//                        new HttpRequestTask().execute(responsavel);
-//                      //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-//                        // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
-//                        Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
-//
-//                chamaTelaCadastro();
-//
-//                    break;
+            case R.id.btn_salvar:
+                        Responsavel responsavel = new Responsavel();
+                        responsavel.setNomeResponsavel(txtName.getText().toString());
+                        responsavel.setEmailResponsavel((txtEmail.getText().toString()));
+                        new HttpRequestTask().execute(responsavel);
+                      //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+                        // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+                        Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+
+                chamaTelaCadastro();
+
+                    break;
         }
     }
 
