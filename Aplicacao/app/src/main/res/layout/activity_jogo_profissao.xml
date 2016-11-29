@@ -13,13 +13,6 @@
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/bt_randon" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_pergunta"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="41dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,5 +66,14 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="65dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/iv_personagem"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="18dp"
+        android:id="@+id/tv_pergunta" />
 
 </RelativeLayout>
