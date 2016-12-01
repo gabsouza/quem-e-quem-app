@@ -92,16 +92,16 @@ public class TelaLogin extends AppCompatActivity implements
 //                    responsavel.setNomeResponsavel(txtName.getText().toString());
 //                    responsavel.setEmailResponsavel(txtEmail.getText().toString());
 //                    new HttpRequestTask().execute(responsavel);
-//                    //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
-//                    // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
-//
-//                    responsavel = responsavelConsumer.validaLogin(responsavel);
-//                    if (responsavel != null) {
-//                        chamaTelaInicial();
-//
-//                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
-//                    }
-//
+////                    //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
+////                    // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
+////
+////                    responsavel = responsavelConsumer.validaLogin(responsavel);
+////                    if (responsavel != null) {
+//                        chamaTelaCadastro();
+////
+////                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
+////                    }
+////
 //                    Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
 //
 //                }
@@ -214,6 +214,9 @@ public class TelaLogin extends AppCompatActivity implements
 
     private void chamaTelaCadastro(){
         Intent itTelaCadastro = new Intent(this, TelaCadastroCrianca.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("resp", resp);
+        itTelaCadastro.putExtras(bundle);
         startActivity(itTelaCadastro);
         finish();
     }

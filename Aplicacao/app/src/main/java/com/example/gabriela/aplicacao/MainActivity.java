@@ -44,6 +44,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pojo.MiniJogo;
+import pojo.Perfil;
+
 public class MainActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity{
     private MiniJogosAdapter adapter;
     private List<com.example.gabriela.aplicacao.MiniJogo> miniJogoList;
 
+    private Perfil perf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,6 +262,8 @@ public class MainActivity extends AppCompatActivity{
 
     private void chamaTelaConfiguracoesCrianca(){
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(perf);
         startActivity(itTelaConfiguracoesCrianca);
         finish();
     }
@@ -357,5 +362,6 @@ public class MainActivity extends AppCompatActivity{
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        perf = (Perfil)getIntent().getExtras().getSerializable("perfil");
     }
 }

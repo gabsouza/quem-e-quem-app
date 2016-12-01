@@ -96,7 +96,7 @@ public class TelaConfiguracoesCrianca extends Activity {
 //                Perfil perfil = new Perfil();
 //                perfil.setNomePerfil(etNomeAtualiza.getText().toString());
 
-               // new HttpRequestTask().execute(perfil);
+                new HttpRequestTask().execute(perfil);
             // Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).setImagemCorrente()+"");
                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).setImagemCorrente());
                 Toast.makeText(TelaConfiguracoesCrianca.this, "Atualizado", Toast.LENGTH_LONG).show();
