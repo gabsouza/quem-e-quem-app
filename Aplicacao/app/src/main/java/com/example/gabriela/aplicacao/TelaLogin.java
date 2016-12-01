@@ -86,6 +86,7 @@ public class TelaLogin extends AppCompatActivity implements
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         btnSalvar = (Button) findViewById(R.id.btn_salvar);
 
+        passaParametros();
 //            btnSalvar.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -149,6 +150,24 @@ public class TelaLogin extends AppCompatActivity implements
 //
 //        startActivity(itTelaLogado);
 //    }
+
+    private void passaParametros() {
+        Intent passa = new Intent(this, MainActivity.class);
+
+        String passaNome = txtName.getText().toString();
+        String passaEmail = txtEmail.getText().toString();
+        String passaFoto = imgProfilePic.toString();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("nome", passaNome);
+        bundle.putString("email", passaEmail);
+        bundle.putString("photo", passaFoto);
+
+        passa.putExtras(bundle);
+
+        startActivity(passa);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
