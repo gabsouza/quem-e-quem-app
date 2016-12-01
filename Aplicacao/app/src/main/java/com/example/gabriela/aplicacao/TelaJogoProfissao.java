@@ -67,7 +67,7 @@ public class TelaJogoProfissao extends Activity {
         @Override
 
         protected Pergunta doInBackground(Void... params) {
-            pergunta = perguntaConsumer.chamaConsultarPorId(1);
+            pergunta = perguntaConsumer.chamaConsultarPorId(5);
             return pergunta;
         }
 
@@ -77,7 +77,7 @@ public class TelaJogoProfissao extends Activity {
             super.onPostExecute(pergunta);
             Log.i("DEBUG",pergunta.getDescricao());
             pergunta = perg;
-            tvPergunta.setText(perguntaConsumer.chamaConsultarPorId(1).getDescricao());
+            tvPergunta.setText(pergunta.getDescricao());
         }
     }
 

@@ -111,17 +111,17 @@ public class TelaCadastroCrianca extends Activity{
         finish();
     }
 
-//    private void intent() {
-//        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
-//        String passaNome = etNome.getText().toString();
-//       // String passaFoto = imgEdit.toString();
-//        Bundle bundle = new Bundle();
-//
-//        bundle.putString("nome", passaNome);
-//        intent.putExtras(bundle);
-//
-//        startActivity(intent);
-//    }
+    private void intent() {
+        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
+        String passaNome = etNome.getText().toString();
+       // String passaFoto = imgEdit.toString();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("nome", passaNome);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {

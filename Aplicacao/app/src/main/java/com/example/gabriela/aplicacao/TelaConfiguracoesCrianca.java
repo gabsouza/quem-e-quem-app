@@ -53,6 +53,7 @@ public class TelaConfiguracoesCrianca extends Activity {
     private Uri uri;
     private static final int RECONHECE_VOZ = 30;
     private static final int PICK_IMAGE = 1;
+    private Perfil perf = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +104,7 @@ public class TelaConfiguracoesCrianca extends Activity {
             }
         });
 
-//        intent();
+        intent();
     }
 
     private void chamaTelaMain(){
@@ -112,17 +113,17 @@ public class TelaConfiguracoesCrianca extends Activity {
         finish();
     }
 
-//    private void intent() {
-//        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
-//        String passaNome = etNome.getText().toString();
-//       // String passaFoto = imgEdit.toString();
-//        Bundle bundle = new Bundle();
-//
-//        bundle.putString("nome", passaNome);
-//        intent.putExtras(bundle);
-//
-//        startActivity(intent);
-//    }
+    private void intent() {
+        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
+        String passaNome = etNome.getText().toString();
+//        String passaFoto = imgEdit.toString();
+        Bundle bundle = new Bundle();
+
+        bundle.putString("nome", passaNome);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -300,6 +301,7 @@ public class TelaConfiguracoesCrianca extends Activity {
         protected void onPostExecute(Perfil perfil) {
             super.onPostExecute(perfil);
             Log.i("DEBUG",perfil.getNomePerfil());
+            perf = perfil;
 
         }
     }
