@@ -116,7 +116,7 @@ public class TelaCadastroCrianca extends Activity{
     private void chamaTelaMain(){
         Intent itTelaMain = new Intent(this, MainActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("perfil", perf);
+        bundle.putSerializable("perf", perf);
         itTelaMain.putExtras(bundle);
         startActivity(itTelaMain);
         finish();
