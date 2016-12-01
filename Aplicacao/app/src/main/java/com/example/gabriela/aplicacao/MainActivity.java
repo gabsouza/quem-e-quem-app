@@ -3,6 +3,7 @@ package com.example.gabriela.aplicacao;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -29,6 +30,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -39,6 +41,8 @@ import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import pojo.MiniJogo;
 public class MainActivity extends AppCompatActivity{
 
@@ -179,23 +183,10 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
-//        Bundle extras = getIntent().getExtras();
-//        Serializable telaLogin = null;
-//            telaLogin = extras.getSerializable("email");
-//            telaLogin = extras.getSerializable("nome");
-//            telaLogin = extras.getSerializable("foto");
 
-//        View hView = navigationView.inflateHeaderView(R.layout.header);
-//        ImageView imgvw = (ImageView)hView.findViewById(R.id.profile_image);
-//        TextView tvNome = (TextView)hView.findViewById(R.id.username);
-//        TextView tvEmail = (TextView)hView.findViewById(R.id.email);
-//        imgvw .setImageResource();
-//        tvNome.settext(nome);
-//        tvEmail.setText(foto);
-
-//<<<<<<< HEAD
 //        navigationView = (NavigationView) findViewById(R.id.navigation_view);
 //        View header = navigationView.getHeaderView(0);
+//
 //        // PEGANDO OS DADOS DO LOGIN
 //        Intent intent = getIntent();
 //

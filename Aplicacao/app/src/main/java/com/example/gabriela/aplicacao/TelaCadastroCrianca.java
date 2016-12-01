@@ -102,7 +102,7 @@ public class TelaCadastroCrianca extends Activity{
             }
         });
 
-//        intent();
+        intent();
     }
 
     private void chamaTelaMain(){

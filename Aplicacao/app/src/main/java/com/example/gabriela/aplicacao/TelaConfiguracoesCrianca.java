@@ -61,6 +61,7 @@ public class TelaConfiguracoesCrianca extends Activity {
         setContentView(R.layout.activity_configuracoes_crianca);
 
         inicializaComponentes();
+
         playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
@@ -92,7 +93,7 @@ public class TelaConfiguracoesCrianca extends Activity {
         btAtualizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Perfil perfil = new Perfil();
+//                Perfil perfil = new Perfil();
 //                perfil.setNomePerfil(etNomeAtualiza.getText().toString());
 
                // new HttpRequestTask().execute(perfil);
@@ -284,25 +285,25 @@ public class TelaConfiguracoesCrianca extends Activity {
         mp = new MediaPlayer();
     }
 
-    private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
-
-        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
-
-        @Override
-        protected Perfil doInBackground(Perfil... params) {
-            Log.i("DEBUG",params[0].getNomePerfil());
-            params[0] = perfilConsumer.chamaCadastrar(params[0]);
-            Log.i("DEBUG",params[0].getNomePerfil());
-            return params[0];
-        }
-
-        // é executado quando o webservice retorna
-        @Override
-        protected void onPostExecute(Perfil perfil) {
-            super.onPostExecute(perfil);
-            Log.i("DEBUG",perfil.getNomePerfil());
-            perf = perfil;
-
-        }
-    }
+//    private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
+//
+//        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
+//
+//        @Override
+//        protected Perfil doInBackground(Perfil... params) {
+//            Log.i("DEBUG",params[0].getNomePerfil());
+//            params[0] = perfilConsumer.chamaCadastrar(params[0]);
+//            Log.i("DEBUG",params[0].getNomePerfil());
+//            return params[0];
+//        }
+//
+//        // é executado quando o webservice retorna
+//        @Override
+//        protected void onPostExecute(Perfil perfil) {
+//            super.onPostExecute(perfil);
+//            Log.i("DEBUG",perfil.getNomePerfil());
+//            perf = perfil;
+//
+//        }
+//    }
 }
