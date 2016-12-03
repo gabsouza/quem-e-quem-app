@@ -16,7 +16,7 @@ import pojo.Responsavel;
 public class ResponsavelConsumer {
 
     RestTemplate restTemplate;
-    public static final String URL_BASE = "http://192.168.1.4:8080/ServidorQuem/rest/responsavel/";
+    public static final String URL_BASE = "http://192.168.241.123:8080/ServidorQuem/rest/responsavel/";
 
     public Responsavel validaLogin (Responsavel responsavel){
         //IMPLEMENTAR O CONSUMO DO WEBSERVICE

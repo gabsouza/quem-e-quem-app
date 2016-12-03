@@ -108,7 +108,7 @@ public class TelaConfiguracoesCrianca extends Activity {
             }
         });
 
-        intent();
+//        intent();
     }
 
     private void chamaTelaMain(){
