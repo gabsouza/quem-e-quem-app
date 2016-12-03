@@ -111,7 +111,6 @@ public class TelaLogin extends AppCompatActivity implements
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
 
-
             btnSignIn.setOnClickListener(this);
             btnSignOut.setOnClickListener(this);
             btnRevokeAccess.setOnClickListener(this);
@@ -215,6 +214,9 @@ public class TelaLogin extends AppCompatActivity implements
 
     private void chamaTelaCadastro(){
         Intent itTelaCadastro = new Intent(this, TelaCadastroCrianca.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("resp", resp);
+        itTelaCadastro.putExtras(bundle);
         startActivity(itTelaCadastro);
         finish();
     }

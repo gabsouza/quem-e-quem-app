@@ -35,6 +35,7 @@ import java.util.Locale;
 
 import consumer.PerfilConsumer;
 import pojo.Perfil;
+import pojo.Responsavel;
 
 /**
  * Created by Gabriela on 01/09/2016.
@@ -52,13 +53,18 @@ public class TelaCadastroCrianca extends Activity{
     private PerfilConsumer perfilConsumer;
     private MediaPlayer mp;
     private Uri uri;
+    private Perfil perf;
+
     private static final int RECONHECE_VOZ = 30;
     private static final int PICK_IMAGE = 1;
+
+    private Responsavel responsavel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actitivity_cadastro_crianca);
+
 
         inicializaComponentes();
         playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
@@ -93,6 +99,8 @@ public class TelaCadastroCrianca extends Activity{
             public void onClick(View v) {
                 Perfil perfil = new Perfil();
                 perfil.setNomePerfil(etNome.getText().toString());
+                perfil.setResponsavel(responsavel);
+
                 new TelaCadastroCrianca.HttpRequestTask().execute(perfil);
                 Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
                 // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
@@ -102,11 +110,14 @@ public class TelaCadastroCrianca extends Activity{
             }
         });
 
-        intent();
+//        intent();
     }
 
     private void chamaTelaMain(){
         Intent itTelaMain = new Intent(this, MainActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("perf", perf);
+        itTelaMain.putExtras(bundle);
         startActivity(itTelaMain);
         finish();
     }
@@ -281,6 +292,7 @@ public class TelaCadastroCrianca extends Activity{
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
         perfilConsumer = new PerfilConsumer();
         mp = new MediaPlayer();
+        responsavel = (Responsavel)getIntent().getExtras().getSerializable("resp");
     }
 
     private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
@@ -300,6 +312,7 @@ public class TelaCadastroCrianca extends Activity{
         protected void onPostExecute(Perfil perfil) {
             super.onPostExecute(perfil);
             Log.i("DEBUG",perfil.getNomePerfil());
+            perf = perfil;
 
         }
     }
