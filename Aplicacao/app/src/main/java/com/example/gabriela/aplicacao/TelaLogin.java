@@ -53,7 +53,7 @@ public class TelaLogin extends AppCompatActivity implements
     private Button btnSignOut, btnRevokeAccess, btnSalvar;
     private LinearLayout llProfileLayout;
     private ImageView imgProfilePic;
-    private TextView txtName, txtEmail, txtId;
+    private TextView txtName, txtEmail;
 
     private SharedPreferences spAutenticacao;
     private SharedPreferences.Editor editor;
@@ -68,13 +68,13 @@ public class TelaLogin extends AppCompatActivity implements
 
         inicializaComponentes();
 
-        if (this.verificaSeJaLogou()) {
-            chamaTelaInicial();
-
-        } else {
+//        if (this.verificaSeJaLogou()) {
+//            chamaTelaInicial();
+//
+//        } else {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
-        }
+
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
         btnSignOut = (Button) findViewById(R.id.btn_sign_out);
@@ -84,32 +84,28 @@ public class TelaLogin extends AppCompatActivity implements
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         btnSalvar = (Button) findViewById(R.id.btn_salvar);
-        txtId = (TextView) findViewById(R.id.tv_id);
 
-        new HttpRequestTask().execute(responsavel);
-
-            btnSalvar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    txtEmail.getText().toString();
-
-                    responsavel = responsavelConsumer.validaLogin(responsavel);
-                    if (responsavel != null) {
-                        chamaTelaInicial();
-
-                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
-                        editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
-                        editor.commit();
-                    }
-
-                    Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
-
-                }
-            });
-
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_login);
+//        new HttpRequestTask().execute(responsavel);
+//
+//            btnSalvar.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    txtEmail.getText().toString();
+//
+//                    responsavel = responsavelConsumer.validaLogin(responsavel);
+//                    if (responsavel != null) {
+//                        chamaTelaInicial();
+//
+//                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
+//                        editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
+//                        editor.commit();
+//                    }
+//
+//                    Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
+//
+//                }
+//            });
 
             btnSignIn.setOnClickListener(this);
             btnSignOut.setOnClickListener(this);
@@ -132,7 +128,7 @@ public class TelaLogin extends AppCompatActivity implements
 
 //        passaParametros();
 
-    }
+        }
 //    }
 
     private void chamaTelaInicial() {
