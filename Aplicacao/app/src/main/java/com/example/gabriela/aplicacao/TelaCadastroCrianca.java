@@ -161,8 +161,6 @@ public class TelaCadastroCrianca extends Activity{
 
     public void playAudio(Uri uri){
         try {
-
-
             mp.setDataSource(this, uri);
             mp.prepare();
             mp.start();
