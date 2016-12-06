@@ -251,10 +251,10 @@ public class MainActivity extends AppCompatActivity{
                 R.drawable.profissao,
                 R.drawable.fantasma};
 
-        com.example.gabriela.aplicacao.MiniJogo m = new com.example.gabriela.aplicacao.MiniJogo("Profissão", "Relacione as alternativas com as dicas", covers[0]);
+        com.example.gabriela.aplicacao.MiniJogo m = new com.example.gabriela.aplicacao.MiniJogo("Qual é a profissão?", "Já sabe o que você vai ser quando crescer?", covers[0]);
         miniJogoList.add(m);
 
-        m = new com.example.gabriela.aplicacao.MiniJogo("Fantasias", "Qual fantasia o personagem quer?", covers[1]);
+        m = new com.example.gabriela.aplicacao.MiniJogo("Festa à Fantasia", "Qual fantasia o personagem quer?", covers[1]);
         miniJogoList.add(m);
 
         adapter.notifyDataSetChanged();

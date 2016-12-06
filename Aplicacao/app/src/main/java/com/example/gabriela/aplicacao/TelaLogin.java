@@ -68,13 +68,17 @@ public class TelaLogin extends AppCompatActivity implements
 
         inicializaComponentes();
 
-//        if (this.verificaSeJaLogou()) {
-//            chamaTelaInicial();
-//
-//        } else {
+
+        if (this.verificaSeJaLogou()) {
+            Log.i("DEBUG", "Já logou");
+            chamaTelaCadastro();
+
+
+        } else {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
 
+            Log.i("DEBUG", "Nao logou");
 
         btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
         btnSignOut = (Button) findViewById(R.id.btn_sign_out);
@@ -84,28 +88,6 @@ public class TelaLogin extends AppCompatActivity implements
         txtName = (TextView) findViewById(R.id.txtName);
         txtEmail = (TextView) findViewById(R.id.txtEmail);
         btnSalvar = (Button) findViewById(R.id.btn_salvar);
-
-//        new HttpRequestTask().execute(responsavel);
-//
-//            btnSalvar.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    txtEmail.getText().toString();
-//
-//                    responsavel = responsavelConsumer.validaLogin(responsavel);
-//                    if (responsavel != null) {
-//                        chamaTelaInicial();
-//
-//                        editor.putInt("idResponsavel", responsavel.getIdResponsavel());
-//                        editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
-//                        editor.commit();
-//                    }
-//
-//                    Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();
-//
-//                }
-//            });
 
             btnSignIn.setOnClickListener(this);
             btnSignOut.setOnClickListener(this);
@@ -129,25 +111,21 @@ public class TelaLogin extends AppCompatActivity implements
 //        passaParametros();
 
         }
-//    }
-
-    private void chamaTelaInicial() {
-        Intent itTelaLogado = new Intent(this, TelaInicial.class);
-
-        String passaNome = txtName.getText().toString();
-        String passaEmail = txtEmail.getText().toString();
-        String passaFoto = imgProfilePic.toString();
-        Bundle bundle = new Bundle();
-
-        bundle.putString("nome", passaNome);
-        bundle.putString("email", passaEmail);
-        bundle.putString("photo", passaFoto);
-
-        bundle.putSerializable("responsavel", resp);
-        itTelaLogado.putExtras(bundle);
-
-        startActivity(itTelaLogado);
     }
+
+//    private void chamaTelaInicial() {
+//        Intent itTelaLogado = new Intent(this, TelaInicial.class);
+//
+//        String passaEmail = txtEmail.getText().toString();
+//        Bundle bundle = new Bundle();
+//
+//        bundle.putString("email", passaEmail);
+//
+//        bundle.putSerializable("responsavel", resp);
+//        itTelaLogado.putExtras(bundle);
+//
+//        startActivity(itTelaLogado);
+//    }
 
     private void passaParametros() {
         Intent passa = new Intent(this, MainActivity.class);
@@ -175,7 +153,8 @@ public class TelaLogin extends AppCompatActivity implements
     private boolean verificaSeJaLogou(){
         boolean logou = false;
 
-        String login = this.spAutenticacao.getString("login", null);
+        String login = this.spAutenticacao.getString("emailResponsavel", null);
+        Log.i("DEBUG", "O login é:" + login);
         if (login!=null){
             logou  = true;
         }
@@ -277,6 +256,16 @@ public class TelaLogin extends AppCompatActivity implements
                 responsavel.setNomeResponsavel(txtName.getText().toString());
                 responsavel.setEmailResponsavel((txtEmail.getText().toString()));
                 new HttpRequestTask().execute(responsavel);
+
+                Log.i("DEBUG", "Email antes: " + responsavel.getEmailResponsavel());
+
+                if (resp != null) {
+
+                    editor.putString("emailResponsavel", responsavel.getEmailResponsavel());
+                    Log.i("DEBUG", "Email: " + responsavel.getEmailResponsavel());
+                    editor.commit();
+                }
+
                 //  Log.i("DEBUG",((CustomSwip)viewPager.getAdapter()).getImagemCorrente()+"");
                 // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
                 Toast.makeText(TelaLogin.this, "Salvo", Toast.LENGTH_LONG).show();

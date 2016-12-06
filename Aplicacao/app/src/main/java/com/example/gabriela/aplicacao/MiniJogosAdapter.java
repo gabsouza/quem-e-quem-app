@@ -72,6 +72,7 @@ public class MiniJogosAdapter extends RecyclerView.Adapter<MiniJogosAdapter.MyVi
                 Toast.makeText(mContext, "posicao: " + position, Toast.LENGTH_LONG).show();
                 if(position == 0){
                 Intent profissao = new Intent(mContext, TelaJogoProfissao.class);
+
                 mContext.startActivity(profissao);
             }else{
                     Intent fantasia = new Intent(mContext, TelaJogoFantasia.class);
