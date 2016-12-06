@@ -47,7 +47,6 @@ public class TelaJogoProfissao extends Activity {
                 obterPerguntasAleatorias();
             }
         });
-
     }
 
     public void obterPersonagensAleatorios(){
