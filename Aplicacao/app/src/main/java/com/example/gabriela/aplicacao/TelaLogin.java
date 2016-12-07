@@ -107,7 +107,7 @@ public class TelaLogin extends AppCompatActivity implements
             btnSignIn.setSize(SignInButton.SIZE_STANDARD);
             btnSignIn.setScopes(gso.getScopeArray());
 
-        passaParametros();
+//        passaParametros();
 
         }
     }
