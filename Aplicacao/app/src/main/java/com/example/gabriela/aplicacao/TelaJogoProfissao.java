@@ -15,7 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import consumer.AlternativaConsumer;
 import consumer.PerguntaConsumer;
+import pojo.Alternativa;
 import pojo.Perfil;
 import pojo.Pergunta;
 
@@ -31,6 +33,8 @@ public class TelaJogoProfissao extends Activity {
     private PerguntaConsumer perguntaConsumer;
     private Pergunta pergunta;
     private List<Pergunta> perguntas;
+    private List<Alternativa> alternativas;
+    private AlternativaConsumer alternativaConsumer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class TelaJogoProfissao extends Activity {
             public void onClick(View v) {
                 obterPersonagensAleatorios();
                 obterPerguntasAleatorias();
+                obterAlternativas();
             }
         });
     }
@@ -70,6 +75,10 @@ public class TelaJogoProfissao extends Activity {
         }
     }
 
+    public void obterAlternativas(){
+
+    }
+
     public void chamaTelaResultado(){
         Intent itTelaResultado = new Intent(this, TelaResultado.class);
         startActivity(itTelaResultado);
@@ -91,6 +100,9 @@ public class TelaJogoProfissao extends Activity {
         perguntaConsumer = new PerguntaConsumer();
         pergunta = new Pergunta();
         perguntas = new ArrayList<Pergunta>();
+
+        alternativaConsumer = new AlternativaConsumer();
+        alternativas = new ArrayList<Alternativa>();
     }
 
     private class HttpRequestTask extends AsyncTask<Void, Void, List<Pergunta>> {
