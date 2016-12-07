@@ -21,7 +21,7 @@ public class PerguntaConsumer {
        // public static final String URL_BASE = "http://192.168.1.4:8080/ServidorQuem/rest/pergunta/";
 
       //Gab
-       public static final String URL_BASE = "http://192.168.241.123:8080/ServidorQuem/rest/pergunta/";
+       public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/pergunta/";
 
         public PerguntaConsumer() {
             restTemplate = new RestTemplate();
