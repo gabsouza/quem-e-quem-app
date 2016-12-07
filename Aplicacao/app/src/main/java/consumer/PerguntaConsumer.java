@@ -35,7 +35,10 @@ public class PerguntaConsumer {
             return pergunta;
         }
 
-    public List<Pergunta> chamaListar() {
+    public List<Pergunta> chamaListar(int idMiniJogo) {
+
+        String URL = URL_BASE+"minijogo/"+idMiniJogo;
+
         Pergunta[] vetorPergunta = restTemplate.getForObject(URL_BASE, Pergunta[].class);
 
         ArrayList<Pergunta> listaPergunta = new ArrayList<Pergunta>(Arrays.asList(vetorPergunta));
