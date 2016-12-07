@@ -47,7 +47,6 @@ public class TelaJogoProfissao extends Activity {
                 obterPerguntasAleatorias();
             }
         });
-
     }
 
     public void obterPersonagensAleatorios(){
@@ -99,7 +98,7 @@ public class TelaJogoProfissao extends Activity {
         // EXECUTA A TAREFA QUE DEVE SER REALIZADA
         @Override
         protected List<Pergunta> doInBackground(Void... params) {
-           perguntas = perguntaConsumer.chamaListar();
+           perguntas = perguntaConsumer.chamaListar(1);
             return perguntas;
         }
 

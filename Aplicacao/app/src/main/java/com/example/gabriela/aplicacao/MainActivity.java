@@ -44,6 +44,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import pojo.MiniJogo;
+import pojo.Perfil;
+
 public class MainActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity{
     private MiniJogosAdapter adapter;
     private List<com.example.gabriela.aplicacao.MiniJogo> miniJogoList;
 
+    private Perfil perfil, perf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -248,10 +251,10 @@ public class MainActivity extends AppCompatActivity{
                 R.drawable.profissao,
                 R.drawable.fantasma};
 
-        com.example.gabriela.aplicacao.MiniJogo m = new com.example.gabriela.aplicacao.MiniJogo("Profissão", "Relacione as alternativas com as dicas", covers[0]);
+        com.example.gabriela.aplicacao.MiniJogo m = new com.example.gabriela.aplicacao.MiniJogo("Qual é a profissão?", "Já sabe o que você vai ser quando crescer?", covers[0]);
         miniJogoList.add(m);
 
-        m = new com.example.gabriela.aplicacao.MiniJogo("Fantasias", "Qual fantasia o personagem quer?", covers[1]);
+        m = new com.example.gabriela.aplicacao.MiniJogo("Festa à Fantasia", "Pare, extravase, use o que der vontade!", covers[1]);
         miniJogoList.add(m);
 
         adapter.notifyDataSetChanged();
@@ -259,6 +262,9 @@ public class MainActivity extends AppCompatActivity{
 
     private void chamaTelaConfiguracoesCrianca(){
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("perf", perf);
+        itTelaConfiguracoesCrianca.putExtras(bundle);
         startActivity(itTelaConfiguracoesCrianca);
         finish();
     }
@@ -357,5 +363,6 @@ public class MainActivity extends AppCompatActivity{
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        perfil = (Perfil)getIntent().getExtras().getSerializable("perf");
     }
 }

@@ -15,7 +15,7 @@ import pojo.Perfil;
 public class PerfilConsumer {
 
     RestTemplate restTemplate;
-    public static final String URL_BASE = "http://192.168.1.4:8080/ServidorQuem/rest/perfil/";
+    public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/perfil/";
 
     public PerfilConsumer() {
         restTemplate = new RestTemplate();
@@ -37,11 +37,12 @@ public class PerfilConsumer {
     }
 
 
-    public void chamaAtualizar(int id, Perfil perfil) {
+    public Perfil chamaAtualizar(int id, Perfil perfil) {
         String URL = URL_BASE+"/{id}";
         Map map = new HashMap();
         map.put("id", id);
         restTemplate.put(URL, perfil, map);
+        return perfil;
     }
 
 //    public void chamaDeletar(int id){

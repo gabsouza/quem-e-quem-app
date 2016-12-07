@@ -21,7 +21,7 @@ public class PerguntaConsumer {
        // public static final String URL_BASE = "http://192.168.1.4:8080/ServidorQuem/rest/pergunta/";
 
       //Gab
-       public static final String URL_BASE = "http://192.168.240.246:8080/ServidorQuem/rest/pergunta/";
+       public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/pergunta/";
 
         public PerguntaConsumer() {
             restTemplate = new RestTemplate();
@@ -35,7 +35,10 @@ public class PerguntaConsumer {
             return pergunta;
         }
 
-    public List<Pergunta> chamaListar() {
+    public List<Pergunta> chamaListar(int idMiniJogo) {
+
+        String URL = URL_BASE+"minijogo/"+idMiniJogo;
+
         Pergunta[] vetorPergunta = restTemplate.getForObject(URL_BASE, Pergunta[].class);
 
         ArrayList<Pergunta> listaPergunta = new ArrayList<Pergunta>(Arrays.asList(vetorPergunta));
