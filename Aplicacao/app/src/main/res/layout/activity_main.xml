@@ -97,7 +97,6 @@
             </android.support.design.widget.AppBarLayout>
 
     </FrameLayout>
-
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
