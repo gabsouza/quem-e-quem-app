@@ -27,84 +27,76 @@
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 >
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="626dp"
-                >
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                    android:layout_height="626dp"
+                    >
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="410dp"
-                    android:layout_below="@+id/imagemselo1"
-                    android:layout_centerHorizontal="true">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="410dp"
+                        android:layout_below="@+id/imagemselo1"
+                        android:layout_centerHorizontal="true">
 
-                    <include layout="@layout/content_main"/>
+                        <include layout="@layout/content_main"/>
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="363dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="363dp">
 
-                    <ImageButton
-                        android:id="@+id/iv_foto_perfil"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:background="@drawable/foto_personagem_1"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="28dp" />
+                        <ImageButton
+                            android:id="@+id/iv_foto_perfil"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/foto_personagem_1"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="28dp" />
 
-                    <ImageButton
-                        android:id="@+id/imagemselo1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-<<<<<<< HEAD
-                        android:background="@drawable/ic_selo_profissao"
-=======
-                        android:background="@drawable/selo_profissao"
->>>>>>> 2e5009b9dd79eff3176ac4cf1e495a66ea54caf1
-                        android:layout_marginEnd="25dp"
-                        android:layout_alignBottom="@+id/iv_foto_perfil"
-                        android:layout_toStartOf="@+id/iv_foto_perfil"
-                        android:layout_marginBottom="41dp" />
+                        <ImageButton
+                            android:id="@+id/imagemselo1"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:background="@drawable/selo_profissao"
+                            android:layout_marginEnd="25dp"
+                            android:layout_alignBottom="@+id/iv_foto_perfil"
+                            android:layout_toStartOf="@+id/iv_foto_perfil"
+                            android:layout_marginBottom="41dp" />
 
-                    <ImageButton
-                        android:id="@+id/imagemselo3"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-<<<<<<< HEAD
-                        android:background="@drawable/ic_selo_fantasia"
-=======
-                        android:background="@drawable/selo_fantasia"
->>>>>>> 2e5009b9dd79eff3176ac4cf1e495a66ea54caf1
-                        android:layout_marginStart="28dp"
-                        android:layout_alignTop="@+id/imagemselo1"
-                        android:layout_toEndOf="@+id/iv_foto_perfil" />
+                        <ImageButton
+                            android:id="@+id/imagemselo2"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:background="@drawable/selo_bloqueado"
+                            android:layout_marginBottom="26dp"
+                            android:layout_above="@+id/iv_foto_perfil"
+                            android:layout_centerHorizontal="true" />
 
-                    <ImageButton
-                        android:id="@+id/imagemselo2"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:background="@drawable/selo_bloqueado"
-                        android:layout_marginBottom="30dp"
-                        android:layout_above="@+id/iv_foto_perfil"
-                        android:layout_centerHorizontal="true" />
+                        <ImageButton
+                            android:id="@+id/imagemselo3"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:background="@drawable/selo_fantasia"
+                            android:layout_alignTop="@+id/imagemselo1"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp" />
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
 
 
     </FrameLayout>

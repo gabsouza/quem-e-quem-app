@@ -68,7 +68,6 @@ public class TelaLogin extends AppCompatActivity implements
 
         inicializaComponentes();
 
-
         if (this.verificaSeJaLogou()) {
             Log.i("DEBUG", "Já logou");
             chamaTelaCadastro();
@@ -108,7 +107,7 @@ public class TelaLogin extends AppCompatActivity implements
             btnSignIn.setSize(SignInButton.SIZE_STANDARD);
             btnSignIn.setScopes(gso.getScopeArray());
 
-//        passaParametros();
+        passaParametros();
 
         }
     }
