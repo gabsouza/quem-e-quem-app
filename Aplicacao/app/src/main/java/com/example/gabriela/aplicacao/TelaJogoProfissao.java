@@ -33,6 +33,7 @@ public class TelaJogoProfissao extends Activity {
     private PerguntaConsumer perguntaConsumer;
     private Pergunta pergunta;
     private List<Pergunta> perguntas;
+
     private List<Alternativa> alternativas;
     private Alternativa alternativa;
     private AlternativaConsumer alternativaConsumer;

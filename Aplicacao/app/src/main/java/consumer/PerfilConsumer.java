@@ -36,7 +36,6 @@ public class PerfilConsumer {
         return perfil;
     }
 
-
     public Perfil chamaAtualizar(int id, Perfil perfil) {
         String URL = URL_BASE+"/{id}";
         Map map = new HashMap();

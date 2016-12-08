@@ -1,5 +1,6 @@
 package consumer;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,17 +11,12 @@ import java.util.List;
 import pojo.Alternativa;
 
 /**
- * Created by PC-CASA on 08/12/2016.
+ * Created by Gabriela on 07/12/2016.
  */
-
 public class AlternativaConsumer {
 
     RestTemplate restTemplate;
 
-    //Su
-    // public static final String URL_BASE = "http://192.168.1.4:8080/ServidorQuem/rest/alternativa/";
-
-    //Gab
     public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/alternativa/";
 
     public AlternativaConsumer() {
@@ -37,7 +33,7 @@ public class AlternativaConsumer {
 
     public List<Alternativa> chamaListar(int idPergunta) {
 
-        String URL = URL_BASE+"pergunta/"+idPergunta;
+        String URL = URL_BASE + "pergunta/" + idPergunta;
 
         Alternativa[] vetorAlternativa = restTemplate.getForObject(URL_BASE, Alternativa[].class);
 

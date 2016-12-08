@@ -24,14 +24,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="681dp"
                 android:background="@android:color/transparent"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                >
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
                 <android.support.design.widget.CollapsingToolbarLayout
                     android:id="@+id/collapsing_toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="626dp"
-                    >
+                    android:layout_height="626dp">
 
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar"
@@ -98,9 +96,7 @@
                 </android.support.design.widget.CollapsingToolbarLayout>
             </android.support.design.widget.AppBarLayout>
 
-
     </FrameLayout>
-
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView
