@@ -15,7 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import consumer.AlternativaConsumer;
 import consumer.PerguntaConsumer;
+import pojo.Alternativa;
 import pojo.Perfil;
 import pojo.Pergunta;
 
@@ -31,6 +33,9 @@ public class TelaJogoProfissao extends Activity {
     private PerguntaConsumer perguntaConsumer;
     private Pergunta pergunta;
     private List<Pergunta> perguntas;
+    private List<Alternativa> alternativas;
+    private Alternativa alternativa;
+    private AlternativaConsumer alternativaConsumer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +43,15 @@ public class TelaJogoProfissao extends Activity {
         setContentView(R.layout.activity_jogo_profissao);
         inicializaComponentes();
 
-        new HttpRequestTask().execute();
+        new HttpRequestTaskPergunta().execute();
+        new HttpRequestTaskAlternativa().execute();
 
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 obterPersonagensAleatorios();
                 obterPerguntasAleatorias();
+                obterAlternativasAleatorias();
             }
         });
     }
@@ -54,6 +61,14 @@ public class TelaJogoProfissao extends Activity {
         Random r = new Random();
         int n = r.nextInt(9);
         ivPersonagem.setImageResource(cards[n]);
+    }
+
+    public void obterAlternativasAleatorias() {
+        Random ran = new Random();
+
+            int ranNum = ran.nextInt(this.alternativas.size());
+            opcao1.setText(alternativas.get(ranNum).getDescricao());
+            alternativas.remove(ranNum);
     }
 
     public void obterPerguntasAleatorias(){
@@ -91,9 +106,13 @@ public class TelaJogoProfissao extends Activity {
         perguntaConsumer = new PerguntaConsumer();
         pergunta = new Pergunta();
         perguntas = new ArrayList<Pergunta>();
+
+        alternativaConsumer = new AlternativaConsumer();
+        alternativa = new Alternativa();
+        alternativas = new ArrayList<Alternativa>();
     }
 
-    private class HttpRequestTask extends AsyncTask<Void, Void, List<Pergunta>> {
+    private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {
 
         // EXECUTA A TAREFA QUE DEVE SER REALIZADA
         @Override
@@ -107,6 +126,23 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Pergunta> pergs) {
             super.onPostExecute(perguntas);
             perguntas = pergs;
+        }
+    }
+
+    private class HttpRequestTaskAlternativa extends AsyncTask<Void, Void, List<Alternativa>> {
+
+        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
+        @Override
+        protected List<Alternativa> doInBackground(Void... params) {
+            alternativas = alternativaConsumer.chamaListar(pergunta.getIdPergunta());
+            return alternativas;
+        }
+
+        // é executado quando o webservice retorna
+        @Override
+        protected void onPostExecute(List<Alternativa> alts) {
+            super.onPostExecute(alternativas);
+            alternativas = alts;
         }
     }
 }
