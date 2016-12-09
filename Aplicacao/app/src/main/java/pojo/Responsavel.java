@@ -61,5 +61,6 @@ public class Responsavel implements Serializable{
 	public void setRelatorios(List<Relatorio> relatorios) {
 		this.relatorios = relatorios;
 	}
-	
+
+
 }

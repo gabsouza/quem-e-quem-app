@@ -363,6 +363,6 @@ public class MainActivity extends AppCompatActivity{
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        perfil = (Perfil)getIntent().getExtras().getSerializable("perf");
+//        perfil = (Perfil)getIntent().getExtras().getSerializable("perf");
     }
 }

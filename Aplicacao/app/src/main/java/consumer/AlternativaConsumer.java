@@ -17,7 +17,7 @@ public class AlternativaConsumer {
 
     RestTemplate restTemplate;
 
-    public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/alternativa/";
+    public static final String URL_BASE = "http://192.168.1.5:8080/ServidorQuem/rest/alternativa/";
 
     public AlternativaConsumer() {
         restTemplate = new RestTemplate();
@@ -33,9 +33,9 @@ public class AlternativaConsumer {
 
     public List<Alternativa> chamaListar(int idPergunta) {
 
-        String URL = URL_BASE + "pergunta/" + idPergunta;
+        String URL = URL_BASE+"pergunta/"+idPergunta;
 
-        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL_BASE, Alternativa[].class);
+        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
 
         ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
 

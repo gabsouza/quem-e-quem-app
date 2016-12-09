@@ -106,7 +106,7 @@ public class TelaJogoProfissao extends Activity {
 
         perguntaConsumer = new PerguntaConsumer();
         pergunta = new Pergunta();
-        perguntas = new ArrayList<Pergunta>();
+        perguntas = new ArrayList<>();
 
         alternativaConsumer = new AlternativaConsumer();
         alternativa = new Alternativa();
