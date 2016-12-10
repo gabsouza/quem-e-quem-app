@@ -68,7 +68,6 @@ public class TelaLogin extends AppCompatActivity implements
 
         inicializaComponentes();
 
-
         if (this.verificaSeJaLogou()) {
             Log.i("DEBUG", "Já logou");
             chamaTelaCadastro();

@@ -303,10 +303,10 @@ public class TelaCadastroCrianca extends Activity{
         @Override
         protected Perfil doInBackground(Perfil... params) {
             Log.i("DEBUG",params[0].getNomePerfil());
-            Log.i("DEBUG", String.valueOf(params[0].getResponsavel().getIdResponsavel()));
+//            Log.i("DEBUG", String.valueOf((params[0].getResponsavel().getIdResponsavel())));
             params[0] = perfilConsumer.chamaCadastrar(params[0]);
             Log.i("DEBUG",params[0].getNomePerfil());
-            Log.i("DEBUG", String.valueOf(params[0].getResponsavel().getIdResponsavel()));
+//            Log.i("DEBUG", String.valueOf((params[0].getResponsavel().getIdResponsavel())));
             return params[0];
         }
 
@@ -315,7 +315,7 @@ public class TelaCadastroCrianca extends Activity{
         protected void onPostExecute(Perfil perfil) {
             super.onPostExecute(perfil);
             Log.i("DEBUG",perfil.getNomePerfil());
-            Log.i("DEBUG", String.valueOf(perfil.getResponsavel().getIdResponsavel()));
+//             Log.i("DEBUG", String.valueOf((perfil.getResponsavel().getIdResponsavel())));
             perf = perfil;
 
         }
