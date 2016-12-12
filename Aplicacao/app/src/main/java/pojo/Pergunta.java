@@ -4,26 +4,32 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import pojo.*;
-
-public class Pergunta implements Serializable{
+public class Pergunta implements Serializable {
 
 	private static final long serialVersionUID = 4886271165487014032L;
+
 	private int idPergunta;
 	private int quantTentativas;
 	private String descricao;
 	private List<Midia> midias = new ArrayList<Midia>();
-	private List<Resposta> respostas = new ArrayList<Resposta>();
+	private List<Alternativa> alternativas = new ArrayList<Alternativa>();
 	private List<Dica> dicas = new ArrayList<Dica>();
-	private pojo.MiniJogo miniJogo;
-	
+	private MiniJogo miniJogo;
+
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = UsuarioMiniJogo.class)
+	//private List<UsuarioMiniJogo> usuario_mini_jogo = new ArrayList<UsuarioMiniJogo>();
+
+//	@OneToMany(mappedBy = "pergunta", targetEntity = Resposta.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<Resposta> respostas = new ArrayList<Resposta>();
+
+
 	public Pergunta(int quantTentativas, String descricao){
 		this.quantTentativas = quantTentativas;
 		this.descricao = descricao;
 	}
-	
+
 	public Pergunta(){
-		
+
 	}
 
 	public int getIdPergunta() {
@@ -58,12 +64,12 @@ public class Pergunta implements Serializable{
 		this.midias = midias;
 	}
 
-	public List<Resposta> getRespostas() {
-		return respostas;
+	public List<Alternativa> getAlternativas() {
+		return alternativas;
 	}
 
-	public void setRespostas(List<Resposta> respostas) {
-		this.respostas = respostas;
+	public void setAlternativas(List<Alternativa> alternativas) {
+		this.alternativas = alternativas;
 	}
 
 	public List<Dica> getDicas() {
@@ -74,11 +80,11 @@ public class Pergunta implements Serializable{
 		this.dicas = dicas;
 	}
 
-	public pojo.MiniJogo getMiniJogo() {
+	public MiniJogo getMiniJogo() {
 		return miniJogo;
 	}
 
-	public void setMiniJogo(pojo.MiniJogo miniJogo) {
+	public void setMiniJogo(MiniJogo miniJogo) {
 		this.miniJogo = miniJogo;
 	}
 }
