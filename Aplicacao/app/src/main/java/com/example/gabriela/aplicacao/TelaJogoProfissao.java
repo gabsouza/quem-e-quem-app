@@ -45,14 +45,13 @@ public class TelaJogoProfissao extends Activity {
         inicializaComponentes();
 
         new HttpRequestTaskPergunta().execute();
-        new HttpRequestTaskAlternativa().execute();
+       // new HttpRequestTaskAlternativa().execute();
 
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 obterPersonagensAleatorios();
                 obterPerguntasAleatorias();
-                obterAlternativasAleatorias();
             }
         });
     }
@@ -75,7 +74,7 @@ public class TelaJogoProfissao extends Activity {
     public void obterPerguntasAleatorias(){
         Random ran = new Random();
 
-        if (perguntas.size() >0){
+        if (perguntas.size() > 0){
 
         int ranNum = ran.nextInt(this.perguntas.size());
         tvPergunta.setText(perguntas.get(ranNum).getDescricao());
@@ -127,6 +126,7 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Pergunta> pergs) {
             super.onPostExecute(perguntas);
             perguntas = pergs;
+            //obterPerguntasAleatorias();
         }
     }
 
@@ -135,7 +135,7 @@ public class TelaJogoProfissao extends Activity {
         // EXECUTA A TAREFA QUE DEVE SER REALIZADA
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
-            alternativas = alternativaConsumer.chamaListar(pergunta.getIdPergunta());
+            alternativas = alternativaConsumer.chamaListar(1);
             return alternativas;
         }
 
@@ -144,6 +144,8 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Alternativa> alts) {
             super.onPostExecute(alternativas);
             alternativas = alts;
+
+            obterAlternativasAleatorias();
         }
     }
 }
