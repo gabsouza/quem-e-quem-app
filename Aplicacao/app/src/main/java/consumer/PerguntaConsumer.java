@@ -37,7 +37,7 @@ public class PerguntaConsumer {
 
         Pergunta[] vetorPergunta = restTemplate.getForObject(URL, Pergunta[].class);
 
-        ArrayList<Pergunta> listaPergunta = new ArrayList<>(Arrays.asList(vetorPergunta));
+        List<Pergunta> listaPergunta = new ArrayList<>(Arrays.asList(vetorPergunta));
 
         return listaPergunta;
     }
