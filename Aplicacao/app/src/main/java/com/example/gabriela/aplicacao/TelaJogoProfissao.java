@@ -165,15 +165,6 @@ public class TelaJogoProfissao extends Activity {
 
     private class HttpRequestTaskAlternativa extends AsyncTask<Void, Void, List<Alternativa>> {
 
-        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
-//        @Override
-//        protected List<Alternativa> doInBackground(Void... params) {
-//            for (int i = 0; i < perguntas.size(); i++) {
-//                alternativas = alternativaConsumer.chamaListar(perguntas.get(i).getIdPergunta());
-//            }
-//            return alternativas;
-//        }
-
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
 //            for (int i = 0; i < perguntas.size(); i++) {
@@ -192,16 +183,15 @@ public class TelaJogoProfissao extends Activity {
         }
     }
 
-    private class HttpRequestTaskAlternativa extends AsyncTask<Void, Void, List<Alternativa>> {
+    private class HttpRequestTaskAlternativaPorIdPergunta extends AsyncTask<Void, Void, List<Alternativa>> {
 
-        // EXECUTA A TAREFA QUE DEVE SER REALIZADA
-//        @Override
-//        protected List<Alternativa> doInBackground(Void... params) {
-//            for (int i = 0; i < perguntas.size(); i++) {
-//                alternativas = alternativaConsumer.chamaListar(perguntas.get(i).getIdPergunta());
-//            }
-//            return alternativas;
-//        }
+        @Override
+        protected List<Alternativa> doInBackground(Void... params) {
+            for (int i = 0; i < perguntas.size(); i++) {
+                alternativas = alternativaConsumer.chamaListar(perguntas.get(i).getIdPergunta());
+            }
+            return alternativas;
+        }
 
         // é executado quando o webservice retorna
         @Override
