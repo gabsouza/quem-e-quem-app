@@ -39,6 +39,8 @@ import com.example.gabriela.aplicacao.Interface.RecyclerViewOnClickListenerHack;
 //import com.example.gabriela.aplicacao.Fragment.MiniJogoFragment;
 //import com.example.gabriela.aplicacao.adapter.MiniJogoAdapter;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
     private NavigationView navigationView;
+    private TextView tvNome;
+    private TextView tvEmail;
+    private CircleImageView civFoto;
     private DrawerLayout drawerLayout;
     private ImageButton fotoPerfil;
     private ImageButton imagemselo1, imagemselo2, imagemselo3;
@@ -187,28 +192,28 @@ public class MainActivity extends AppCompatActivity{
         });
 
 
-//        navigationView = (NavigationView) findViewById(R.id.navigation_view);
-//        View header = navigationView.getHeaderView(0);
-//
-//        // PEGANDO OS DADOS DO LOGIN
-//        Intent intent = getIntent();
-//
-//        Bundle bundle = intent.getExtras();
-//
-//        if (bundle != null) {
-//            String nome = bundle.getString("nome");
-//            String email = bundle.getString("email");
-//            String foto = bundle.getString("photo");
-//
-//            TextView txtNome = (TextView) header.findViewById(R.id.username);
-//            txtNome.setText(nome);
-//
-//            TextView txtEmail = (TextView) header.findViewById(R.id.email);
-//            txtEmail.setText(email);
-//
-//            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
-//            civFoto.setImageURI(Uri.parse(foto));
-//        }
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        View header = navigationView.getHeaderView(0);
+
+        // PEGANDO OS DADOS DO LOGIN
+        Intent intent = getIntent();
+
+        Bundle bundle = intent.getExtras();
+
+        if (bundle != null) {
+            String nome = bundle.getString("nome");
+            String email = bundle.getString("email");
+            String foto = bundle.getString("photo");
+
+            TextView txtNome = (TextView) header.findViewById(R.id.username);
+            txtNome.setText(nome);
+
+            TextView txtEmail = (TextView) header.findViewById(R.id.email);
+            txtEmail.setText(email);
+
+            CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
+            civFoto.setImageURI(Uri.parse(foto));
+        }
 
     }
 
@@ -363,6 +368,7 @@ public class MainActivity extends AppCompatActivity{
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//        tvNome = (TextView)findViewById(R.id.)
 //        perfil = (Perfil)getIntent().getExtras().getSerializable("perf");
     }
 }
