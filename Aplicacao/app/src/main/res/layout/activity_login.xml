@@ -4,8 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".TelaLogin">
-    <!--android:background="@drawable/fundo_login">-->
+    tools:context=".TelaLogin"
+    android:background="@drawable/fundo">
+
 
     <LinearLayout
         android:id="@+id/llProfile"
@@ -79,7 +80,8 @@
             android:id="@+id/btn_sign_in"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="52dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="450dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true">
         </com.google.android.gms.common.SignInButton>
