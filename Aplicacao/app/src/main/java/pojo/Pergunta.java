@@ -87,4 +87,6 @@ public class Pergunta implements Serializable {
 	public void setMiniJogo(MiniJogo miniJogo) {
 		this.miniJogo = miniJogo;
 	}
+
+
 }

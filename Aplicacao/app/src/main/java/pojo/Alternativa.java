@@ -8,13 +8,14 @@ public class Alternativa implements Serializable{
 
 	private static final long serialVersionUID = -37767541869854404L;
 	private int idAlternativa;
-	private StatusAlternativa statusAlternativa;
+	private GeneroPersonagem generoPersonagem;
 	private String descricao;
+	private Pergunta pergunta;
 
 	private List<Resposta> respostas = new ArrayList<Resposta>();
 		
-	public Alternativa(StatusAlternativa statusAlternativa, String descricao){
-		this.statusAlternativa = statusAlternativa;
+	public Alternativa(GeneroPersonagem generoPersonagem, String descricao){
+		this.generoPersonagem = generoPersonagem;
 		this.descricao = descricao;
 	}
 	
@@ -30,12 +31,12 @@ public class Alternativa implements Serializable{
 		this.idAlternativa = idAlternativa;
 	}
 
-	public StatusAlternativa getStatusAlternativa() {
-		return statusAlternativa;
+	public GeneroPersonagem getGeneroPersonagem() {
+		return generoPersonagem;
 	}
 
-	public void setStatusAlternativa(StatusAlternativa statusAlternativa) {
-		this.statusAlternativa = statusAlternativa;
+	public void setGeneroPersonagem(GeneroPersonagem generoPersonagem) {
+		this.generoPersonagem = generoPersonagem;
 	}
 
 	public String getDescricao() {

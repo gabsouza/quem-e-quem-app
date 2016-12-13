@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import pojo.Alternativa;
+import pojo.Pergunta;
 
 /**
  * Created by Gabriela on 07/12/2016.
@@ -17,7 +18,7 @@ public class AlternativaConsumer {
 
     RestTemplate restTemplate;
 
-    public static final String URL_BASE = "http://192.168.3.141:8080/ServidorQuem/rest/alternativa/";
+    public static final String URL_BASE = "http://192.168.240.113:8080/ServidorQuem/rest/alternativa/";
 
     public AlternativaConsumer() {
         restTemplate = new RestTemplate();
@@ -34,6 +35,17 @@ public class AlternativaConsumer {
     public List<Alternativa> chamaListar(int idPergunta) {
 
         String URL = URL_BASE+"pergunta/"+idPergunta;
+
+        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
+
+        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
+
+        return listaAlternativa;
+    }
+
+    public List<Alternativa> chamaListarTodas() {
+
+        String URL = URL_BASE+"alternativas/";
 
         Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
 
