@@ -71,8 +71,6 @@ public class TelaJogoProfissao extends Activity {
         ivPersonagem.setImageResource(cards[n]);
     }
 
-
-
     public void obterPerguntasAleatorias(){
         Random ran = new Random();
 
