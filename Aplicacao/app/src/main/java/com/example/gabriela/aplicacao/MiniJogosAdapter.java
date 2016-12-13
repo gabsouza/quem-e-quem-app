@@ -69,7 +69,7 @@ public class MiniJogosAdapter extends RecyclerView.Adapter<MiniJogosAdapter.MyVi
         holder.imagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "posicao: " + position, Toast.LENGTH_LONG).show();
+//                Toast.makeText(mContext, "posicao: " + position, Toast.LENGTH_LONG).show();
                 if(position == 0){
                 Intent profissao = new Intent(mContext, TelaJogoProfissao.class);
 
