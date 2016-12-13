@@ -38,8 +38,11 @@ public class TelaJogoProfissao extends Activity {
     private List<Pergunta> perguntas;
 
     private List<Alternativa> alternativas;
+    private List<Alternativa> alternativasPorIdPergunta;
+    private List<Alternativa> alternativasJogo;
     private Alternativa alternativa;
     private AlternativaConsumer alternativaConsumer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +146,9 @@ public class TelaJogoProfissao extends Activity {
         alternativaConsumer = new AlternativaConsumer();
         alternativa = new Alternativa();
         alternativas = new ArrayList<>();
+
+        alternativasPorIdPergunta = new ArrayList<>();
+        alternativasJogo = new ArrayList<>();
     }
 
     private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {
@@ -178,8 +184,6 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Alternativa> alts) {
             super.onPostExecute(alternativas);
             alternativas = alts;
-
-//
         }
     }
 
@@ -188,9 +192,9 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
             for (int i = 0; i < perguntas.size(); i++) {
-                alternativas = alternativaConsumer.chamaListar(perguntas.get(i).getIdPergunta());
+                alternativasPorIdPergunta = alternativaConsumer.chamaListar(perguntas.get(i).getIdPergunta());
             }
-            return alternativas;
+            return alternativasPorIdPergunta;
         }
 
         // é executado quando o webservice retorna
@@ -198,8 +202,6 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Alternativa> alts) {
             super.onPostExecute(alternativas);
             alternativas = alts;
-
-//
         }
     }
 }
