@@ -37,10 +37,10 @@ public class TelaJogoProfissao extends Activity {
     private Pergunta perguntaAtual;
     private List<Pergunta> perguntas;
 
-    private List<Alternativa> alternativasCorretas;
-    private List<Alternativa> alternativasPorIdPergunta;
-    private List<Alternativa> alternativasJogo;
-    private Alternativa alternativa;
+    private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
+
+    private List<List<Alternativa>> alternativas;
+
     private AlternativaConsumer alternativaConsumer;
 
 
@@ -52,18 +52,20 @@ public class TelaJogoProfissao extends Activity {
         // BUSCA AS PERGUNTAS
         new HttpRequestTaskPergunta().execute();
 
-
-
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                try {
                 obterPersonagensAleatorios();
                 obterPerguntasAleatorias();
 
                 // BUSCA AS ALTERNATIVAS
-                new HttpRequestTaskAlternativaPorIdPergunta().execute();
+                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
+                    new HttpRequestTaskAlternativasIncorretas().execute();
                 obterAlternativasCorretasAleatorias();
-
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -86,7 +88,6 @@ public class TelaJogoProfissao extends Activity {
             Log.i("DEBUG",perguntaAtual.getDescricao());
              tvPergunta.setText(perguntaAtual.getDescricao());
              perguntas.remove(ranNum);
-
         }else{
             chamaTelaResultado();
         }
@@ -94,37 +95,42 @@ public class TelaJogoProfissao extends Activity {
 
     public void obterAlternativasCorretasAleatorias() {
         Log.i("DEBUG",alternativasCorretas.size()+" TAMANHO");
-//        Random ran1 = new Random();
-//        Random ran2 = new Random();
-//        Random ran3 = new Random();
-//        Random ran4 = new Random();
-//        Random ran5 = new Random();
-//
-//        if (alternativasCorretas.size() > 0) {
-//            int ranNum = ran1.nextInt(this.alternativasCorretas.size());
-//            opcao1.setText(alternativasCorretas.get(ranNum).getDescricao());
-//            alternativasCorretas.remove(ranNum);
-//
-//            int ranNum2 = ran2.nextInt(this.alternativasCorretas.size());
-//            opcao2.setText(alternativasCorretas.get(ranNum2).getDescricao());
-//            alternativasCorretas.remove(ranNum2);
-//
-//            int ranNum3 = ran3.nextInt(this.alternativasCorretas.size());
-//            opcao3.setText(alternativasCorretas.get(ranNum3).getDescricao());
-//            alternativasCorretas.remove(ranNum3);
-//
-//            int ranNum4 = ran4.nextInt(this.alternativasCorretas.size());
-//            opcao4.setText(alternativasCorretas.get(ranNum4).getDescricao());
-//            alternativasCorretas.remove(ranNum4);
-//
-//            int ranNum5 = ran5.nextInt(this.alternativasCorretas.size());
-//            opcao5.setText(alternativasCorretas.get(ranNum5).getDescricao());
-//            alternativasCorretas.remove(ranNum5);
 
-//        }
-//        else{
-//            Toast.makeText(getApplicationContext(), "Não tem alternativas", Toast.LENGTH_SHORT).show();
-//        }
+        ArrayList<Alternativa> alternativasMescladas = new ArrayList<>(alternativasCorretas);
+        alternativasMescladas.addAll(alternativasIncorretas);
+
+        Random ran1 = new Random();
+        Random ran2 = new Random();
+        Random ran3 = new Random();
+        Random ran4 = new Random();
+        Random ran5 = new Random();
+
+        int tam = alternativasMescladas.size();
+
+       if (tam > 0) {
+           int ranNum = ran1.nextInt(tam);
+           opcao1.setText(alternativasMescladas.get(ranNum).getDescricao());
+           alternativasMescladas.remove(ranNum);
+
+           int ranNum2 = ran2.nextInt(tam);
+           opcao2.setText(alternativasMescladas.get(ranNum2).getDescricao());
+           alternativasMescladas.remove(ranNum2);
+
+           int ranNum3 = ran3.nextInt(tam);
+           opcao3.setText(alternativasMescladas.get(ranNum3).getDescricao());
+           alternativasMescladas.remove(ranNum3);
+
+           int ranNum4 = ran4.nextInt(tam);
+           opcao4.setText(alternativasMescladas.get(ranNum4).getDescricao());
+           alternativasMescladas.remove(ranNum4);
+
+           int ranNum5 = ran5.nextInt(tam);
+           opcao5.setText(alternativasMescladas.get(ranNum5).getDescricao());
+           alternativasMescladas.remove(ranNum5);
+        }
+        else{
+           Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void chamaTelaResultado(){
@@ -149,11 +155,12 @@ public class TelaJogoProfissao extends Activity {
         perguntas = new ArrayList<>();
 
         alternativaConsumer = new AlternativaConsumer();
-        alternativa = new Alternativa();
+
+        alternativas = new ArrayList<>();
         alternativasCorretas = new ArrayList<>();
+        alternativasIncorretas = new ArrayList<>();
 
         alternativasPorIdPergunta = new ArrayList<>();
-        alternativasJogo = new ArrayList<>();
     }
 
     private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {
@@ -170,35 +177,29 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Pergunta> pergs) {
             super.onPostExecute(perguntas);
             perguntas = pergs;
-            //obterPerguntasAleatorias();
         }
     }
 
-    private class HttpRequestTaskAlternativa extends AsyncTask<Void, Void, List<Alternativa>> {
-
-        @Override
-        protected List<Alternativa> doInBackground(Void... params) {
-//            for (int i = 0; i < perguntas.size(); i++) {
-            alternativasCorretas = alternativaConsumer.chamaListarTodas();
-//            }
-            return alternativasCorretas;
-        }
-
-        // é executado quando o webservice retorna
-        @Override
-        protected void onPostExecute(List<Alternativa> alts) {
-            super.onPostExecute(alternativasCorretas);
-            alternativasCorretas = alts;
-        }
-    }
+//    private class HttpRequestTaskAlternativa extends AsyncTask<Void, Void, List<Alternativa>> {
+//
+//        @Override
+//        protected List<Alternativa> doInBackground(Void... params) {
+//            alternativasCorretas = alternativaConsumer.chamaListarTodas();
+//            return alternativasCorretas;
+//        }
+//
+//        // é executado quando o webservice retorna
+//        @Override
+//        protected void onPostExecute(List<Alternativa> alts) {
+//            super.onPostExecute(alternativasCorretas);
+//            alternativasCorretas = alts;
+//        }
+//    }
 
     private class HttpRequestTaskAlternativaPorIdPergunta extends AsyncTask<Void, Void, List<Alternativa>> {
 
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
-//            for (int i = 0; i < perguntas.size(); i++) {
-//                alternativasPorIdPergunta = alternativaConsumer.chamaListar(perguntas.get(i).getIdPergunta());
-//            }
             alternativasPorIdPergunta = alternativaConsumer.chamalistarAlternativasPorIdPergunta(perguntaAtual.getIdPergunta());
             return alternativasPorIdPergunta;
         }
@@ -208,6 +209,30 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Alternativa> alts) {
             super.onPostExecute(alternativasCorretas);
             alternativasCorretas = alts;
+        }
+    }
+
+    private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
+
+        @Override
+        protected List<Alternativa> doInBackground(Void... params) {
+            if (alternativasCorretas.size() == 1) {
+                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4);
+            } else {
+            }
+            if (alternativasCorretas.size() == 2) {
+                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
+                        alternativasCorretas.get(1).getIdAlternativa(), 3);
+            } else {
+            }
+            return alternativasIncorretas;
+        }
+
+        // é executado quando o webservice retorna
+        @Override
+        protected void onPostExecute(List<Alternativa> alts) {
+            super.onPostExecute(alternativasIncorretas);
+            alternativasIncorretas = alts;
         }
     }
 }
