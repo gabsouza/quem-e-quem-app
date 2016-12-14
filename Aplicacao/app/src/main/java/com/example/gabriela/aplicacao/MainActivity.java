@@ -47,6 +47,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import pojo.MiniJogo;
 import pojo.Perfil;
+import pojo.Responsavel;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity{
     private List<com.example.gabriela.aplicacao.MiniJogo> miniJogoList;
 
     private Perfil perfil, perf;
+    private Responsavel resp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,11 +207,11 @@ public class MainActivity extends AppCompatActivity{
             String email = bundle.getString("email");
             String foto = bundle.getString("photo");
 
-            TextView txtNome = (TextView) header.findViewById(R.id.username);
-            txtNome.setText(nome);
+            TextView tvNome = (TextView) header.findViewById(R.id.username);
+            tvNome.setText(nome);
 
-            TextView txtEmail = (TextView) header.findViewById(R.id.email);
-            txtEmail.setText(email);
+            TextView tvEmail = (TextView) header.findViewById(R.id.email);
+            tvEmail.setText(email);
 
             CircleImageView civFoto = (CircleImageView) header.findViewById(R.id.profile_image);
             civFoto.setImageURI(Uri.parse(foto));
@@ -368,7 +370,10 @@ public class MainActivity extends AppCompatActivity{
         imagemselo2 = (ImageButton)findViewById(R.id.imagemselo2);
         imagemselo3 = (ImageButton)findViewById(R.id.imagemselo3);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-//        tvNome = (TextView)findViewById(R.id.)
+//        tvNome = (TextView)findViewById(R.id.username);
+//        tvEmail = (TextView)findViewById(R.id.email);
+//        civFoto = (CircleImageView)findViewById(R.id.profile_image);
+        resp = (Responsavel)getIntent().getExtras().getSerializable("resp");
 //        perfil = (Perfil)getIntent().getExtras().getSerializable("perf");
     }
 }
