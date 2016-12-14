@@ -55,17 +55,17 @@ public class TelaJogoProfissao extends Activity {
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                obterPersonagensAleatorios();
-                obterPerguntasAleatorias();
+            try {
+              obterPersonagensAleatorios();
+              obterPerguntasAleatorias();
 
-                // BUSCA AS ALTERNATIVAS
-                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
-                    new HttpRequestTaskAlternativasIncorretas().execute();
-                obterAlternativasCorretasAleatorias();
-                } catch(Exception e) {
+              // BUSCA AS ALTERNATIVAS
+              new HttpRequestTaskAlternativaPorIdPergunta().execute();
+
+
+            } catch(Exception e) {
                     e.printStackTrace();
-                }
+               }
             }
         });
     }
@@ -111,22 +111,27 @@ public class TelaJogoProfissao extends Activity {
            int ranNum = ran1.nextInt(tam);
            opcao1.setText(alternativasMescladas.get(ranNum).getDescricao());
            alternativasMescladas.remove(ranNum);
+           tam = tam -1;
 
            int ranNum2 = ran2.nextInt(tam);
            opcao2.setText(alternativasMescladas.get(ranNum2).getDescricao());
            alternativasMescladas.remove(ranNum2);
+           tam = tam -1;
 
            int ranNum3 = ran3.nextInt(tam);
            opcao3.setText(alternativasMescladas.get(ranNum3).getDescricao());
            alternativasMescladas.remove(ranNum3);
+           tam = tam -1;
 
            int ranNum4 = ran4.nextInt(tam);
            opcao4.setText(alternativasMescladas.get(ranNum4).getDescricao());
            alternativasMescladas.remove(ranNum4);
+           tam = tam -1;
 
            int ranNum5 = ran5.nextInt(tam);
            opcao5.setText(alternativasMescladas.get(ranNum5).getDescricao());
            alternativasMescladas.remove(ranNum5);
+           tam = tam -1;
         }
         else{
            Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_SHORT).show();
@@ -201,14 +206,17 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
             alternativasPorIdPergunta = alternativaConsumer.chamalistarAlternativasPorIdPergunta(perguntaAtual.getIdPergunta());
-            return alternativasPorIdPergunta;
-        }
+            Log.i("debug", "alternativasCorretas doIn " + alternativasPorIdPergunta.size());
+                return alternativasPorIdPergunta;
+            }
 
         // é executado quando o webservice retorna
         @Override
         protected void onPostExecute(List<Alternativa> alts) {
-            super.onPostExecute(alternativasCorretas);
+            super.onPostExecute(alts);
+            Log.i("debug", "Alternativas corretas onPost " + alts.size());
             alternativasCorretas = alts;
+            new HttpRequestTaskAlternativasIncorretas().execute();
         }
     }
 
@@ -225,6 +233,8 @@ public class TelaJogoProfissao extends Activity {
                         alternativasCorretas.get(1).getIdAlternativa(), 3);
             } else {
             }
+
+            Log.i("debug", "AlternativasIncorretas " + alternativasIncorretas.size());
             return alternativasIncorretas;
         }
 
@@ -233,6 +243,7 @@ public class TelaJogoProfissao extends Activity {
         protected void onPostExecute(List<Alternativa> alts) {
             super.onPostExecute(alternativasIncorretas);
             alternativasIncorretas = alts;
+            obterAlternativasCorretasAleatorias();
         }
     }
 }
