@@ -15,31 +15,36 @@ import pojo.Pergunta;
 
 public class PerguntaConsumer {
 
-        RestTemplate restTemplate;
+    RestTemplate restTemplate;
 
-       public static final String URL_BASE = "http://192.168.240.204:8080/ServidorQuem/rest/pergunta/";
+    public static final String URL_BASE = "http://192.168.240.204:8080/ServidorQuem/rest/pergunta/";
 
-        public PerguntaConsumer() {
-            restTemplate = new RestTemplate();
-            restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        }
+    public PerguntaConsumer() {
+        restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+    }
 
-        // FAZ UM GET RETORNANDO UM JSON
-        public Pergunta chamaConsultarPorId(int id) {
-            String URL = URL_BASE+id;
-            Pergunta pergunta = restTemplate.getForObject(URL, Pergunta.class);
-            return pergunta;
-        }
+    // FAZ UM GET RETORNANDO UM JSON
+    public Pergunta chamaConsultarPorId(int id) {
+        String URL = URL_BASE + id;
+        Pergunta pergunta = restTemplate.getForObject(URL, Pergunta.class);
+        return pergunta;
+    }
 
     public List<Pergunta> chamaListar(int idMiniJogo) {
+        try {
 
-        String URL = URL_BASE+"miniJogo/"+idMiniJogo;
+            String URL = URL_BASE + "miniJogo/" + idMiniJogo;
 
-        Pergunta[] vetorPergunta = restTemplate.getForObject(URL, Pergunta[].class);
+            Pergunta[] vetorPergunta = restTemplate.getForObject(URL, Pergunta[].class);
 
-        List<Pergunta> listaPergunta = new ArrayList<>(Arrays.asList(vetorPergunta));
+            List<Pergunta> listaPergunta = new ArrayList<>(Arrays.asList(vetorPergunta));
 
-        return listaPergunta;
+            return listaPergunta;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

@@ -53,4 +53,15 @@ public class AlternativaConsumer {
 
         return listaAlternativa;
     }
+
+    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas) {
+
+        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas;
+
+        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
+
+        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
+
+        return listaAlternativa;
+    }
 }
