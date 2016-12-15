@@ -153,7 +153,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/rv_alternativas"
-        android:clickable="false">
+        android:clickable="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/iv_personagem"
+        android:layout_alignParentBottom="true">
 
     </android.support.v7.widget.RecyclerView>
 
