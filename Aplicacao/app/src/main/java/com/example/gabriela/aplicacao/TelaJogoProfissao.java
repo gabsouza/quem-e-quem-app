@@ -1,27 +1,23 @@
 package com.example.gabriela.aplicacao;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.Adapter.AlternativasAdapter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -29,10 +25,7 @@ import java.util.Random;
 import consumer.AlternativaConsumer;
 import consumer.PerguntaConsumer;
 import pojo.Alternativa;
-import pojo.Perfil;
 import pojo.Pergunta;
-
-import static android.R.id.list;
 
 /**
  * Created by Gabriela on 18/11/2016.
@@ -41,9 +34,8 @@ public class TelaJogoProfissao extends Activity {
 
     private TextToSpeech textToSpeech;
     private ImageView ivPersonagem;
-    private Button btPassar;
     private TextView tvPergunta;
-    private Button opcao1, opcao2, opcao3, opcao4, opcao5, btFalar, btFalar1, btFalar2, btFalar3, btFalar4, btFalar5;
+    private Button btPassar, btFalar, btFalar1, btFalar2, btFalar3, btFalar4, btFalar5;
     private Context context;
 
     private PerguntaConsumer perguntaConsumer;
@@ -80,74 +72,6 @@ public class TelaJogoProfissao extends Activity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-//                opcao1.setOnClickListener(new View.OnClickListener(){
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        for (Alternativa a : alternativasMescladas) {
-//                            if (a.getDescricao().equalsIgnoreCase(opcao1.getText().toString())) {
-//                                Toast.makeText(getApplicationContext(), "certo", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(getApplicationContext(), "errado", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    }
-//                });
-//
-//                opcao2.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        for (Alternativa a : alternativasMescladas) {
-//                            if (a.getDescricao().equalsIgnoreCase(opcao2.getText().toString())) {
-//                                Toast.makeText(getApplicationContext(), "certo", Toast.LENGTH_SHORT).show();
-//                            }else{
-//                                Toast.makeText(getApplicationContext(), "errado", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    }
-//                });
-//
-//                opcao3.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        for (Alternativa a : alternativasMescladas) {
-//                            if (a.getDescricao().equalsIgnoreCase(opcao3.getText().toString())) {
-//                                Toast.makeText(getApplicationContext(), "certo", Toast.LENGTH_SHORT).show();
-//                            } else{
-//                                Toast.makeText(getApplicationContext(), "errado", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    }
-//                });
-//
-//                opcao4.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        for (Alternativa a : alternativasMescladas) {
-//                            if (a.getDescricao().equalsIgnoreCase(opcao4.getText().toString())) {
-//                                Toast.makeText(getApplicationContext(), "certo", Toast.LENGTH_SHORT).show();
-//                            }else{
-//                                Toast.makeText(getApplicationContext(), "errado", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                    }
-//                });
-//
-//                opcao5.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        for (Alternativa a : alternativasMescladas) {
-//                            if (a.getDescricao().equalsIgnoreCase(opcao5.getText().toString())) {
-//                                Toast.makeText(getApplicationContext(), "certo", Toast.LENGTH_SHORT).show();
-//                            }else{
-//                                Toast.makeText(getApplicationContext(), "errado", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                    }
-//                });
             }
         });
 
@@ -304,13 +228,6 @@ public class TelaJogoProfissao extends Activity {
     }
 
     public void inicializarRecyclerView() {
-//        List<Alternativa> alternativas = new ArrayList<>(Arrays.asList(new Alternativa[]{
-//                new Alternativa("Babá"),
-//                new Alternativa("Policial"),
-//                new Alternativa("Florista"),
-//                new Alternativa("Médica"),
-//                new Alternativa("Top")
-//        }));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -318,21 +235,14 @@ public class TelaJogoProfissao extends Activity {
         alternativasAdapter = new AlternativasAdapter(alternativasMescladas, this);
         recyclerView.setAdapter(alternativasAdapter);
         alternativasAdapter.notifyDataSetChanged();
-
     }
 
     public void inicializaComponentes() {
         ivPersonagem = (ImageView) findViewById(R.id.iv_personagem);
-
         tvPergunta = (TextView) findViewById(R.id.tv_pergunta);
 
         btPassar = (Button) findViewById(R.id.bt_randon);
-//        opcao1 = (Button) findViewById(R.id.tv_opcao1);
-//        opcao2 = (Button) findViewById(R.id.tv_opcao2);
-//        opcao3 = (Button) findViewById(R.id.tv_opcao3);
-//        opcao4 = (Button) findViewById(R.id.tv_opcao4);
-//        opcao5 = (Button) findViewById(R.id.tv_opcao5);
-//
+
 //        btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
 //        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
 //        btFalar2 = (Button) findViewById(R.id.bt_falar_opcao2);
