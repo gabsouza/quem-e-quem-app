@@ -107,7 +107,7 @@ public class TelaLogin extends AppCompatActivity implements
             btnSignIn.setSize(SignInButton.SIZE_STANDARD);
             btnSignIn.setScopes(gso.getScopeArray());
 
-        passaParametros();
+//        passaParametros();
 
         }
     }
@@ -131,12 +131,12 @@ public class TelaLogin extends AppCompatActivity implements
 
         String passaNome = txtName.getText().toString();
         String passaEmail = txtEmail.getText().toString();
-        String passaFoto = imgProfilePic.toString();
+//        String passaFoto = imgProfilePic.toString();
         Bundle bundle = new Bundle();
 
         bundle.putString("nome", passaNome);
         bundle.putString("email", passaEmail);
-        bundle.putString("photo", passaFoto);
+//        bundle.putString("photo", passaFoto);
         bundle.putSerializable("responsavel", resp);
 
         passa.putExtras(bundle);
