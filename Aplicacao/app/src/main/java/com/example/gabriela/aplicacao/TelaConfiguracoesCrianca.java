@@ -298,7 +298,7 @@ public class TelaConfiguracoesCrianca extends Activity {
         protected Perfil doInBackground(Perfil... params) {
             Log.i("DEBUG",perf.getNomePerfil());
             perfil = perfilConsumer.chamaAtualizar(perf.getIdPerfil(), perfil);
-            Log.i("DEBUG",perfil.getNomePerfil());
+            Log.i("DEBUG",perf.getNomePerfil());
             return perfil;
         }
 

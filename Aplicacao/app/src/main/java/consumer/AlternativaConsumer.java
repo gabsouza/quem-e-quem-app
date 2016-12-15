@@ -18,7 +18,9 @@ public class AlternativaConsumer {
 
     RestTemplate restTemplate;
 
-    public static final String URL_BASE = "http://192.168.240.204:8080/ServidorQuem/rest/alternativa/";
+    public static final String URL_BASE = "http://192.168.1.5:8080/ServidorQuem/rest/alternativa/";
+
+//    public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/alternativa/";
 
     public AlternativaConsumer() {
         restTemplate = new RestTemplate();
@@ -46,6 +48,28 @@ public class AlternativaConsumer {
     public List<Alternativa> chamaListarTodas() {
 
         String URL = URL_BASE+"alternativas/";
+
+        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
+
+        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
+
+        return listaAlternativa;
+    }
+
+    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas) {
+
+        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas;
+
+        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
+
+        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
+
+        return listaAlternativa;
+    }
+
+    public List<Alternativa> buscarAlternativasIncorretasFemininas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas, Enum generoPersonagem) {
+
+        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas + "/" + generoPersonagem;
 
         Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
 
