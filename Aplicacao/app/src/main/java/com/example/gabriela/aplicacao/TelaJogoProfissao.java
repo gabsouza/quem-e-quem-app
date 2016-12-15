@@ -185,7 +185,6 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Pergunta> doInBackground(Void... params) {
             perguntas = perguntaConsumer.chamaListar(1);
-            Log.i("DEBUG","Tamanho 1: "+perguntas.size());
             return perguntas;
         }
 
@@ -193,7 +192,6 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected void onPostExecute(List<Pergunta> pergs) {
             super.onPostExecute(pergs);
-            Log.i("DEBUG","Tamanho 2: "+pergs.size());
             perguntas = pergs;
             obterPersonagensAleatorios();
             obterPerguntasAleatorias();
@@ -207,7 +205,6 @@ public class TelaJogoProfissao extends Activity {
         protected List<Alternativa> doInBackground(Void... params) {
             if(perguntaAtual != null) {
                 alternativasPorIdPergunta = alternativaConsumer.chamalistarAlternativasPorIdPergunta(perguntaAtual.getIdPergunta());
-                Log.i("debug", "alternativasCorretas doIn " + alternativasPorIdPergunta.size());
             }
                 return alternativasPorIdPergunta;
             }
@@ -216,7 +213,6 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected void onPostExecute(List<Alternativa> alts) {
             super.onPostExecute(alts);
-            Log.i("debug", "Alternativas corretas onPost " + alts.size());
             alternativasCorretas = alts;
             new HttpRequestTaskAlternativasIncorretas().execute();
         }
@@ -235,7 +231,6 @@ public class TelaJogoProfissao extends Activity {
             } else {
             }
 
-            Log.i("debug", "AlternativasIncorretas " + alternativasIncorretas.size());
             return alternativasIncorretas;
         }
 
