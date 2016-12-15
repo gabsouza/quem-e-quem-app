@@ -68,7 +68,7 @@ public class TelaCadastroCrianca extends Activity{
 
 
         inicializaComponentes();
-        playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
+        playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/cadastro"));
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
@@ -149,7 +149,7 @@ public class TelaCadastroCrianca extends Activity{
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     Log.i("debug", "clicou fora!!");
 
-                    playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
+                    playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/cadastro"));
                 }
             }
         }

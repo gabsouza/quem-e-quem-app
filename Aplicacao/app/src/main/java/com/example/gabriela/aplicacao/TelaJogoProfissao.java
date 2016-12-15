@@ -1,9 +1,12 @@
 package com.example.gabriela.aplicacao;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import consumer.AlternativaConsumer;
@@ -29,10 +33,12 @@ import static android.R.id.list;
  */
 public class TelaJogoProfissao extends Activity {
 
+    private TextToSpeech textToSpeech;
     private ImageView ivPersonagem;
     private Button btPassar;
     private TextView tvPergunta;
-    private Button opcao1, opcao2, opcao3, opcao4, opcao5;
+    private Button opcao1, opcao2, opcao3, opcao4, opcao5, btFalar, btFalar1, btFalar2, btFalar3, btFalar4, btFalar5;
+    private Context context;
     private PerguntaConsumer perguntaConsumer;
     private Pergunta perguntaAtual;
     private List<Pergunta> perguntas;
@@ -68,6 +74,80 @@ public class TelaJogoProfissao extends Activity {
                }
             }
         });
+
+        context = getApplicationContext();
+
+        textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR){
+                    textToSpeech.setLanguage(Locale.getDefault());
+                }
+            }
+        });
+
+        btFalar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = tvPergunta.getText().toString();
+
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = opcao1.getText().toString();
+
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = opcao2.getText().toString();
+
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = opcao3.getText().toString();
+
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = opcao4.getText().toString();
+
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = opcao5.getText().toString();
+
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+    }
+
+    public void onPause(){
+        if(textToSpeech != null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onPause();
     }
 
     public void obterPersonagensAleatorios(){
@@ -155,6 +235,12 @@ public class TelaJogoProfissao extends Activity {
         opcao3 = (Button) findViewById(R.id.tv_opcao3);
         opcao4 = (Button) findViewById(R.id.tv_opcao4);
         opcao5 = (Button) findViewById(R.id.tv_opcao5);
+        btFalar = (Button)findViewById(R.id.bt_falar_pergunta);
+        btFalar1 = (Button)findViewById(R.id.bt_falar_opcao1);
+        btFalar2 = (Button)findViewById(R.id.bt_falar_opcao2);
+        btFalar3 = (Button)findViewById(R.id.bt_falar_opcao3);
+        btFalar4 = (Button)findViewById(R.id.bt_falar_opcao4);
+        btFalar5 = (Button)findViewById(R.id.bt_falar_opcao5);
 
         perguntaConsumer = new PerguntaConsumer();
         perguntas = new ArrayList<>();
