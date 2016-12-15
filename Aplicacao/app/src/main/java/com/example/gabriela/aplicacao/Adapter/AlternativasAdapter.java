@@ -73,6 +73,7 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
             }
 
         });
+        //holder.btAudio.setText("Audio");
     }
 
     @Override
@@ -99,7 +100,7 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             btOpcao = (Button) itemView.findViewById(R.id.bt_opcao);
-            btAudio = (Button) itemView.findViewById(R.id.bt_audio);
+            //btAudio = (Button) itemView.findViewById(R.id.bt_audio);
         }
     }
 }
