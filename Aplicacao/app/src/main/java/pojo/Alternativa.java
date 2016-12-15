@@ -54,4 +54,12 @@ public class Alternativa implements Serializable{
 	public void setRespostas(List<Resposta> respostas) {
 		this.respostas = respostas;
 	}
+
+	public Pergunta getPergunta() {
+		return pergunta;
+	}
+
+	public void setPergunta(Pergunta pergunta) {
+		this.pergunta = pergunta;
+	}
 }
