@@ -64,7 +64,7 @@ public class TelaConfiguracoesCrianca extends Activity {
 
         inicializaComponentes();
 
-        playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
+        playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/atualizar"));
         customSwip = new CustomSwip(this);
         viewPager.setAdapter(customSwip);
 
@@ -96,7 +96,6 @@ public class TelaConfiguracoesCrianca extends Activity {
             @Override
             public void onClick(View v) {
 
-//                Perfil perfil = new Perfil();
                 perfil.setNomePerfil(etNomeAtualiza.getText().toString());
 
                 new HttpRequestTask().execute(perfil);
@@ -143,7 +142,7 @@ public class TelaConfiguracoesCrianca extends Activity {
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     Log.i("debug", "clicou fora!!");
 
-                    playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/teste"));
+                    playAudio(Uri.parse("android.resource://com.example.gabriela.aplicacao/raw/atualizar"));
                 }
             }
         }

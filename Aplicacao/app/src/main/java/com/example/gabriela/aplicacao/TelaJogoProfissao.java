@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.Adapter.AlternativasAdapter;
 
@@ -56,6 +55,9 @@ public class TelaJogoProfissao extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jogo_profissao);
         inicializaComponentes();
+
+        // BUSCA AS PERGUNTAS
+        new HttpRequestTaskPergunta().execute();
 
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +151,10 @@ public class TelaJogoProfissao extends Activity {
         Random r = new Random();
         int n = r.nextInt(9);
         ivPersonagem.setImageResource(cards[n]);
+
+//        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawable.personagem4 || cards[n] == R.drawable.personagem9){
+//            //CHAMA ALTERNATIVAS TALS
+//        }
     }
 
     public void obterPerguntasAleatorias() {
@@ -183,7 +189,6 @@ public class TelaJogoProfissao extends Activity {
 
     public void inicializarRecyclerView() {
 
-        Boolean passou;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -246,10 +251,12 @@ public class TelaJogoProfissao extends Activity {
 
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
-            alternativasPorIdPergunta = alternativaConsumer.chamalistarAlternativasPorIdPergunta(perguntaAtual.getIdPergunta());
-            Log.i("debug", "alternativasCorretas doIn " + alternativasPorIdPergunta.size());
-            return alternativasPorIdPergunta;
-        }
+            if(perguntaAtual != null) {
+                alternativasPorIdPergunta = alternativaConsumer.chamalistarAlternativasPorIdPergunta(perguntaAtual.getIdPergunta());
+                Log.i("debug", "alternativasCorretas doIn " + alternativasPorIdPergunta.size());
+            }
+                return alternativasPorIdPergunta;
+            }
 
         // é executado quando o webservice retorna
         @Override
@@ -266,12 +273,11 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
             if (alternativasCorretas.size() == 1) {
-                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4);
+                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
             } else {
             }
             if (alternativasCorretas.size() == 2) {
-                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
-                        alternativasCorretas.get(1).getIdAlternativa(), 3);
+                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), alternativasCorretas.get(1).getIdAlternativa(), 3, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
             } else {
             }
 

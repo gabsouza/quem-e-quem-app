@@ -20,8 +20,6 @@ public class AlternativaConsumer {
 
     public static final String URL_BASE = "http://192.168.241.222:8080/ServidorQuem/rest/alternativa/";
 
-//    public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/alternativa/";
-
     public AlternativaConsumer() {
         restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
@@ -56,18 +54,18 @@ public class AlternativaConsumer {
         return listaAlternativa;
     }
 
-    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas) {
+//    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas) {
+//
+//        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas;
+//
+//        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
+//
+//        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
+//
+//        return listaAlternativa;
+//    }
 
-        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas;
-
-        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
-
-        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
-
-        return listaAlternativa;
-    }
-
-    public List<Alternativa> buscarAlternativasIncorretasFemininas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas, Enum generoPersonagem) {
+    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas, String generoPersonagem) {
 
         String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas + "/" + generoPersonagem;
 
