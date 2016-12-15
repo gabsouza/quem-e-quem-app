@@ -38,14 +38,14 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
 
 //        context = getApplicationContext();
 
-        textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.getDefault());
-                }
-            }
-        });
+//        textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+//            @Override
+//            public void onInit(int status) {
+//                if (status != TextToSpeech.ERROR) {
+//                    textToSpeech.setLanguage(Locale.getDefault());
+//                }
+//            }
+//        });
 
         return new ViewHolder(view);
     }
@@ -68,15 +68,15 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
         final Alternativa alternativa = alternativas.get(position);
         holder.btOpcao.setText(alternativa.getDescricao());
 
-        holder.btAudio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = holder.btOpcao.getText().toString();
-
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-
-        });
+//        holder.btAudio.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String falar = holder.btOpcao.getText().toString();
+//
+//                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+//            }
+//
+//        });
         //holder.btAudio.setText("Audio");
     }
 

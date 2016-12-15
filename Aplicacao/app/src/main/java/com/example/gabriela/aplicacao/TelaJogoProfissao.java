@@ -262,6 +262,9 @@ public class TelaJogoProfissao extends Activity {
                 alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
                         alternativasCorretas.get(1).getIdAlternativa(), 3);
             } else {
+                if(alternativasCorretas.size() == 1){
+                    alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4);
+                }
             }
 
             return alternativasIncorretas;
@@ -273,6 +276,8 @@ public class TelaJogoProfissao extends Activity {
             super.onPostExecute(alternativasIncorretas);
             alternativasIncorretas = alts;
             obterAlternativasCorretasAleatorias();
+            inicializarRecyclerView();
+            alternativasAdapter.notifyDataSetChanged();
         }
     }
 
