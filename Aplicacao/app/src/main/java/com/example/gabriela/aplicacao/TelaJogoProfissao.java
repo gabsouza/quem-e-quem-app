@@ -86,60 +86,14 @@ public class TelaJogoProfissao extends Activity {
             }
         });
 
-//        btFalar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String falar = tvPergunta.getText().toString();
-//
-//                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-//            }
-//        });
-//
-//        btFalar1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String falar = opcao1.getText().toString();
-//
-//                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-//            }
-//        });
-//
-//        btFalar2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String falar = opcao2.getText().toString();
-//
-//                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-//            }
-//        });
-//
-//        btFalar3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String falar = opcao3.getText().toString();
-//
-//                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-//            }
-//        });
-//
-//        btFalar4.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String falar = opcao4.getText().toString();
-//
-//                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-//            }
-//        });
-//
-//        btFalar5.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String falar = opcao5.getText().toString();
-//
-//                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-//            }
-//        });
+        btFalar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = tvPergunta.getText().toString();
 
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
     }
 
     public void onPause() {
@@ -243,7 +197,7 @@ public class TelaJogoProfissao extends Activity {
 
         btPassar = (Button) findViewById(R.id.bt_randon);
 
-//        btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
+        btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
 //        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
 //        btFalar2 = (Button) findViewById(R.id.bt_falar_opcao2);
 //        btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);

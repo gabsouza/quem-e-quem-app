@@ -139,15 +139,15 @@
         <!--android:layout_alignTop="@+id/iv_personagem"-->
         <!--android:layout_toStartOf="@+id/tv_opcao1" />-->
 
-    <!--<Button-->
-        <!--android:layout_width="40dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/bt_falar_pergunta"-->
-        <!--android:textColor="@color/colorPrimaryText"-->
-        <!--android:background="@drawable/borda"-->
-        <!--android:text="Falar"-->
-        <!--android:layout_alignTop="@+id/tv_pergunta"-->
-        <!--android:layout_alignParentEnd="true" />-->
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/bt_falar_pergunta"
+        android:textColor="@color/colorPrimaryText"
+        android:background="@drawable/borda"
+        android:text="Falar"
+        android:layout_alignTop="@+id/tv_pergunta"
+        android:layout_alignParentEnd="true" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"

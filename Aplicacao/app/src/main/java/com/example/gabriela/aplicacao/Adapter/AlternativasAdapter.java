@@ -1,6 +1,7 @@
 package com.example.gabriela.aplicacao.Adapter;
 
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +11,20 @@ import android.widget.Button;
 import com.example.gabriela.aplicacao.R;
 
 import java.util.List;
+import java.util.Locale;
 
 import pojo.Alternativa;
 
 /**
  * Created by Gabriela on 15/12/2016.
  */
+
 public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapter.ViewHolder> {
 
     private List<Alternativa> alternativas;
-    private Context ctx;
+    private Context ctx, context;
+    private TextToSpeech textToSpeech;
+
 
     public AlternativasAdapter(List<Alternativa> alternativas, Context ctx) {
         this.alternativas = alternativas;
@@ -31,14 +36,43 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
         LayoutInflater layoutInflater = LayoutInflater.from(ctx);
         View view = layoutInflater.inflate(R.layout.card_alternativas, parent, false);
 
+//        context = getApplicationContext();
+
+        textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.getDefault());
+                }
+            }
+        });
+
         return new ViewHolder(view);
+
+    }
+
+    public void onPause() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+//        super.onPause();
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Alternativa alternativa = alternativas.get(position);
         holder.btOpcao.setText(alternativa.getDescricao());
-        holder.btAudio.setText("Audio");
+
+        holder.btAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = holder.btOpcao.getText().toString();
+
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+
+        });
     }
 
     @Override
