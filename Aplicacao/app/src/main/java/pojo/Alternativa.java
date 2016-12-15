@@ -18,6 +18,10 @@ public class Alternativa implements Serializable{
 		this.generoPersonagem = generoPersonagem;
 		this.descricao = descricao;
 	}
+
+	public Alternativa (String descricao){
+		this.descricao = descricao;
+	}
 	
 	public Alternativa(){
 		
