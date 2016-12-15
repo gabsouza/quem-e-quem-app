@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.gabriela.aplicacao.Adapter.AlternativasAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -45,6 +46,7 @@ public class TelaJogoProfissao extends Activity {
     private AlternativaConsumer alternativaConsumer;
     private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
     ArrayList<Alternativa> alternativasMescladas;
+    ArrayList<Alternativa> alternativas;
 
     RecyclerView recyclerView;
     AlternativasAdapter alternativasAdapter;
@@ -55,18 +57,11 @@ public class TelaJogoProfissao extends Activity {
         setContentView(R.layout.activity_jogo_profissao);
         inicializaComponentes();
 
-        // BUSCA AS PERGUNTAS
-        new HttpRequestTaskPergunta().execute();
-
         btPassar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    obterPersonagensAleatorios();
-                    obterPerguntasAleatorias();
-
-                    // BUSCA AS ALTERNATIVAS
-                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
+                    new HttpRequestTaskPergunta().execute();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -177,43 +172,7 @@ public class TelaJogoProfissao extends Activity {
         alternativasMescladas = new ArrayList<>(alternativasCorretas);
         alternativasMescladas.addAll(alternativasIncorretas);
 
-        Random ran1 = new Random();
-        Random ran2 = new Random();
-        Random ran3 = new Random();
-        Random ran4 = new Random();
-        Random ran5 = new Random();
-
-        int tam = alternativasMescladas.size();
-
-        if (tam > 0) {
-
-//            int ranNum1 = ran1.nextInt(tam);
-//            opcao1.setText(alternativasMescladas.get(ranNum1).getDescricao());
-//            alternativasMescladas.remove(ranNum1);
-//            tam = tam - 1;
-//
-//            int ranNum2 = ran2.nextInt(tam);
-//            opcao2.setText(alternativasMescladas.get(ranNum2).getDescricao());
-//            alternativasMescladas.remove(ranNum2);
-//            tam = tam - 1;
-//
-//            int ranNum3 = ran3.nextInt(tam);
-//            opcao3.setText(alternativasMescladas.get(ranNum3).getDescricao());
-//            alternativasMescladas.remove(ranNum3);
-//            tam = tam - 1;
-//
-//            int ranNum4 = ran4.nextInt(tam);
-//            opcao4.setText(alternativasMescladas.get(ranNum4).getDescricao());
-//            alternativasMescladas.remove(ranNum4);
-//            tam = tam - 1;
-//
-//            int ranNum5 = ran5.nextInt(tam);
-//            opcao5.setText(alternativasMescladas.get(ranNum5).getDescricao());
-//            alternativasMescladas.remove(ranNum5);
-//            tam = tam - 1;
-        } else {
-            Toast.makeText(getApplicationContext(), "Erro", Toast.LENGTH_SHORT).show();
-        }
+        Collections.shuffle(alternativasMescladas, new Random());
     }
 
     public void chamaTelaResultado() {
@@ -224,6 +183,7 @@ public class TelaJogoProfissao extends Activity {
 
     public void inicializarRecyclerView() {
 
+        Boolean passou;
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
@@ -256,6 +216,8 @@ public class TelaJogoProfissao extends Activity {
         alternativasPorIdPergunta = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_alternativas);
+
+        alternativas = new ArrayList<>();
     }
 
     private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {
@@ -264,15 +226,19 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Pergunta> doInBackground(Void... params) {
             perguntas = perguntaConsumer.chamaListar(1);
+            Log.i("DEBUG","Tamanho 1: "+perguntas.size());
             return perguntas;
         }
 
         // é executado quando o webservice retorna
         @Override
         protected void onPostExecute(List<Pergunta> pergs) {
-            super.onPostExecute(perguntas);
+            super.onPostExecute(pergs);
+            Log.i("DEBUG","Tamanho 2: "+pergs.size());
             perguntas = pergs;
-
+            obterPersonagensAleatorios();
+            obterPerguntasAleatorias();
+            new HttpRequestTaskAlternativaPorIdPergunta().execute();
         }
     }
 

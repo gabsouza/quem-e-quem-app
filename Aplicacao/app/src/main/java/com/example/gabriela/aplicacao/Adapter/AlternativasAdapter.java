@@ -38,7 +38,7 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Alternativa alternativa = alternativas.get(position);
         holder.btOpcao.setText(alternativa.getDescricao());
-        holder.btAudio.setText("Audio");
+        //holder.btAudio.setText("Audio");
     }
 
     @Override
@@ -65,7 +65,7 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             btOpcao = (Button) itemView.findViewById(R.id.bt_opcao);
-            btAudio = (Button) itemView.findViewById(R.id.bt_audio);
+            //btAudio = (Button) itemView.findViewById(R.id.bt_audio);
         }
     }
 }
