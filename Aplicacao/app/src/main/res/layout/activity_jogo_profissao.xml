@@ -26,56 +26,56 @@
         android:layout_toStartOf="@+id/bt_randon"
         android:layout_marginTop="100dp" />
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_opcao1"
-        android:layout_below="@+id/tv_pergunta"
-        android:textColor="@color/colorTextIcons"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/borda"/>
+    <!--<Button-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/tv_opcao1"-->
+        <!--android:layout_below="@+id/tv_pergunta"-->
+        <!--android:textColor="@color/colorTextIcons"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginTop="100dp"-->
+        <!--android:background="@drawable/borda"/>-->
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_opcao2"
-        android:layout_marginTop="37dp"
-        android:textColor="@color/colorTextIcons"
-        android:layout_below="@+id/tv_opcao1"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/borda"/>
+    <!--<Button-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/tv_opcao2"-->
+        <!--android:layout_marginTop="37dp"-->
+        <!--android:textColor="@color/colorTextIcons"-->
+        <!--android:layout_below="@+id/tv_opcao1"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:background="@drawable/borda"/>-->
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_opcao3"
-        android:textColor="@color/colorTextIcons"
-        android:layout_below="@+id/tv_opcao2"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="38dp"
-        android:background="@drawable/borda"/>
+    <!--<Button-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/tv_opcao3"-->
+        <!--android:textColor="@color/colorTextIcons"-->
+        <!--android:layout_below="@+id/tv_opcao2"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginTop="38dp"-->
+        <!--android:background="@drawable/borda"/>-->
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_opcao4"
-        android:layout_marginTop="30dp"
-        android:textColor="@color/colorTextIcons"
-        android:layout_below="@+id/tv_opcao3"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/borda"/>
+    <!--<Button-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/tv_opcao4"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:textColor="@color/colorTextIcons"-->
+        <!--android:layout_below="@+id/tv_opcao3"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:background="@drawable/borda"/>-->
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/tv_opcao5"
-        android:textColor="@color/colorTextIcons"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/tv_opcao4"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/borda"/>
+    <!--<Button-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/tv_opcao5"-->
+        <!--android:textColor="@color/colorTextIcons"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:layout_below="@+id/tv_opcao4"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:background="@drawable/borda"/>-->
 
     <Button
         android:layout_width="150dp"
@@ -88,65 +88,73 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao5"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar5"
-        android:layout_alignTop="@+id/tv_opcao5"
-        android:layout_toStartOf="@+id/tv_opcao5" />
+    <!--<Button-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bt_falar_opcao5"-->
+        <!--android:textColor="@color/colorPrimaryText"-->
+        <!--android:background="@drawable/borda"-->
+        <!--android:text="Falar5"-->
+        <!--android:layout_alignTop="@+id/tv_opcao5"-->
+        <!--android:layout_toStartOf="@+id/tv_opcao5" />-->
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao4"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar4"
-        android:layout_alignBaseline="@+id/tv_opcao4"
-        android:layout_alignBottom="@+id/tv_opcao4"
-        android:layout_toStartOf="@+id/tv_opcao4" />
+    <!--<Button-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bt_falar_opcao4"-->
+        <!--android:textColor="@color/colorPrimaryText"-->
+        <!--android:background="@drawable/borda"-->
+        <!--android:text="Falar4"-->
+        <!--android:layout_alignBaseline="@+id/tv_opcao4"-->
+        <!--android:layout_alignBottom="@+id/tv_opcao4"-->
+        <!--android:layout_toStartOf="@+id/tv_opcao4" />-->
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao3"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar3"
-        android:layout_alignTop="@+id/tv_opcao3"
-        android:layout_toStartOf="@+id/tv_opcao3" />
+    <!--<Button-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bt_falar_opcao3"-->
+        <!--android:textColor="@color/colorPrimaryText"-->
+        <!--android:background="@drawable/borda"-->
+        <!--android:text="Falar3"-->
+        <!--android:layout_alignTop="@+id/tv_opcao3"-->
+        <!--android:layout_toStartOf="@+id/tv_opcao3" />-->
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao2"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar2"
-        android:layout_alignTop="@+id/tv_opcao2"
-        android:layout_toStartOf="@+id/tv_opcao2" />
+    <!--<Button-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bt_falar_opcao2"-->
+        <!--android:textColor="@color/colorPrimaryText"-->
+        <!--android:background="@drawable/borda"-->
+        <!--android:text="Falar2"-->
+        <!--android:layout_alignTop="@+id/tv_opcao2"-->
+        <!--android:layout_toStartOf="@+id/tv_opcao2" />-->
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao1"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar1"
-        android:layout_alignTop="@+id/iv_personagem"
-        android:layout_toStartOf="@+id/tv_opcao1" />
+    <!--<Button-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bt_falar_opcao1"-->
+        <!--android:textColor="@color/colorPrimaryText"-->
+        <!--android:background="@drawable/borda"-->
+        <!--android:text="Falar1"-->
+        <!--android:layout_alignTop="@+id/iv_personagem"-->
+        <!--android:layout_toStartOf="@+id/tv_opcao1" />-->
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_pergunta"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar"
-        android:layout_alignTop="@+id/tv_pergunta"
-        android:layout_alignParentEnd="true" />
+    <!--<Button-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/bt_falar_pergunta"-->
+        <!--android:textColor="@color/colorPrimaryText"-->
+        <!--android:background="@drawable/borda"-->
+        <!--android:text="Falar"-->
+        <!--android:layout_alignTop="@+id/tv_pergunta"-->
+        <!--android:layout_alignParentEnd="true" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_alternativas"
+        android:clickable="false">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
