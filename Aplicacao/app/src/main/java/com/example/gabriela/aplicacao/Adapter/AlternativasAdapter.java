@@ -48,15 +48,15 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
         });
 
         return new ViewHolder(view);
-
     }
 
+    @Override
     public void onPause() {
         if (textToSpeech != null) {
             textToSpeech.stop();
             textToSpeech.shutdown();
         }
-//        super.onPause();
+        super.onPause();
     }
 
     @Override
