@@ -185,6 +185,10 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Pergunta> doInBackground(Void... params) {
             perguntas = perguntaConsumer.chamaListar(1);
+<<<<<<< HEAD
+=======
+//            Log.i("DEBUG","Tamanho 1: "+perguntas.size());
+>>>>>>> 40d6250786ffd9d4755aa2d31fa643e33679ab52
             return perguntas;
         }
 
@@ -192,6 +196,10 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected void onPostExecute(List<Pergunta> pergs) {
             super.onPostExecute(pergs);
+<<<<<<< HEAD
+=======
+            Log.i("DEBUG", "Tamanho 2: " + pergs.size());
+>>>>>>> 40d6250786ffd9d4755aa2d31fa643e33679ab52
             perguntas = pergs;
             obterPersonagensAleatorios();
             obterPerguntasAleatorias();
@@ -203,11 +211,11 @@ public class TelaJogoProfissao extends Activity {
 
         @Override
         protected List<Alternativa> doInBackground(Void... params) {
-            if(perguntaAtual != null) {
+            if (perguntaAtual != null) {
                 alternativasPorIdPergunta = alternativaConsumer.chamalistarAlternativasPorIdPergunta(perguntaAtual.getIdPergunta());
             }
-                return alternativasPorIdPergunta;
-            }
+            return alternativasPorIdPergunta;
+        }
 
         // é executado quando o webservice retorna
         @Override
@@ -218,41 +226,16 @@ public class TelaJogoProfissao extends Activity {
         }
     }
 
-    private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
-
-        @Override
-        protected List<Alternativa> doInBackground(Void... params) {
-            if (alternativasCorretas.size() == 1) {
-                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
-            } else {
-            }
-            if (alternativasCorretas.size() == 2) {
-                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), alternativasCorretas.get(1).getIdAlternativa(), 3, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
-            } else {
-            }
-
-            return alternativasIncorretas;
-        }
-
-        // é executado quando o webservice retorna
-        @Override
-        protected void onPostExecute(List<Alternativa> alts) {
-            super.onPostExecute(alternativasIncorretas);
-            alternativasIncorretas = alts;
-            obterAlternativasCorretasAleatorias();
-            inicializarRecyclerView();
-            alternativasAdapter.notifyDataSetChanged();
-        }
-    }
-
-//    private class HttpRequestTaskAlternativasIncorretasFemininas extends AsyncTask<Void, Void, List<Alternativa>> {
+//    private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
 //
 //        @Override
 //        protected List<Alternativa> doInBackground(Void... params) {
-//
+//            if (alternativasCorretas.size() == 1) {
+//                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
+//            } else {
+//            }
 //            if (alternativasCorretas.size() == 2) {
-//                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretasFemininas(alternativasCorretas.get(0).getIdAlternativa(),
-//                        alternativasCorretas.get(1).getIdAlternativa(), 3, );
+//                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), alternativasCorretas.get(1).getIdAlternativa(), 3, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
 //            } else {
 //            }
 //
@@ -266,7 +249,31 @@ public class TelaJogoProfissao extends Activity {
 //            super.onPostExecute(alternativasIncorretas);
 //            alternativasIncorretas = alts;
 //            obterAlternativasCorretasAleatorias();
+//            inicializarRecyclerView();
+//            alternativasAdapter.notifyDataSetChanged();
 //        }
-//    }
+
+    private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
+
+        @Override
+        protected List<Alternativa> doInBackground(Void... params) {
+
+            if (alternativasCorretas.size() == 2) {
+                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
+                        alternativasCorretas.get(1).getIdAlternativa(), 3);
+            } else {
+            }
+
+            return alternativasIncorretas;
+        }
+
+        // é executado quando o webservice retorna
+        @Override
+        protected void onPostExecute(List<Alternativa> alts) {
+            super.onPostExecute(alternativasIncorretas);
+            alternativasIncorretas = alts;
+            obterAlternativasCorretasAleatorias();
+        }
+    }
 
 }
