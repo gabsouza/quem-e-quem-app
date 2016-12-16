@@ -49,11 +49,7 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
 
         return new ViewHolder(view);
     }
-<<<<<<< HEAD
 
-=======
-//
->>>>>>> 40d6250786ffd9d4755aa2d31fa643e33679ab52
 //    @Override
 //    public void onPause() {
 //        if (textToSpeech != null) {

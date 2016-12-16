@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.Adapter.AlternativasAdapter;
 
@@ -26,6 +27,7 @@ import consumer.AlternativaConsumer;
 import consumer.PerguntaConsumer;
 import pojo.Alternativa;
 import pojo.Pergunta;
+import pojo.Resposta;
 
 /**
  * Created by Gabriela on 18/11/2016.
@@ -44,10 +46,13 @@ public class TelaJogoProfissao extends Activity {
 
     private AlternativaConsumer alternativaConsumer;
     private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
-    ArrayList<Alternativa> alternativasMescladas;
+    private ArrayList<Alternativa> alternativasMescladas;
+
+    private Resposta resposta;
 
     RecyclerView recyclerView;
     AlternativasAdapter alternativasAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,10 +100,19 @@ public class TelaJogoProfissao extends Activity {
                         RecyclerItemClickListener.OnItemClickListener() {
                             @Override public void onItemClick(View view, int position) {
 
+//                                Log.i("debug", "perguntaId" + alternativasMescladas.get(position).getPergunta().getIdPergunta());
+//
+//                                if(alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()){
+//                                    resposta.setPontuacao(100);
+//                                    Toast.makeText(context, "acertou", Toast.LENGTH_LONG).show();
+//                                } else{
+//                                    Toast.makeText(context, "errou", Toast.LENGTH_LONG).show();
+//                                }
                             }
                         })
         );
     }
+
 
     public void onPause() {
         if (textToSpeech != null) {
@@ -183,6 +197,8 @@ public class TelaJogoProfissao extends Activity {
         alternativasPorIdPergunta = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_alternativas);
+
+        resposta = new Resposta();
     }
 
     private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {
