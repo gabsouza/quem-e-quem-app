@@ -17,11 +17,7 @@ public class PerguntaConsumer {
 
     RestTemplate restTemplate;
 
-<<<<<<< HEAD
-       public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/pergunta/";
-=======
-       public static final String URL_BASE = "http://192.168.0.108:8080/ServidorQuem/rest/pergunta/";
->>>>>>> 5d31cab9b073007e407961ccfbbc1075d0a00e63
+       public static final String URL_BASE = "http://192.168.241.222:8080/ServidorQuem/rest/pergunta/";
 
     public PerguntaConsumer() {
         restTemplate = new RestTemplate();

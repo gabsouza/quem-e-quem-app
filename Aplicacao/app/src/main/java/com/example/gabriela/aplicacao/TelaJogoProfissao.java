@@ -138,21 +138,19 @@ public class TelaJogoProfissao extends Activity {
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(context, new
                         RecyclerItemClickListener.OnItemClickListener() {
-                            @Override public void onItemClick(View view, int position) {
+                            @Override
+                            public void onItemClick(View view, int position) {
 
-//                                Log.i("debug", "perguntaId" + alternativasMescladas.get(position).getPergunta().getIdPergunta());
-//
-//                                if(alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()){
-//                                    resposta.setPontuacao(100);
-//                                    Toast.makeText(context, "acertou", Toast.LENGTH_LONG).show();
-//                                } else{
-//                                    Toast.makeText(context, "errou", Toast.LENGTH_LONG).show();
-//                                }
+                                if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
+                                    resposta.setPontuacao(100);
+                                    Toast.makeText(context, "acertou", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "errou", Toast.LENGTH_LONG).show();
+                                }
                             }
                         })
         );
     }
-
 
     public void onPause() {
         if (textToSpeech != null) {
@@ -184,6 +182,7 @@ public class TelaJogoProfissao extends Activity {
             Log.i("DEBUG", perguntaAtual.getDescricao());
             tvPergunta.setText(perguntaAtual.getDescricao());
             perguntas.remove(ranNum);
+            perguntas.size();
         } else {
             chamaTelaResultado();
         }
@@ -194,7 +193,8 @@ public class TelaJogoProfissao extends Activity {
         alternativasMescladas = new ArrayList<>(alternativasCorretas);
         alternativasMescladas.addAll(alternativasIncorretas);
 
-        Collections.shuffle(alternativasMescladas, new Random());
+        Collections.shuffle(alternativasMescladas);
+        alternativasMescladas.size();
     }
 
     public void chamaTelaResultado() {
@@ -280,33 +280,6 @@ public class TelaJogoProfissao extends Activity {
         }
     }
 
-//    private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
-//
-//        @Override
-//        protected List<Alternativa> doInBackground(Void... params) {
-//            if (alternativasCorretas.size() == 1) {
-//                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
-//            } else {
-//            }
-//            if (alternativasCorretas.size() == 2) {
-//                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), alternativasCorretas.get(1).getIdAlternativa(), 3, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
-//            } else {
-//            }
-//
-//            Log.i("debug", "AlternativasIncorretas " + alternativasIncorretas.size());
-//            return alternativasIncorretas;
-//        }
-//
-//        // é executado quando o webservice retorna
-//        @Override
-//        protected void onPostExecute(List<Alternativa> alts) {
-//            super.onPostExecute(alternativasIncorretas);
-//            alternativasIncorretas = alts;
-//            obterAlternativasCorretasAleatorias();
-//            inicializarRecyclerView();
-//            alternativasAdapter.notifyDataSetChanged();
-//        }
-
     private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
 
         @Override
@@ -316,8 +289,10 @@ public class TelaJogoProfissao extends Activity {
                 alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
                         alternativasCorretas.get(1).getIdAlternativa(), 3);
             } else {
-                if(alternativasCorretas.size() == 1){
+                if (alternativasCorretas.size() == 1) {
                     alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4);
+                } else {
+
                 }
             }
 
