@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.Adapter.AlternativasAdapter;
 
@@ -26,6 +27,7 @@ import consumer.AlternativaConsumer;
 import consumer.PerguntaConsumer;
 import pojo.Alternativa;
 import pojo.Pergunta;
+import pojo.Resposta;
 
 /**
  * Created by Gabriela on 18/11/2016.
@@ -44,11 +46,13 @@ public class TelaJogoProfissao extends Activity {
 
     private AlternativaConsumer alternativaConsumer;
     private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
-    ArrayList<Alternativa> alternativasMescladas;
-    ArrayList<Alternativa> alternativas;
+    private ArrayList<Alternativa> alternativasMescladas;
+
+    private Resposta resposta;
 
     RecyclerView recyclerView;
     AlternativasAdapter alternativasAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,62 @@ public class TelaJogoProfissao extends Activity {
                 textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
+
+        btFalar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = alternativasAdapter.getItem(0).getDescricao().toString();
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = alternativasAdapter.getItem(1).getDescricao().toString();
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = alternativasAdapter.getItem(2).getDescricao().toString();
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = alternativasAdapter.getItem(3).getDescricao().toString();
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        btFalar5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = alternativasAdapter.getItem(4).getDescricao().toString();
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(context, new
+                        RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
+                                    resposta.setPontuacao(100);
+                                    Toast.makeText(context, "acertou", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "errou", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        })
+        );
     }
 
     public void onPause() {
@@ -122,6 +182,7 @@ public class TelaJogoProfissao extends Activity {
             Log.i("DEBUG", perguntaAtual.getDescricao());
             tvPergunta.setText(perguntaAtual.getDescricao());
             perguntas.remove(ranNum);
+            perguntas.size();
         } else {
             chamaTelaResultado();
         }
@@ -132,7 +193,8 @@ public class TelaJogoProfissao extends Activity {
         alternativasMescladas = new ArrayList<>(alternativasCorretas);
         alternativasMescladas.addAll(alternativasIncorretas);
 
-        Collections.shuffle(alternativasMescladas, new Random());
+        Collections.shuffle(alternativasMescladas);
+        alternativasMescladas.size();
     }
 
     public void chamaTelaResultado() {
@@ -158,11 +220,11 @@ public class TelaJogoProfissao extends Activity {
         btPassar = (Button) findViewById(R.id.bt_randon);
 
         btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
-//        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
-//        btFalar2 = (Button) findViewById(R.id.bt_falar_opcao2);
-//        btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
-//        btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
-//        btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);
+        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
+        btFalar2 = (Button) findViewById(R.id.bt_falar_opcao2);
+        btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
+        btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
+        btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);
 
         perguntaConsumer = new PerguntaConsumer();
         perguntas = new ArrayList<>();
@@ -176,7 +238,7 @@ public class TelaJogoProfissao extends Activity {
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_alternativas);
 
-        alternativas = new ArrayList<>();
+        resposta = new Resposta();
     }
 
     private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {
@@ -185,10 +247,6 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Pergunta> doInBackground(Void... params) {
             perguntas = perguntaConsumer.chamaListar(1);
-<<<<<<< HEAD
-=======
-//            Log.i("DEBUG","Tamanho 1: "+perguntas.size());
->>>>>>> 40d6250786ffd9d4755aa2d31fa643e33679ab52
             return perguntas;
         }
 
@@ -196,10 +254,6 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected void onPostExecute(List<Pergunta> pergs) {
             super.onPostExecute(pergs);
-<<<<<<< HEAD
-=======
-            Log.i("DEBUG", "Tamanho 2: " + pergs.size());
->>>>>>> 40d6250786ffd9d4755aa2d31fa643e33679ab52
             perguntas = pergs;
             obterPersonagensAleatorios();
             obterPerguntasAleatorias();
@@ -226,33 +280,6 @@ public class TelaJogoProfissao extends Activity {
         }
     }
 
-//    private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
-//
-//        @Override
-//        protected List<Alternativa> doInBackground(Void... params) {
-//            if (alternativasCorretas.size() == 1) {
-//                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
-//            } else {
-//            }
-//            if (alternativasCorretas.size() == 2) {
-//                alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), alternativasCorretas.get(1).getIdAlternativa(), 3, alternativasCorretas.get(0).getGeneroPersonagem().getGeneroPersonagem());
-//            } else {
-//            }
-//
-//            Log.i("debug", "AlternativasIncorretas " + alternativasIncorretas.size());
-//            return alternativasIncorretas;
-//        }
-//
-//        // é executado quando o webservice retorna
-//        @Override
-//        protected void onPostExecute(List<Alternativa> alts) {
-//            super.onPostExecute(alternativasIncorretas);
-//            alternativasIncorretas = alts;
-//            obterAlternativasCorretasAleatorias();
-//            inicializarRecyclerView();
-//            alternativasAdapter.notifyDataSetChanged();
-//        }
-
     private class HttpRequestTaskAlternativasIncorretas extends AsyncTask<Void, Void, List<Alternativa>> {
 
         @Override
@@ -262,8 +289,10 @@ public class TelaJogoProfissao extends Activity {
                 alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
                         alternativasCorretas.get(1).getIdAlternativa(), 3);
             } else {
-                if(alternativasCorretas.size() == 1){
+                if (alternativasCorretas.size() == 1) {
                     alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4);
+                } else {
+
                 }
             }
 
