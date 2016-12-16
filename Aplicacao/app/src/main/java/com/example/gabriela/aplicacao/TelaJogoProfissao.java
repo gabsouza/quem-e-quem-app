@@ -45,7 +45,6 @@ public class TelaJogoProfissao extends Activity {
     private AlternativaConsumer alternativaConsumer;
     private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
     ArrayList<Alternativa> alternativasMescladas;
-    ArrayList<Alternativa> alternativas;
 
     RecyclerView recyclerView;
     AlternativasAdapter alternativasAdapter;
@@ -90,6 +89,15 @@ public class TelaJogoProfissao extends Activity {
                 textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(context, new
+                        RecyclerItemClickListener.OnItemClickListener() {
+                            @Override public void onItemClick(View view, int position) {
+
+                            }
+                        })
+        );
     }
 
     public void onPause() {
@@ -175,8 +183,6 @@ public class TelaJogoProfissao extends Activity {
         alternativasPorIdPergunta = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_alternativas);
-
-        alternativas = new ArrayList<>();
     }
 
     private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {
@@ -185,10 +191,6 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected List<Pergunta> doInBackground(Void... params) {
             perguntas = perguntaConsumer.chamaListar(1);
-<<<<<<< HEAD
-=======
-//            Log.i("DEBUG","Tamanho 1: "+perguntas.size());
->>>>>>> 40d6250786ffd9d4755aa2d31fa643e33679ab52
             return perguntas;
         }
 
@@ -196,10 +198,6 @@ public class TelaJogoProfissao extends Activity {
         @Override
         protected void onPostExecute(List<Pergunta> pergs) {
             super.onPostExecute(pergs);
-<<<<<<< HEAD
-=======
-            Log.i("DEBUG", "Tamanho 2: " + pergs.size());
->>>>>>> 40d6250786ffd9d4755aa2d31fa643e33679ab52
             perguntas = pergs;
             obterPersonagensAleatorios();
             obterPerguntasAleatorias();
