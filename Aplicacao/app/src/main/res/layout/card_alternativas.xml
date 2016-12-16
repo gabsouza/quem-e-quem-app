@@ -17,14 +17,7 @@
             android:layout_gravity="end"
             android:textColor="@color/colorTextIcons"
             android:layout_margin="10dp"/>
-
-        <!--<Button-->
-            <!--android:id="@+id/bt_audio"-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@drawable/borda"-->
-            <!--android:text="Falar1"-->
-            <!--android:textColor="@color/colorPrimaryText" />-->
+        
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
