@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff">
 
     <TextView
         android:layout_width="match_parent"
@@ -16,88 +17,37 @@
         android:layout_marginLeft="10dp"/>
 
     <ImageView
-        android:layout_width="80dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:id="@+id/iv_personagem"
         android:layout_gravity="center_horizontal"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="100dp"
-        android:layout_toStartOf="@+id/bt_falar_opcao1"/>
+        android:layout_marginTop="100dp"/>
 
-    <Button
+    <ImageButton
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/bt_falar_pergunta"
         android:textColor="@color/colorPrimaryText"
         android:background="@drawable/borda"
-        android:text="Falar"
-        android:layout_alignTop="@+id/tv_pergunta"
-        android:layout_alignParentEnd="true" />
+        android:src="@drawable/audio"
+        android:scaleType="fitCenter"
+        android:layout_alignTop="@+id/iv_personagem"
+        android:layout_below="@+id/tv_pergunta"
+        android:layout_alignParentEnd="true"/>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
         android:id="@+id/rv_alternativas"
         android:clickable="false"
+        android:background="@android:color/white"
+        android:layout_alignBottom="@+id/iv_personagem"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/iv_personagem"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorFundo">
+        android:layout_marginBottom="135dp">
     </android.support.v7.widget.RecyclerView>
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao4"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar4"
-        android:layout_marginTop="34dp"
-        android:layout_below="@+id/bt_falar_opcao3"
-        android:layout_toStartOf="@+id/rv_alternativas" />
-
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao3"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar3"
-        android:layout_marginTop="46dp"
-        android:layout_below="@+id/bt_falar_opcao2"
-        android:layout_toStartOf="@+id/rv_alternativas" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao2"
-        android:src="@drawable/audio"
-        android:layout_below="@+id/bt_falar_opcao1"
-        android:layout_marginTop="27dp"
-        android:layout_toEndOf="@+id/iv_personagem" />
-
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao5"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar5"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/bt_falar_opcao4"
-        android:layout_toStartOf="@+id/rv_alternativas" />
-
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_falar_opcao1"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar1"
-        android:layout_alignTop="@+id/rv_alternativas"
-        android:layout_toStartOf="@+id/rv_alternativas"
-        android:layout_marginEnd="23dp" />
 
 </RelativeLayout>

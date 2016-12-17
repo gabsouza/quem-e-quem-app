@@ -18,7 +18,7 @@ public class AlternativaConsumer {
 
     RestTemplate restTemplate;
 
-    public static final String URL_BASE = "http://192.168.3.100:8080/ServidorQuem/rest/alternativa/";
+    public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/alternativa/";
 
     public AlternativaConsumer() {
         restTemplate = new RestTemplate();
