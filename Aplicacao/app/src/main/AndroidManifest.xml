@@ -34,6 +34,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+        <activity android:name=".TelaJogoProfissao"/>
+>>>>>>> 87a68c355c4cc03bc2d2877a74e104faa42a5d68
         <activity android:name=".MainActivity"/>
         <activity android:name=".TelaResultado" />
 
