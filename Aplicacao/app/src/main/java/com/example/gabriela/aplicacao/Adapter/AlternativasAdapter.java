@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.R;
+import com.example.gabriela.aplicacao.RecyclerItemClickListener;
 
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +33,7 @@ public class AlternativasAdapter extends RecyclerView.Adapter<AlternativasAdapte
     public AlternativasAdapter(List<Alternativa> alternativas, Context ctx) {
         this.alternativas = alternativas;
         this.ctx = ctx;
+
     }
 
 

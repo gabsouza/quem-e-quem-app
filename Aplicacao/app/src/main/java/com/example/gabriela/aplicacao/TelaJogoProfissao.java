@@ -43,7 +43,7 @@ public class TelaJogoProfissao extends Activity {
 
     private PerguntaConsumer perguntaConsumer;
     private Pergunta perguntaAtual;
-    private List<Pergunta> perguntas;
+    private List<Pergunta> perguntas = new ArrayList<>();
 
     private AlternativaConsumer alternativaConsumer;
     private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
@@ -95,6 +95,17 @@ public class TelaJogoProfissao extends Activity {
                             }
                         })
         );
+
+        recyclerView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Button btn = (Button) v.findViewById(R.id.bt_opcao);
+                String falar = btn.getText().toString();
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+
+                return false;
+            }
+        });
 
         context = getApplicationContext();
 
