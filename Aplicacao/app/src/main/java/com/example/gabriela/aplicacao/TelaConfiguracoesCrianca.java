@@ -103,7 +103,7 @@ public class TelaConfiguracoesCrianca extends Activity {
                // perfil.setMidia((CustomSwip) viewPager.getAdapter()).setImagemCorrente());
                 Toast.makeText(TelaConfiguracoesCrianca.this, "Atualizado", Toast.LENGTH_LONG).show();
 
-                chamaTelaMain();
+
             }
         });
 
@@ -279,13 +279,17 @@ public class TelaConfiguracoesCrianca extends Activity {
 
     private void inicializaComponentes(){
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-        etNomeAtualiza = (EditText)findViewById(R.id.et_nome);
+        etNomeAtualiza = (EditText)findViewById(R.id.et_nome_atualiza);
         ibMicrofone = (ImageButton) findViewById(R.id.im_microfone);
         btAtualizar = (Button) findViewById(R.id.bt_atualizar);
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
         perfilConsumer = new PerfilConsumer();
         mp = new MediaPlayer();
         perfil = (Perfil)getIntent().getExtras().getSerializable("perf");
+        if(perfil == null){
+            Log.i("DEBUG", "NULOOOOOOOOO");
+        }
+
 
     }
 
@@ -295,9 +299,10 @@ public class TelaConfiguracoesCrianca extends Activity {
 
         @Override
         protected Perfil doInBackground(Perfil... params) {
-            Log.i("DEBUG",perf.getNomePerfil());
-            perfil = perfilConsumer.chamaAtualizar(perf.getIdPerfil(), perfil);
-            Log.i("DEBUG",perf.getNomePerfil());
+            Log.i("DEBUG",perfil.getNomePerfil() + " ");
+            Log.i("DEBUG", perfil.getIdPerfil()+ " ");
+            perfil = perfilConsumer.chamaAtualizar(perfil);
+            Log.i("DEBUG",perfil.getNomePerfil());
             return perfil;
         }
 
@@ -307,7 +312,7 @@ public class TelaConfiguracoesCrianca extends Activity {
             super.onPostExecute(perfil);
             Log.i("DEBUG",perfil.getNomePerfil());
             perf = perfil;
-
+            chamaTelaMain();
         }
     }
 }

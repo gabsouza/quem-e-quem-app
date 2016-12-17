@@ -107,7 +107,7 @@ public class TelaCadastroCrianca extends Activity{
                 // perfil.setMidia((CustomSwip) viewPager.getAdapter()).getImagemCorrente());
                 Toast.makeText(TelaCadastroCrianca.this, "Salvo", Toast.LENGTH_LONG).show();
 
-                chamaTelaMain();
+
             }
         });
 
@@ -293,7 +293,7 @@ public class TelaCadastroCrianca extends Activity{
         ibCamera = (ImageButton) findViewById(R.id.ib_camera);
         perfilConsumer = new PerfilConsumer();
         mp = new MediaPlayer();
-        responsavel = (Responsavel)getIntent().getExtras().getSerializable("resp");
+//        responsavel = (Responsavel)getIntent().getExtras().getSerializable("resp");
     }
 
     private class HttpRequestTask extends AsyncTask<Perfil, Void, Perfil> {
@@ -306,6 +306,7 @@ public class TelaCadastroCrianca extends Activity{
 //            Log.i("DEBUG", String.valueOf((params[0].getResponsavel().getIdResponsavel())));
             params[0] = perfilConsumer.chamaCadastrar(params[0]);
             Log.i("DEBUG",params[0].getNomePerfil());
+            Log.i("DEBUG", String.valueOf(params[0].getIdPerfil()));
 //            Log.i("DEBUG", String.valueOf((params[0].getResponsavel().getIdResponsavel())));
             return params[0];
         }
@@ -317,7 +318,7 @@ public class TelaCadastroCrianca extends Activity{
             Log.i("DEBUG",perfil.getNomePerfil());
 //             Log.i("DEBUG", String.valueOf((perfil.getResponsavel().getIdResponsavel())));
             perf = perfil;
-
+            chamaTelaMain();
         }
     }
 }
