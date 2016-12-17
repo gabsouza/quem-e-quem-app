@@ -18,7 +18,11 @@ public class AlternativaConsumer {
 
     RestTemplate restTemplate;
 
+<<<<<<< HEAD
     public static final String URL_BASE = "http://192.168.0.105:8080/ServidorQuem/rest/alternativa/";
+=======
+    public static final String URL_BASE = "http://192.168.3.100:8080/ServidorQuem/rest/alternativa/";
+>>>>>>> 154a95d24943496eb6ddcee0e32afd7ef138c5d4
 
     public AlternativaConsumer() {
         restTemplate = new RestTemplate();
@@ -54,20 +58,9 @@ public class AlternativaConsumer {
         return listaAlternativa;
     }
 
-    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas) {
-
-        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas;
-
-        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
-
-        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
-
-        return listaAlternativa;
-    }
-
-//    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas, String generoPersonagem) {
+//    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas) {
 //
-//        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas + "/" + generoPersonagem;
+//        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas;
 //
 //        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
 //
@@ -75,4 +68,15 @@ public class AlternativaConsumer {
 //
 //        return listaAlternativa;
 //    }
+
+    public List<Alternativa> buscarAlternativasIncorretas(int idAlternativa1, int idAlternativa2, int numeroDeAlternativas, String generoPersonagem) {
+
+        String URL = URL_BASE+ idAlternativa1 + "/" +idAlternativa2 + "/" + numeroDeAlternativas + "/" + generoPersonagem;
+
+        Alternativa[] vetorAlternativa = restTemplate.getForObject(URL, Alternativa[].class);
+
+        ArrayList<Alternativa> listaAlternativa = new ArrayList<Alternativa>(Arrays.asList(vetorAlternativa));
+
+        return listaAlternativa;
+    }
 }

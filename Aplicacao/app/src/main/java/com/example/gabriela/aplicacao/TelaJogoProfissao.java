@@ -49,6 +49,7 @@ public class TelaJogoProfissao extends Activity {
     private AlternativaConsumer alternativaConsumer;
     private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
     private ArrayList<Alternativa> alternativasMescladas;
+    private String genero;
 
     private Resposta resposta;
     private int totalPerguntas = 0;
@@ -125,9 +126,12 @@ public class TelaJogoProfissao extends Activity {
         int n = r.nextInt(9);
         ivPersonagem.setImageResource(cards[n]);
 
-//        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawle.personagem4 || cards[n] == R.drawable.personagem9){
-//            //CHAMA ALTERNATIVAS TALS
-//        }
+        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawable.personagem4 || cards[n] == R.drawable.personagem9){
+            genero = "masculino";
+        }
+        else{
+            genero = "feminino";
+        }
     }
 
     public void obterPerguntasAleatorias() {
@@ -179,11 +183,6 @@ public class TelaJogoProfissao extends Activity {
         tvPergunta = (TextView) findViewById(R.id.tv_pergunta);
 
         btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
-//        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
-//        btFalar2 = (ImageButton) findViewById(R.id.bt_falar_opcao2);
-//        btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
-//        btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
-//        btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);
 
         perguntaConsumer = new PerguntaConsumer();
         perguntas = new ArrayList<>();
@@ -246,10 +245,10 @@ public class TelaJogoProfissao extends Activity {
 
             if (alternativasCorretas.size() == 2) {
                 alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
-                        alternativasCorretas.get(1).getIdAlternativa(), 3);
+                        alternativasCorretas.get(1).getIdAlternativa(), 3, genero);
             } else {
                 if (alternativasCorretas.size() == 1) {
-                    alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4);
+                    alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4, genero);
                 } else {
 
                 }

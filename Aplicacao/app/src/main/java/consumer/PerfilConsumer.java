@@ -16,7 +16,7 @@ public class PerfilConsumer {
 
     RestTemplate restTemplate;
 
-    public static final String URL_BASE = "http://192.168.0.108:8080/ServidorQuem/rest/perfil/";
+    public static final String URL_BASE = "http://192.168.3.100:8080/ServidorQuem/rest/perfil/";
 
 
     public PerfilConsumer() {
@@ -38,11 +38,9 @@ public class PerfilConsumer {
         return perfil;
     }
 
-    public Perfil chamaAtualizar(int id, Perfil perfil) {
-        String URL = URL_BASE+"/{id}";
-        Map map = new HashMap();
-        map.put("id", id);
-        restTemplate.put(URL, perfil, map);
+    public Perfil chamaAtualizar(Perfil perfil) {
+        String URL = URL_BASE;
+        restTemplate.put(URL, perfil);
         return perfil;
     }
 

@@ -129,17 +129,17 @@ public class TelaLogin extends AppCompatActivity implements
     private void passaParametros() {
         Intent passa = new Intent(this, MainActivity.class);
 
-        String passaNome = txtName.getText().toString();
-        String passaEmail = txtEmail.getText().toString();
-//        String passaFoto = imgProfilePic.toString();
+//        String passaNome = txtName.getText().toString();
+//        String passaEmail = txtEmail.getText().toString();
+////        String passaFoto = imgProfilePic.toString();
         Bundle bundle = new Bundle();
 
-        bundle.putString("nome", passaNome);
-        bundle.putString("email", passaEmail);
-//        bundle.putString("photo", passaFoto);
-        bundle.putSerializable("responsavel", resp);
+//        bundle.putString("nome", passaNome);
+//        bundle.putString("email", passaEmail);
+////        bundle.putString("photo", passaFoto);
+//        bundle.putSerializable("responsavel", resp);
 
-        passa.putExtras(bundle);
+//        passa.putExtras(bundle);
 
         startActivity(passa);
     }

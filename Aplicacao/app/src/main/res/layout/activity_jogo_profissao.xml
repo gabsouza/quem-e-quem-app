@@ -37,13 +37,11 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="200dp"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:id="@+id/rv_alternativas"
         android:clickable="false"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/iv_personagem"
-        android:layout_alignParentBottom="true"
-        android:layout_centerVertical="true"
         android:background="@android:color/white">
     </android.support.v7.widget.RecyclerView>
 
