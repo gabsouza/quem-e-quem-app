@@ -23,70 +23,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/bt_randon"
-        android:layout_marginTop="100dp" />
-
-    <!--<Button-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/tv_opcao1"-->
-        <!--android:layout_below="@+id/tv_pergunta"-->
-        <!--android:textColor="@color/colorTextIcons"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_marginTop="100dp"-->
-        <!--android:background="@drawable/borda"/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/tv_opcao2"-->
-        <!--android:layout_marginTop="37dp"-->
-        <!--android:textColor="@color/colorTextIcons"-->
-        <!--android:layout_below="@+id/tv_opcao1"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:background="@drawable/borda"/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/tv_opcao3"-->
-        <!--android:textColor="@color/colorTextIcons"-->
-        <!--android:layout_below="@+id/tv_opcao2"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_marginTop="38dp"-->
-        <!--android:background="@drawable/borda"/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/tv_opcao4"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:textColor="@color/colorTextIcons"-->
-        <!--android:layout_below="@+id/tv_opcao3"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:background="@drawable/borda"/>-->
-
-    <!--<Button-->
-        <!--android:layout_width="150dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/tv_opcao5"-->
-        <!--android:textColor="@color/colorTextIcons"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:layout_below="@+id/tv_opcao4"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:background="@drawable/borda"/>-->
-
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:id="@+id/bt_randon"
-        android:background="@drawable/borda"
-        android:text="Próximo"
-        android:textColor="@color/colorTextIcons"
-        android:textSize="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginTop="100dp"
+        android:layout_toStartOf="@+id/bt_falar_opcao1"/>
 
     <Button
         android:layout_width="40dp"
@@ -105,7 +43,8 @@
         android:clickable="false"
         android:layout_alignParentEnd="true"
         android:layout_alignTop="@+id/iv_personagem"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorFundo">
     </android.support.v7.widget.RecyclerView>
 
     <Button
@@ -130,16 +69,14 @@
         android:layout_below="@+id/bt_falar_opcao2"
         android:layout_toStartOf="@+id/rv_alternativas" />
 
-    <Button
-        android:layout_width="40dp"
+    <ImageButton
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bt_falar_opcao2"
-        android:textColor="@color/colorPrimaryText"
-        android:background="@drawable/borda"
-        android:text="Falar2"
-        android:layout_marginTop="36dp"
+        android:src="@drawable/audio"
         android:layout_below="@+id/bt_falar_opcao1"
-        android:layout_toStartOf="@+id/rv_alternativas" />
+        android:layout_marginTop="27dp"
+        android:layout_toEndOf="@+id/iv_personagem" />
 
     <Button
         android:layout_width="40dp"

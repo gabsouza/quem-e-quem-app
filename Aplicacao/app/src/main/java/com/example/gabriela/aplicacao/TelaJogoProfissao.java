@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class TelaJogoProfissao extends Activity {
     private TextToSpeech textToSpeech;
     private ImageView ivPersonagem;
     private TextView tvPergunta;
-    private Button btPassar, btFalar, btFalar1, btFalar2, btFalar3, btFalar4, btFalar5;
+    private Button btFalar, btFalar1, btFalar3, btFalar4, btFalar5;
+    private ImageButton btFalar2;
     private Context context;
 
     private PerguntaConsumer perguntaConsumer;
@@ -50,6 +52,7 @@ public class TelaJogoProfissao extends Activity {
     private String genero;
 
     private Resposta resposta;
+    private int totalPerguntas = 0;
 
     RecyclerView recyclerView;
     AlternativasAdapter alternativasAdapter;
@@ -61,20 +64,7 @@ public class TelaJogoProfissao extends Activity {
         setContentView(R.layout.activity_jogo_profissao);
         inicializaComponentes();
 
-        // BUSCA AS PERGUNTAS
         new HttpRequestTaskPergunta().execute();
-
-        btPassar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    new HttpRequestTaskPergunta().execute();
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
         context = getApplicationContext();
 
@@ -143,7 +133,16 @@ public class TelaJogoProfissao extends Activity {
                             public void onItemClick(View view, int position) {
 
                                 if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
-                                    resposta.setPontuacao(100);
+
+                                    int pontuacaoAtual = resposta.getPontuacao();
+
+                                    resposta.setPontuacao(pontuacaoAtual + 100);
+
+                                    obterPersonagensAleatorios();
+                                    obterPerguntasAleatorias();
+                                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
+                                    obterAlternativasCorretasAleatorias();
+
                                     Toast.makeText(context, "acertou", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(context, "errou", Toast.LENGTH_LONG).show();
@@ -198,7 +197,9 @@ public class TelaJogoProfissao extends Activity {
         alternativasMescladas.addAll(alternativasIncorretas);
 
         Collections.shuffle(alternativasMescladas);
-        alternativasMescladas.size();
+        alternativasAdapter = new AlternativasAdapter(alternativasMescladas, this);
+        recyclerView.setAdapter(alternativasAdapter);
+        alternativasAdapter.notifyDataSetChanged();
     }
 
     public void chamaTelaResultado() {
@@ -221,11 +222,9 @@ public class TelaJogoProfissao extends Activity {
         ivPersonagem = (ImageView) findViewById(R.id.iv_personagem);
         tvPergunta = (TextView) findViewById(R.id.tv_pergunta);
 
-        btPassar = (Button) findViewById(R.id.bt_randon);
-
         btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
         btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
-        btFalar2 = (Button) findViewById(R.id.bt_falar_opcao2);
+        btFalar2 = (ImageButton) findViewById(R.id.bt_falar_opcao2);
         btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
         btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
         btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);
