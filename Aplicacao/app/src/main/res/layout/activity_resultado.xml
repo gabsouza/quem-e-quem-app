@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_centerHorizontal="true"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    android:layout_gravity="center">
+    <TextView
+        android:id="@+id/tv_vc_fez"
+        android:text="Você fez"
+        android:gravity="center|bottom"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="60dp"
+        android:layout_height="20dp" />
+    <TextView
+        android:id="@+id/tv_num_pontos"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/tv_vc_fez"
+        android:text="90"
+        android:textSize="65sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center|top"
+        />
+    <TextView
+        android:id="@+id/tv_pontos"
+        android:text="pontos!"
+        android:gravity="center|bottom"
+        android:layout_below="@+id/tv_num_pontos"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="60dp"
+        android:layout_height="20dp" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_parabens"
+        android:text="Parabéns!"
+        android:gravity="center|bottom"
+        android:layout_below="@+id/tv_pontos"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="80dp"
+        android:layout_height="20dp" />
+    <Button
+        android:id="@+id/bt_fechar_dialog"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:text="Fechar"
+        android:layout_below="@+id/tv_parabens"
+        />
+
+
+</RelativeLayout>

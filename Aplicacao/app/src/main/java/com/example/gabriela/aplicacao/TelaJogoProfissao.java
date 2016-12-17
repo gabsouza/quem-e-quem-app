@@ -38,8 +38,7 @@ public class TelaJogoProfissao extends Activity {
     private TextToSpeech textToSpeech;
     private ImageView ivPersonagem;
     private TextView tvPergunta;
-    private Button btFalar, btFalar1, btFalar3, btFalar4, btFalar5;
-    private ImageButton btFalar2;
+    private ImageButton btFalar;
     private Context context;
 
     private PerguntaConsumer perguntaConsumer;
@@ -52,7 +51,7 @@ public class TelaJogoProfissao extends Activity {
     private String genero;
 
     private Resposta resposta;
-    private int totalPerguntas = 0;
+    private int count = 0;
 
     RecyclerView recyclerView;
     AlternativasAdapter alternativasAdapter;
@@ -65,6 +64,7 @@ public class TelaJogoProfissao extends Activity {
         inicializaComponentes();
 
         new HttpRequestTaskPergunta().execute();
+//        obterPerguntasAleatorias();
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(context, new
@@ -72,7 +72,7 @@ public class TelaJogoProfissao extends Activity {
                             @Override
                             public void onItemClick(View view, int position) {
 
-                                if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
+                                if ( alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
 
                                     int pontuacaoAtual = resposta.getPontuacao();
 
@@ -86,6 +86,11 @@ public class TelaJogoProfissao extends Activity {
                                     Toast.makeText(TelaJogoProfissao.this, "acertou", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(TelaJogoProfissao.this, "errou", Toast.LENGTH_LONG).show();
+
+                                    obterPersonagensAleatorios();
+                                    obterPerguntasAleatorias();
+                                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
+                                    obterAlternativasCorretasAleatorias();
                                 }
                             }
                         })
@@ -182,7 +187,7 @@ public class TelaJogoProfissao extends Activity {
         ivPersonagem = (ImageView) findViewById(R.id.iv_personagem);
         tvPergunta = (TextView) findViewById(R.id.tv_pergunta);
 
-        btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
+        btFalar = (ImageButton) findViewById(R.id.bt_falar_pergunta);
 
         perguntaConsumer = new PerguntaConsumer();
         perguntas = new ArrayList<>();
@@ -267,5 +272,4 @@ public class TelaJogoProfissao extends Activity {
             alternativasAdapter.notifyDataSetChanged();
         }
     }
-
 }
