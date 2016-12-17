@@ -24,7 +24,7 @@
         android:layout_alignParentEnd="true" />
 
     <EditText
-        android:id="@+id/et_nome"
+        android:id="@+id/et_nome_atualiza"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"

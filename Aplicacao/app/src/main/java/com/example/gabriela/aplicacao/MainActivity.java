@@ -9,6 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -154,6 +155,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 chamaTelaConfiguracoesCrianca();
+                finish();
             }
         });
 
@@ -161,6 +163,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 chamaTelaSelos();
+                finish();
             }
         });
 
@@ -168,6 +171,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 chamaTelaSelos();
+                finish();
             }
         });
 
@@ -175,6 +179,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 chamaTelaSelos();
+                finish();
             }
         });
 
@@ -256,6 +261,10 @@ public class MainActivity extends AppCompatActivity{
         Intent itTelaConfiguracoesCrianca = new Intent(this, TelaConfiguracoesCrianca.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("perf", perf);
+        if(perf==null) {
+            Log.i("DEBUG", "PRIMEIRO NULOOO ");
+        }
+
         itTelaConfiguracoesCrianca.putExtras(bundle);
         startActivity(itTelaConfiguracoesCrianca);
         finish();
@@ -358,7 +367,7 @@ public class MainActivity extends AppCompatActivity{
 //        tvNome = (TextView)findViewById(R.id.username);
 //        tvEmail = (TextView)findViewById(R.id.email);
 //        civFoto = (CircleImageView)findViewById(R.id.profile_image);
-        resp = (Responsavel)getIntent().getExtras().getSerializable("resp");
-//        perfil = (Perfil)getIntent().getExtras().getSerializable("perf");
+//        resp = (Responsavel)getIntent().getExtras().getSerializable("responsavel");
+        perf = (Perfil)getIntent().getExtras().getSerializable("perf");
     }
 }

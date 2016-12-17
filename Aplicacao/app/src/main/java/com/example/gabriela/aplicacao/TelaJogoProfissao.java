@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class TelaJogoProfissao extends Activity {
     private TextToSpeech textToSpeech;
     private ImageView ivPersonagem;
     private TextView tvPergunta;
-    private Button btFalar, btFalar1, btFalar2, btFalar3, btFalar4, btFalar5;
+    private Button btFalar, btFalar1, btFalar3, btFalar4, btFalar5;
+    private ImageButton btFalar2;
     private Context context;
 
     private PerguntaConsumer perguntaConsumer;
@@ -47,6 +49,7 @@ public class TelaJogoProfissao extends Activity {
     private AlternativaConsumer alternativaConsumer;
     private List<Alternativa> alternativasCorretas, alternativasIncorretas, alternativasPorIdPergunta;
     private ArrayList<Alternativa> alternativasMescladas;
+    private String genero;
 
     private Resposta resposta;
     private int totalPerguntas = 0;
@@ -63,6 +66,31 @@ public class TelaJogoProfissao extends Activity {
 
         new HttpRequestTaskPergunta().execute();
 
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(context, new
+                        RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+
+                                if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
+
+                                    int pontuacaoAtual = resposta.getPontuacao();
+
+                                    resposta.setPontuacao(pontuacaoAtual + 100);
+
+                                    obterPersonagensAleatorios();
+                                    obterPerguntasAleatorias();
+                                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
+                                    obterAlternativasCorretasAleatorias();
+
+                                    Toast.makeText(TelaJogoProfissao.this, "acertou", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(TelaJogoProfissao.this, "errou", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        })
+        );
+
         context = getApplicationContext();
 
         textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
@@ -78,74 +106,10 @@ public class TelaJogoProfissao extends Activity {
             @Override
             public void onClick(View v) {
                 String falar = tvPergunta.getText().toString();
-
                 textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
             }
         });
 
-        btFalar1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(0).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(1).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(2).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(3).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(4).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        recyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(context, new
-                        RecyclerItemClickListener.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-
-                                if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
-
-                                    int pontuacao = resposta.getPontuacao();
-                                    resposta.setPontuacao(pontuacao + 100);
-
-                                    obterPersonagensAleatorios();
-                                    obterPerguntasAleatorias();
-                                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
-                                    obterAlternativasCorretasAleatorias();
-
-                                    Toast.makeText(context, "acertou", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(context, "errou", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        })
-        );
     }
 
     public void onPause() {
@@ -162,9 +126,12 @@ public class TelaJogoProfissao extends Activity {
         int n = r.nextInt(9);
         ivPersonagem.setImageResource(cards[n]);
 
-//        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawable.personagem4 || cards[n] == R.drawable.personagem9){
-//            //CHAMA ALTERNATIVAS TALS
-//        }
+        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawable.personagem4 || cards[n] == R.drawable.personagem9){
+            genero = "masculino";
+        }
+        else{
+            genero = "feminino";
+        }
     }
 
     public void obterPerguntasAleatorias() {
@@ -216,11 +183,6 @@ public class TelaJogoProfissao extends Activity {
         tvPergunta = (TextView) findViewById(R.id.tv_pergunta);
 
         btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
-        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
-        btFalar2 = (Button) findViewById(R.id.bt_falar_opcao2);
-        btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
-        btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
-        btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);
 
         perguntaConsumer = new PerguntaConsumer();
         perguntas = new ArrayList<>();
@@ -283,10 +245,10 @@ public class TelaJogoProfissao extends Activity {
 
             if (alternativasCorretas.size() == 2) {
                 alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(),
-                        alternativasCorretas.get(1).getIdAlternativa(), 3);
+                        alternativasCorretas.get(1).getIdAlternativa(), 3, genero);
             } else {
                 if (alternativasCorretas.size() == 1) {
-                    alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4);
+                    alternativasIncorretas = alternativaConsumer.buscarAlternativasIncorretas(alternativasCorretas.get(0).getIdAlternativa(), 0, 4, genero);
                 } else {
 
                 }

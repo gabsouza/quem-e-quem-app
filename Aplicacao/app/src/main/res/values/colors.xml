@@ -8,9 +8,7 @@
     <color name="colorSecundaryText">#757575</color>
     <color name="colorTextIcons">#FFFFFF</color>
     <color name="colorDevider">#BDBDBD</color>
-    <color name="colorFundo">#f2f2f2</color>
-
-
+    <color name="colorFundo">#EEEEEE</color>
 
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
