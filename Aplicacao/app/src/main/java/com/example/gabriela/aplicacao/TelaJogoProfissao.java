@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class TelaJogoProfissao extends Activity {
     private TextToSpeech textToSpeech;
     private ImageView ivPersonagem;
     private TextView tvPergunta;
-    private Button btFalar, btFalar1, btFalar2, btFalar3, btFalar4, btFalar5;
+    private Button btFalar, btFalar1, btFalar3, btFalar4, btFalar5;
+    private ImageButton btFalar2;
     private Context context;
 
     private PerguntaConsumer perguntaConsumer;
@@ -131,8 +133,9 @@ public class TelaJogoProfissao extends Activity {
 
                                 if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
 
-                                    int pontuacao = resposta.getPontuacao();
-                                    resposta.setPontuacao(pontuacao + 100);
+                                    int pontuacaoAtual = resposta.getPontuacao();
+
+                                    resposta.setPontuacao(pontuacaoAtual + 100);
 
                                     obterPersonagensAleatorios();
                                     obterPerguntasAleatorias();
@@ -217,7 +220,7 @@ public class TelaJogoProfissao extends Activity {
 
         btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
         btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
-        btFalar2 = (Button) findViewById(R.id.bt_falar_opcao2);
+        btFalar2 = (ImageButton) findViewById(R.id.bt_falar_opcao2);
         btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
         btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
         btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);

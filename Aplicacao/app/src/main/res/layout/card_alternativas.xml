@@ -18,6 +18,5 @@
             android:textColor="@color/colorTextIcons"
             android:layout_margin="10dp"/>
 
-
     </RelativeLayout>
 </android.support.v7.widget.CardView>

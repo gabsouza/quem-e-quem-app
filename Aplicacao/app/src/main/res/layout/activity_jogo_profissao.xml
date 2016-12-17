@@ -69,14 +69,14 @@
         android:layout_below="@+id/bt_falar_opcao2"
         android:layout_toStartOf="@+id/rv_alternativas" />
 
-    <Button
-        android:layout_width="18.898dp"
-        android:layout_height="18.898dp"
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/bt_falar_opcao2"
-        android:background="@drawable/audio"
+        android:src="@drawable/audio"
         android:layout_below="@+id/bt_falar_opcao1"
-        android:layout_alignEnd="@+id/bt_falar_opcao1"
-        android:layout_marginTop="27dp" />
+        android:layout_marginTop="27dp"
+        android:layout_toEndOf="@+id/iv_personagem" />
 
     <Button
         android:layout_width="40dp"
