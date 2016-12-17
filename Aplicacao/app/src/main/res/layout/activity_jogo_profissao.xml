@@ -26,23 +26,27 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="100dp"/>
 
-    <Button
+    <ImageButton
         android:layout_width="40dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/bt_falar_pergunta"
         android:textColor="@color/colorPrimaryText"
         android:background="@drawable/borda"
-        android:layout_alignTop="@+id/tv_pergunta"
-        android:layout_alignParentEnd="true" />
+        android:src="@drawable/audio"
+        android:scaleType="fitCenter"
+        android:layout_alignTop="@+id/iv_personagem"
+        android:layout_below="@+id/tv_pergunta"
+        android:layout_alignParentEnd="true"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:id="@+id/rv_alternativas"
         android:clickable="false"
+        android:background="@android:color/white"
+        android:layout_alignBottom="@+id/iv_personagem"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/iv_personagem"
-        android:background="@android:color/white">
+        android:layout_marginBottom="135dp">
     </android.support.v7.widget.RecyclerView>
 
 
