@@ -65,66 +65,6 @@ public class TelaJogoProfissao extends Activity {
 
         new HttpRequestTaskPergunta().execute();
 
-        context = getApplicationContext();
-
-        textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(Locale.getDefault());
-                }
-            }
-        });
-
-        btFalar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = tvPergunta.getText().toString();
-
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(0).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(1).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(2).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(3).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
-        btFalar5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String falar = alternativasAdapter.getItem(4).getDescricao().toString();
-                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        });
-
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(context, new
                         RecyclerItemClickListener.OnItemClickListener() {
@@ -142,13 +82,33 @@ public class TelaJogoProfissao extends Activity {
                                     new HttpRequestTaskAlternativaPorIdPergunta().execute();
                                     obterAlternativasCorretasAleatorias();
 
-                                    Toast.makeText(context, "acertou", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(TelaJogoProfissao.this, "acertou", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(context, "errou", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(TelaJogoProfissao.this, "errou", Toast.LENGTH_LONG).show();
                                 }
                             }
                         })
         );
+
+        context = getApplicationContext();
+
+        textToSpeech = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.getDefault());
+                }
+            }
+        });
+
+        btFalar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String falar = tvPergunta.getText().toString();
+                textToSpeech.speak(falar, TextToSpeech.QUEUE_FLUSH, null);
+            }
+        });
+
     }
 
     public void onPause() {
@@ -165,7 +125,7 @@ public class TelaJogoProfissao extends Activity {
         int n = r.nextInt(9);
         ivPersonagem.setImageResource(cards[n]);
 
-//        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawable.personagem4 || cards[n] == R.drawable.personagem9){
+//        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawle.personagem4 || cards[n] == R.drawable.personagem9){
 //            //CHAMA ALTERNATIVAS TALS
 //        }
     }
@@ -219,11 +179,11 @@ public class TelaJogoProfissao extends Activity {
         tvPergunta = (TextView) findViewById(R.id.tv_pergunta);
 
         btFalar = (Button) findViewById(R.id.bt_falar_pergunta);
-        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
-        btFalar2 = (ImageButton) findViewById(R.id.bt_falar_opcao2);
-        btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
-        btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
-        btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);
+//        btFalar1 = (Button) findViewById(R.id.bt_falar_opcao1);
+//        btFalar2 = (ImageButton) findViewById(R.id.bt_falar_opcao2);
+//        btFalar3 = (Button) findViewById(R.id.bt_falar_opcao3);
+//        btFalar4 = (Button) findViewById(R.id.bt_falar_opcao4);
+//        btFalar5 = (Button) findViewById(R.id.bt_falar_opcao5);
 
         perguntaConsumer = new PerguntaConsumer();
         perguntas = new ArrayList<>();
