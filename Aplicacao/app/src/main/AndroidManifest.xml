@@ -13,20 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".TelaJogoProfissao" >
 
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-
-
-        <activity android:name=".TelaConfiguracoesCrianca" />
-        <activity android:name=".TelaCadastroCrianca" />
-        <activity android:name=".TelaJogoFantasia" />
-        <activity android:name=".TelaSelo" />
         <activity android:name=".TelaLogin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,11 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-=======
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".TelaCadastroCrianca" />
+        <activity android:name=".TelaJogoFantasia" />
+        <activity android:name=".TelaSelo" />
         <activity android:name=".TelaJogoProfissao"/>
->>>>>>> 87a68c355c4cc03bc2d2877a74e104faa42a5d68
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".TelaResultado" />
+        <activity android:name=".TelaConfiguracoesCrianca" />
+        <activity android:name=".TelaResultado"/>
 
         <meta-data
             android:name="com.google.android.gms.version"

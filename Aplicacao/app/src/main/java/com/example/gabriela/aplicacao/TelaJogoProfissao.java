@@ -3,6 +3,7 @@ package com.example.gabriela.aplicacao;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -17,6 +18,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gabriela.aplicacao.Adapter.AlternativasAdapter;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -51,10 +56,15 @@ public class TelaJogoProfissao extends Activity {
     private String genero;
 
     private Resposta resposta;
-    private int count = 0;
+    private int count;
 
     RecyclerView recyclerView;
     AlternativasAdapter alternativasAdapter;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     @Override
@@ -72,28 +82,42 @@ public class TelaJogoProfissao extends Activity {
                             @Override
                             public void onItemClick(View view, int position) {
 
-                                if ( alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
+                                if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
 
                                     int pontuacaoAtual = resposta.getPontuacao();
 
-                                    resposta.setPontuacao(pontuacaoAtual + 100);
+                                    resposta.setPontuacao(pontuacaoAtual + 10);
 
                                     obterPersonagensAleatorios();
                                     obterPerguntasAleatorias();
                                     new HttpRequestTaskAlternativaPorIdPergunta().execute();
                                     obterAlternativasCorretasAleatorias();
 
-                                    Toast.makeText(TelaJogoProfissao.this, "acertou", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(TelaJogoProfissao.this, "acertou, " + resposta.getPontuacao() + " pontos," +
+                                            " faltam " + perguntas.size() + " questões", Toast.LENGTH_LONG).show();
                                 } else {
-                                    Toast.makeText(TelaJogoProfissao.this, "errou", Toast.LENGTH_LONG).show();
 
-                                    obterPersonagensAleatorios();
-                                    obterPerguntasAleatorias();
-                                    new HttpRequestTaskAlternativaPorIdPergunta().execute();
-                                    obterAlternativasCorretasAleatorias();
+                                    //AQUI
+                                    if (alternativasMescladas.get(position).getPergunta().getIdPergunta() != perguntaAtual.getIdPergunta()) {
+
+                                        int pontuacaoAtual = resposta.getPontuacao();
+
+                                        resposta.setPontuacao(pontuacaoAtual - 5);
+
+                                        obterPersonagensAleatorios();
+                                        obterPerguntasAleatorias();
+                                        new HttpRequestTaskAlternativaPorIdPergunta().execute();
+                                        obterAlternativasCorretasAleatorias();
+
+                                        Toast.makeText(TelaJogoProfissao.this, "errou, " + resposta.getPontuacao() + " pontos," +
+                                                " faltam " + perguntas.size() + " questões", Toast.LENGTH_LONG).show();
+                                    }
+
                                 }
+//                                count = resposta.getPontuacao();
                             }
                         })
+
         );
 
         recyclerView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -126,6 +150,9 @@ public class TelaJogoProfissao extends Activity {
             }
         });
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void onPause() {
@@ -142,10 +169,9 @@ public class TelaJogoProfissao extends Activity {
         int n = r.nextInt(9);
         ivPersonagem.setImageResource(cards[n]);
 
-        if(cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawable.personagem4 || cards[n] == R.drawable.personagem9){
+        if (cards[n] == R.drawable.personagem1 || cards[n] == R.drawable.personagem2 || cards[n] == R.drawable.personagem4 || cards[n] == R.drawable.personagem9) {
             genero = "masculino";
-        }
-        else{
+        } else {
             genero = "feminino";
         }
     }
@@ -162,6 +188,8 @@ public class TelaJogoProfissao extends Activity {
             tvPergunta.setText(perguntaAtual.getDescricao());
             perguntas.remove(ranNum);
             perguntas.size();
+
+
         } else {
             chamaTelaResultado();
         }
@@ -179,9 +207,16 @@ public class TelaJogoProfissao extends Activity {
     }
 
     public void chamaTelaResultado() {
-        Intent itTelaResultado = new Intent(this, TelaResultado.class);
-        startActivity(itTelaResultado);
+        Intent intent = new Intent(TelaJogoProfissao.this, TelaResultado.class);
+
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable("count", String.valueOf(count));
+//        Log.i("DEBUG", String.valueOf(count));
+//        intent.putExtras(bundle);
+        startActivity(intent);
+//        Log.i("DEBUG", "estartou" + count);
         finish();
+
     }
 
     public void inicializarRecyclerView() {
@@ -213,6 +248,42 @@ public class TelaJogoProfissao extends Activity {
         recyclerView = (RecyclerView) findViewById(R.id.rv_alternativas);
 
         resposta = new Resposta();
+    }
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("TelaJogoProfissao Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
     }
 
     private class HttpRequestTaskPergunta extends AsyncTask<Void, Void, List<Pergunta>> {

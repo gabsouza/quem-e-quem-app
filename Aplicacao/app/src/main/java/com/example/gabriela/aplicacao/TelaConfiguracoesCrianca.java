@@ -111,13 +111,14 @@ public class TelaConfiguracoesCrianca extends Activity {
     }
 
     private void chamaTelaMain(){
-        Intent itTelaMain = new Intent(this, MainActivity.class);
+        Intent itTelaMain = new Intent(TelaConfiguracoesCrianca.this, MainActivity.class);
         startActivity(itTelaMain);
         finish();
     }
 
     private void intent() {
-        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
+//        Intent intent = new Intent(this, TelaConfiguracoesCrianca.class);
+        Intent intent = getIntent();
         String passaNome = etNomeAtualiza.getText().toString();
 //        String passaFoto = imgEdit.toString();
         Bundle bundle = new Bundle();
