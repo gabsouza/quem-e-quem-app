@@ -1,56 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_centerHorizontal="true"
-    android:layout_width="250dp"
-    android:layout_height="250dp"
-    android:layout_gravity="center">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    app:layout_collapseParallaxMultiplier="1.0">
 
-    <TextView
-        android:id="@+id/tv_parabens"
-        android:text="Parabéns!"
-        android:gravity="center|bottom"
-        android:layout_width="80dp"
-        android:layout_height="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_above="@+id/bt_fechar_dialog"
-        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_pontos"
-        android:text="pontos!"
-        android:gravity="center|bottom"
-        android:layout_marginBottom="18dp"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:layout_above="@+id/tv_parabens"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:text="Voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_voltar"
+            android:layout_marginBottom="81dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/bt_fechar_dialog"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:text="Fechar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/tv_vc_fez" />
+        <TextView
+            android:text="PARABÉNS"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:id="@+id/tv_parabens"
+            android:textSize="35sp"
+            android:textAlignment="center"
+            android:layout_marginTop="87dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:id="@+id/tv_vc_fez"
-        android:text="Você fez"
-        android:gravity="center|bottom"
-        android:layout_width="60dp"
-        android:layout_height="20dp"
-        android:layout_above="@+id/tv_soma_pontos"
-        android:layout_alignStart="@+id/tv_pontos"
-        android:layout_marginBottom="20dp" />
+        <TextView
+            android:text="Você fez"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_vocefez"
+            android:textSize="35sp"
+            android:layout_weight="0.20"
+            android:layout_below="@+id/tv_parabens"
+            android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="85"
-        android:layout_below="@+id/tv_vc_fez"
-        android:layout_alignStart="@+id/tv_pontos"
-        android:layout_marginTop="32dp"
-        android:id="@+id/tv_soma_pontos" />
+        <TextView
+            android:text="pontuação"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_somapontuacao"
+            android:textColor="@color/colorAccent"
+            android:layout_weight="0.20"
+            android:textSize="60sp"
+            android:layout_above="@+id/tv_pontos"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13dp" />
 
+        <TextView
+            android:text="pontos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_pontos"
+            android:textSize="45sp"
+            android:textColor="@color/colorAccent"
+            android:layout_marginBottom="83dp"
+            android:layout_above="@+id/bt_voltar"
+            android:layout_alignStart="@+id/tv_vocefez" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

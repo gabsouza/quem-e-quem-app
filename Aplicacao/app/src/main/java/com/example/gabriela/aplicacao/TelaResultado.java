@@ -17,7 +17,7 @@ public class TelaResultado extends Activity {
     private TextView tvVoceFez;
     private TextView tvPontos;
     private TextView tvSomaPontos;
-    private Button btFechar;
+    private Button btVoltar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,22 +25,21 @@ public class TelaResultado extends Activity {
         setContentView(R.layout.activity_resultado);
         inicializaComponentes();
 
-//        Intent intent = getIntent();
-//
-//        Bundle bundle = intent.getExtras();
-//        String count = bundle.getString("count");
-////        int count = bundle.getInt("count");
-//
-//        tvSomaPontos.setText(count);
+        Intent intent = getIntent();
+
+        Bundle bundle = intent.getExtras();
+        String count = bundle.getString("count");
+
+        tvSomaPontos.setText(count);
 
 
-//        btFechar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                chamaTelaMain();
-//                finish();
-//            }
-//        });
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chamaTelaMain();
+                finish();
+            }
+        });
 
     }
 
@@ -54,9 +53,9 @@ public class TelaResultado extends Activity {
 
     public void inicializaComponentes(){
         tvParabens = (TextView)findViewById(R.id.tv_parabens);
-        tvVoceFez = (TextView)findViewById(R.id.tv_vc_fez);
+        tvVoceFez = (TextView)findViewById(R.id.tv_vocefez);
         tvPontos = (TextView)findViewById(R.id.tv_pontos);
-        tvSomaPontos = (TextView) findViewById(R.id.tv_soma_pontos);
-        btFechar = (Button)findViewById(R.id.bt_fechar_dialog);
+        tvSomaPontos = (TextView) findViewById(R.id.tv_somapontuacao);
+        btVoltar = (Button)findViewById(R.id.bt_voltar);
     }
 }

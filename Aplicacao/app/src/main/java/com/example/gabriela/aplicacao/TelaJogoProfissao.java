@@ -81,19 +81,20 @@ public class TelaJogoProfissao extends Activity {
                         RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-
+                                int pontuacao=0;
+                                boolean acabou = false;
                                 if (alternativasMescladas.get(position).getPergunta().getIdPergunta() == perguntaAtual.getIdPergunta()) {
 
                                     int pontuacaoAtual = resposta.getPontuacao();
 
                                     resposta.setPontuacao(pontuacaoAtual + 10);
-
+                                    pontuacao = resposta.getPontuacao();
                                     obterPersonagensAleatorios();
-                                    obterPerguntasAleatorias();
+                                    acabou = obterPerguntasAleatorias();
                                     new HttpRequestTaskAlternativaPorIdPergunta().execute();
                                     obterAlternativasCorretasAleatorias();
 
-                                    Toast.makeText(TelaJogoProfissao.this, "acertou, " + resposta.getPontuacao() + " pontos," +
+                                    Toast.makeText(TelaJogoProfissao.this, "acertou, " + pontuacao + " pontos," +
                                             " faltam " + perguntas.size() + " questões", Toast.LENGTH_LONG).show();
                                 } else {
 
@@ -104,17 +105,21 @@ public class TelaJogoProfissao extends Activity {
 
                                         resposta.setPontuacao(pontuacaoAtual - 5);
 
+                                        pontuacao = resposta.getPontuacao();
                                         obterPersonagensAleatorios();
-                                        obterPerguntasAleatorias();
+                                        acabou = obterPerguntasAleatorias();
                                         new HttpRequestTaskAlternativaPorIdPergunta().execute();
                                         obterAlternativasCorretasAleatorias();
 
-                                        Toast.makeText(TelaJogoProfissao.this, "errou, " + resposta.getPontuacao() + " pontos," +
+                                        Toast.makeText(TelaJogoProfissao.this, "errou, " + pontuacao + " pontos," +
                                                 " faltam " + perguntas.size() + " questões", Toast.LENGTH_LONG).show();
                                     }
 
                                 }
-//                                count = resposta.getPontuacao();
+                                count = pontuacao;
+                                if(acabou) {
+                                    chamaTelaResultado();
+                                }
                             }
                         })
 
@@ -176,10 +181,10 @@ public class TelaJogoProfissao extends Activity {
         }
     }
 
-    public void obterPerguntasAleatorias() {
+    public boolean obterPerguntasAleatorias() {
         Random ran = new Random();
 
-        if (perguntas.size() > 0) {
+        if (perguntas.size() > 7) {
 
             int ranNum = ran.nextInt(this.perguntas.size());
 
@@ -188,10 +193,10 @@ public class TelaJogoProfissao extends Activity {
             tvPergunta.setText(perguntaAtual.getDescricao());
             perguntas.remove(ranNum);
             perguntas.size();
-
+            return false;
 
         } else {
-            chamaTelaResultado();
+            return true;
         }
     }
 
@@ -209,10 +214,10 @@ public class TelaJogoProfissao extends Activity {
     public void chamaTelaResultado() {
         Intent intent = new Intent(TelaJogoProfissao.this, TelaResultado.class);
 
-//        Bundle bundle = new Bundle();
-//        bundle.putSerializable("count", String.valueOf(count));
-//        Log.i("DEBUG", String.valueOf(count));
-//        intent.putExtras(bundle);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("count", String.valueOf(count));
+        Log.i("DEBUG", String.valueOf(count));
+        intent.putExtras(bundle);
         startActivity(intent);
 //        Log.i("DEBUG", "estartou" + count);
         finish();
